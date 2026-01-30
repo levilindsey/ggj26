@@ -9,14 +9,30 @@ extends Node2D
 @export var main_theme_volume := 0.0
 @export var menu_theme_volume := 0.0
 
+@onready var STREAM_PLAYERS_BY_NAME := {
+	"menu_theme" = %MenuThemeStreamPlayer,
+	"main_theme" = %MainThemeStreamPlayer,
+	"click" = %ClickStreamPlayer,
+	# TODO: Make a better sound.
+	"godot_splash" = %ClickStreamPlayer,
+	"scg_splash" = %SnoringCatStreamPlayer,
+	"success" = %SuccessCadenceStreamPlayer,
+	"failure" = %FailureCadenceStreamPlayer,
+	"achievement" = %AchievementStreamPlayer,
+}
+
 
 func _enter_tree() -> void:
 	G.audio = self
 
 
-func play_click_sound() -> void:
-	if not %ClickStreamPlayer.playing:
-		%ClickStreamPlayer.play()
+func play_sound(sound_name: StringName) -> void:
+	if not G.ensure(STREAM_PLAYERS_BY_NAME.has(sound_name)):
+		return
+
+	var stream_player: AudioStreamPlayer = STREAM_PLAYERS_BY_NAME[sound_name]
+	if not stream_player.playing:
+		stream_player.play()
 
 
 func fade_to_menu_theme() -> void:
@@ -35,16 +51,21 @@ func fade_in(stream_player: AudioStreamPlayer, volume: float) -> void:
 
 	if not stream_player.playing:
 		stream_player.volume_db = mute_volume
-		# This is similar to calling play(), except play() resets playback position to zero.
+		# This is similar to calling play(), except play() resets playback
+		# position to zero.
 		stream_player.stream_paused = false
 
 	var tween := create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	tween.tween_property(stream_player, "volume_db", volume, theme_fade_duration_sec)
+	tween.tween_property(
+		stream_player,
+		"volume_db",
+		volume,
+		theme_fade_duration_sec)
 
 	await tween.step_finished
-	# Ensure the stream is still playing, just in case we somehow end up with overlapping tweens
-	# (the latest tween should end up winning).
+	# Ensure the stream is still playing, just in case we somehow end up with
+	# overlapping tweens (the latest tween should end up winning).
 	stream_player.stream_paused = false
 
 
@@ -54,9 +75,29 @@ func fade_out(stream_player: AudioStreamPlayer) -> void:
 
 	var tween := create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	tween.tween_property(stream_player, "volume_db", mute_volume, theme_fade_duration_sec)
+	tween.tween_property(
+		stream_player,
+		"volume_db",
+		mute_volume,
+		theme_fade_duration_sec)
 
 	await tween.step_finished
-	# Ensure the stream is still playing, just in case we somehow end up with overlapping tweens
-	# (the latest tween should end up winning).
+	# Ensure the stream is still playing, just in case we somehow end up with
+	# overlapping tweens (the latest tween should end up winning).
 	stream_player.stream_paused = true
+
+
+func apply_music_mute() -> void:
+	# Apply mute setting to currently playing music streams.
+	var menu_player := %MenuThemeStreamPlayer
+	var main_player := %MainThemeStreamPlayer
+
+	if menu_player.playing and not menu_player.stream_paused:
+		menu_player.volume_db = mute_volume if (
+			G.settings.mute_music
+		) else menu_theme_volume
+
+	if main_player.playing and not main_player.stream_paused:
+		main_player.volume_db = mute_volume if (
+			G.settings.mute_music
+		) else main_theme_volume
