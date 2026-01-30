@@ -59,7 +59,7 @@ func error(
 	push_error(message)
 	self.print(message)
 	if should_assert:
-		 assert(false)
+		assert(false)
 
 
 # -   Using this function instead of `push_error` directly enables us to render
@@ -74,7 +74,7 @@ static func static_error(
 	message = _format_message("ERROR  : %s" % message)
 	push_error(message)
 	if should_assert:
-		 assert(false)
+		assert(false)
 
 
 # -   Using this function instead of `push_error` directly enables us to render
