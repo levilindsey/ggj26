@@ -12,12 +12,14 @@ enum MaskType {
 }
 
 const _MAX_HEALTH := 100
-const _RESPAWN_DELAY_SEC := 2.0
+const _DEATH_GAME_OVER_DELAY_SEC := 0.3
 
 
 @export var mask_type := MaskType.NONE
 
 @export var defense := 1.0
+
+@export var camera: Camera2D
 
 var current_health := _MAX_HEALTH
 
@@ -27,7 +29,9 @@ var is_dead: bool:
 
 
 func _ready() -> void:
+	G.check(is_instance_valid(camera))
 	super._ready()
+	camera.make_current()
 	play_sound("spawn")
 
 
@@ -39,6 +43,19 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 	super._physics_process(delta)
+
+	if Input.is_action_just_pressed("ability"):
+		# TODO
+		pass
+	if Input.is_action_just_pressed("mask"):
+		# TODO
+		pass
+	if Input.is_action_just_pressed("scroll_left"):
+		# TODO
+		pass
+	if Input.is_action_just_pressed("scroll_right"):
+		# TODO
+		pass
 
 
 func _update_actions() -> void:
@@ -77,5 +94,11 @@ func take_damage(damage: int) -> void:
 
 func die() -> void:
 	play_sound("die")
-	await get_tree().create_timer(_RESPAWN_DELAY_SEC).timeout
-	G.level.reset()
+	await get_tree().create_timer(_DEATH_GAME_OVER_DELAY_SEC).timeout
+	G.level.game_over()
+
+
+func copy(other: Player) -> void:
+	global_position = other.global_position
+	velocity = other.velocity
+	current_health = other.current_health

@@ -24,18 +24,22 @@ extends Resource
 
 @export var default_level_scene: PackedScene
 
+@export_group("Player scenes")
 @export var girl_scene: PackedScene
 @export var cowboy_scene: PackedScene
 @export var pirate_scene: PackedScene
 @export var wizard_scene: PackedScene
 @export var dinosaur_scene: PackedScene
 @export var chicken_scene: PackedScene
+@export_group("")
 
+@export_group("Enemy scenes")
 @export var dust_bunny_scene: PackedScene
 @export var rat_scene: PackedScene
 @export var ghost_scene: PackedScene
 @export var nightmare_scene: PackedScene
 @export var spider_scene: PackedScene
+@export_group("")
 
 
 func get_player_for_mask_type(type: Player.MaskType) -> PackedScene:

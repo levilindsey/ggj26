@@ -2,11 +2,17 @@ class_name Level
 extends Node2D
 
 
+const _GAME_OVER_READY_TO_START_NEXT_GAME_DELAY_SEC := 0.3
+
 var enemy_spawn_points: Array[EnemySpawnPoint] = []
 
 var player: Player
 
 var enemies: Array[Enemy] = []
+
+var has_started := false
+var has_finished := false
+var is_ready_for_input_to_activate_next_game := false
 
 
 func _enter_tree() -> void:
@@ -19,15 +25,13 @@ func _exit_tree() -> void:
 
 
 func _ready() -> void:
-	pass
-
-
-func start() -> void:
-	reset()
+	await get_tree().create_timer(_GAME_OVER_READY_TO_START_NEXT_GAME_DELAY_SEC).timeout
+	is_ready_for_input_to_activate_next_game = true
 
 
 func reset() -> void:
-	player.destroy()
+	if is_instance_valid(player):
+		player.destroy()
 
 	for enemy in enemies:
 		enemy.destroy()
@@ -38,23 +42,56 @@ func reset() -> void:
 	for spawn_point in enemy_spawn_points:
 		spawn_enemy(spawn_point)
 
+	has_started = true
+	has_finished = false
+	is_ready_for_input_to_activate_next_game = false
+
+
+func game_over() -> void:
+	has_finished = true
+	await get_tree().create_timer(_GAME_OVER_READY_TO_START_NEXT_GAME_DELAY_SEC).timeout
+	is_ready_for_input_to_activate_next_game = true
+
+
+func _input(event: InputEvent) -> void:
+	if not is_ready_for_input_to_activate_next_game:
+		return
+
+	if (
+		event.is_action_pressed("move_up") or
+		event.is_action_pressed("move_down") or
+		event.is_action_pressed("move_left") or
+		event.is_action_pressed("move_right") or
+		event.is_action_pressed("jump") or
+		event.is_action_pressed("ability") or
+		event.is_action_pressed("mask") or
+		event.is_action_pressed("scroll_left") or
+		event.is_action_pressed("scroll_right")
+	):
+		reset()
+
 
 func register_enemy_spawn_point(point: EnemySpawnPoint) -> void:
 	enemy_spawn_points.append(point)
 
 
 func spawn_player() -> void:
-	swap_mask(%PlayerSpawnPoint.global_position, Player.MaskType.NONE)
+	swap_mask(Player.MaskType.NONE)
 	# TODO: Have the player start out lying down in bed.
 
 
-func swap_mask(p_position: Vector2, mask_type: Player.MaskType) -> void:
-	if is_instance_valid(player):
-		player.destroy()
-	player = G.settings.get_player_for_mask_type(mask_type).instantiate()
-	player.global_position = p_position
-	%Players.add_child(player)
+func swap_mask(mask_type: Player.MaskType) -> void:
+	var previous_player := player
 
+	player = G.settings.get_player_for_mask_type(mask_type).instantiate()
+	player.global_position = %PlayerSpawnPoint.global_position
+
+	if is_instance_valid(previous_player):
+		player.copy(previous_player)
+
+	if is_instance_valid(previous_player):
+		previous_player.destroy()
+	%Players.add_child(player)
 
 
 func spawn_enemy(spawn_point: EnemySpawnPoint) -> void:
