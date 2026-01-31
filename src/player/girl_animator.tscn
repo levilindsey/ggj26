@@ -1,28 +1,29 @@
 [gd_scene load_steps=5 format=3 uid="uid://br1b7cse0hxmt"]
 
-[ext_resource type="Texture2D" uid="uid://bsrqq2id8rpl8" path="res://assets/images/old/bunny.png" id="1_biyea"]
 [ext_resource type="Script" uid="uid://b50tfbt5wsthb" path="res://src/scaffolder/character/character_animator.gd" id="1_eeopx"]
+[ext_resource type="Texture2D" uid="uid://djyvc1xjko32v" path="res://assets/images/scratch/girl.png" id="2_ufhta"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mf2ua"]
-atlas = ExtResource("1_biyea")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vwoo"]
+atlas = ExtResource("2_ufhta")
+region = Rect2(0, 0, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eeopx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mf2ua")
+"texture": SubResource("AtlasTexture_4vwoo")
 }],
 "loop": true,
-"name": &"default",
+"name": &"rest",
 "speed": 5.0
 }]
 
-[node name="PlayerAnimator" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
+[node name="GirlAnimator" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
 script = ExtResource("1_eeopx")
-faces_right_by_default = false
 animated_sprite = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://b50tfbt5wsthb"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_eeopx")
+animation = &"rest"
+autoplay = "rest"

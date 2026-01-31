@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://djclvshfrmi2p"]
+
+[ext_resource type="Script" uid="uid://dn207w6w75on0" path="res://enemies/dust_bunny.gd" id="1_u6v05"]
+[ext_resource type="Texture2D" uid="uid://bvsmb3iopc3ni" path="res://assets/images/scratch/dust_bunny.png" id="2_6da3l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io1tw"]
+atlas = ExtResource("2_6da3l")
+region = Rect2(0, 0, 20, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0643i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io1tw")
+}],
+"loop": true,
+"name": &"rest",
+"speed": 5.0
+}]
+
+[node name="DustBunny" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("1_u6v05")
+animated_sprite = NodePath("AnimatedSprite2D")
+max_health = 10
+metadata/_custom_type_script = "uid://cp6ckv0gqrybd"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0643i")
+animation = &"rest"

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cplh64v2pmjin"]
+
+[ext_resource type="Script" uid="uid://c1qdd50ca4hst" path="res://src/player/player.gd" id="1_pw3e2"]
+[ext_resource type="Resource" uid="uid://dq1d4nuh248j2" path="res://src/player/default_movement_settings.tres" id="2_vytfq"]
+[ext_resource type="PackedScene" uid="uid://qqiyuglh214k" path="res://src/player/wizard_animator.tscn" id="3_ikom1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mf2ua"]
+size = Vector2(17, 5)
+
+[node name="Wizard" type="CharacterBody2D" node_paths=PackedStringArray("collision_shape")]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_pw3e2")
+collision_shape = NodePath("PlayerBodyCollisionShape")
+movement_settings = ExtResource("2_vytfq")
+metadata/_custom_type_script = "uid://c1qdd50ca4hst"
+
+[node name="CharacterCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+zoom = Vector2(1.5, 1.5)
+
+[node name="WizardAnimator" parent="." instance=ExtResource("3_ikom1")]
+position = Vector2(0, -12)
+
+[node name="PlayerBodyCollisionShape" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0.49999982, -8.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_mf2ua")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://qqiyuglh214k"]
+
+[ext_resource type="Script" uid="uid://b50tfbt5wsthb" path="res://src/scaffolder/character/character_animator.gd" id="1_eeopx"]
+[ext_resource type="Texture2D" uid="uid://yft2qu1sk57q" path="res://assets/images/scratch/wizard.png" id="2_h3gkg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tagc"]
+atlas = ExtResource("2_h3gkg")
+region = Rect2(0, 0, 20, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ffpti"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tagc")
+}],
+"loop": true,
+"name": &"rest",
+"speed": 5.0
+}]
+
+[node name="WizardAnimator" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("1_eeopx")
+animated_sprite = NodePath("AnimatedSprite2D")
+metadata/_custom_type_script = "uid://b50tfbt5wsthb"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ffpti")
+animation = &"rest"
+autoplay = "rest"

@@ -23,6 +23,7 @@ var pause_screen: PauseScreen
 var game_panel: GamePanel
 var session: Session
 var level: Level
+var player: Player
 
 
 func _enter_tree() -> void:
@@ -37,3 +38,57 @@ func _enter_tree() -> void:
 
 	geometry.name = "Geometry"
 	add_child(geometry)
+
+
+# --- Include some convenient access to logging/error utilities ---------------
+
+var is_verbose: bool:
+	get:
+		return log.is_verbose
+
+
+func print(
+		message = "",
+		category := ScaffolderLog.CATEGORY_DEFAULT,
+		verbosity := ScaffolderLog.Verbosity.NORMAL,
+		force_enable := false,
+) -> void:
+	log.print(message, category, verbosity, force_enable)
+
+
+func verbose(
+		message = "",
+		category := ScaffolderLog.CATEGORY_DEFAULT,
+		force_enable := false,
+) -> void:
+	log.print(message, category, ScaffolderLog.Verbosity.VERBOSE, force_enable)
+
+
+func warning(message = "", category := ScaffolderLog.CATEGORY_DEFAULT) -> void:
+	log.warning(message, category)
+
+
+func error(message = "", category := ScaffolderLog.CATEGORY_DEFAULT) -> void:
+	log.error(message, category, false)
+
+
+func fatal(message = "", category := ScaffolderLog.CATEGORY_DEFAULT) -> void:
+	log.error(message, category, true)
+
+
+func ensure(condition: bool, message = "") -> bool:
+	return log.ensure(condition, message)
+
+
+func ensure_valid(object, message = "") -> bool:
+	return log.ensure(is_instance_valid(object), message)
+
+
+func check(condition: bool, message = "") -> bool:
+	return log.check(condition, message)
+
+
+func check_valid(object, message = "") -> bool:
+	return log.check(is_instance_valid(object), message)
+
+# -----------------------------------------------------------------------------

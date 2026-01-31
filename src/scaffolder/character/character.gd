@@ -162,7 +162,7 @@ func _physics_process(delta: float) -> void:
 		stationary_frames_count += 1
 
 	total_distance_traveled += position.distance_to(previous_position)
-	
+
 	physics_processed.emit()
 
 
@@ -175,7 +175,7 @@ func _apply_movement() -> void:
 	velocity = modified_velocity
 	max_slides = MovementSettings._MAX_SLIDES_DEFAULT
 	move_and_slide()
-	
+
 	surface_state.update_collisions()
 
 
@@ -191,7 +191,7 @@ func _update_actions() -> void:
 				actions,
 				_actions_from_previous_frame,
 				G.time.get_scaled_play_time())
-	
+
 	CharacterActionSource.update_for_implicit_key_events(
 			actions,
 			_actions_from_previous_frame)
@@ -230,31 +230,31 @@ func _process_animation() -> void:
 	match surface_state.surface_type:
 		SurfaceType.FLOOR:
 			if actions.pressed_left or actions.pressed_right:
-				animator.play("Walk")
+				animator.play("walk")
 			else:
-				animator.play("Rest")
+				animator.play("rest")
 		SurfaceType.WALL:
 			if processed_action("WallClimbAction"):
 				if actions.pressed_up:
-					animator.play("ClimbUp")
+					animator.play("climb_up")
 				elif actions.pressed_down:
-					animator.play("ClimbDown")
+					animator.play("climb_down")
 				else:
-					push_error("SurfacerCharacter._process_animation")
+					G.fatal("SurfacerCharacter._process_animation")
 			else:
-				animator.play("RestOnWall")
+				animator.play("rest_on_wall")
 		SurfaceType.CEILING:
 			if actions.pressed_left or actions.pressed_right:
-				animator.play("CrawlOnCeiling")
+				animator.play("crawl_on_ceiling")
 			else:
-				animator.play("RestOnCeiling")
+				animator.play("rest_on_ceiling")
 		SurfaceType.AIR:
 			if velocity.y > 0:
-				animator.play("JumpFall")
+				animator.play("jump_fall")
 			else:
-				animator.play("JumpRise")
+				animator.play("jump_rise")
 		_:
-			push_error("SurfacerCharacter._process_animation")
+			G.fatal("SurfacerCharacter._process_animation")
 
 
 func _process_sounds() -> void:
@@ -269,7 +269,7 @@ func _process_sounds() -> void:
 
 func play_sound(_sound_name: String) -> void:
 	push_error("Abstract CharacterActionSource.update is not implemented")
-	
+
 
 func processed_action(p_name: String) -> bool:
 	return _previous_actions_handlers_this_frame.get(p_name) == true

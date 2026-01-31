@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6hkmym7kna42"]
+
+[ext_resource type="Script" uid="uid://b50tfbt5wsthb" path="res://src/scaffolder/character/character_animator.gd" id="1_eeopx"]
+[ext_resource type="Texture2D" uid="uid://b4m68avdfe2ik" path="res://assets/images/scratch/dinosaur.png" id="2_auivn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6k4d"]
+atlas = ExtResource("2_auivn")
+region = Rect2(0, 0, 70, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m23pi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6k4d")
+}],
+"loop": true,
+"name": &"rest",
+"speed": 5.0
+}]
+
+[node name="DinosaurAnimator" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("1_eeopx")
+animated_sprite = NodePath("AnimatedSprite2D")
+metadata/_custom_type_script = "uid://b50tfbt5wsthb"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m23pi")
+animation = &"rest"
+autoplay = "rest"

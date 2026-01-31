@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c40jyjt072yk4"]
+
+[ext_resource type="Script" uid="uid://b50tfbt5wsthb" path="res://src/scaffolder/character/character_animator.gd" id="1_eeopx"]
+[ext_resource type="Texture2D" uid="uid://dwwn3yie15rnj" path="res://assets/images/scratch/pirate.png" id="2_eik1p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpif2"]
+atlas = ExtResource("2_eik1p")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7t655"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpif2")
+}],
+"loop": true,
+"name": &"rest",
+"speed": 5.0
+}]
+
+[node name="PirateAnimator" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("1_eeopx")
+animated_sprite = NodePath("AnimatedSprite2D")
+metadata/_custom_type_script = "uid://b50tfbt5wsthb"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7t655")
+animation = &"rest"
+autoplay = "rest"
