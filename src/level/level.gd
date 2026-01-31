@@ -106,7 +106,7 @@ func spawn_player() -> void:
 func swap_mask(mask_type: Player.MaskType) -> void:
 	var previous_player := player
 
-	var swap_position: Vector2 = (
+	var previous_position: Vector2 = (
 		previous_player.global_position if
 		is_instance_valid(previous_player) else
 		%PlayerSpawnPoint.global_position
@@ -120,7 +120,7 @@ func swap_mask(mask_type: Player.MaskType) -> void:
 	if is_instance_valid(previous_player):
 		previous_player.destroy()
 	%Players.add_child(player)
-	player.global_position = swap_position
+	player.global_position = previous_position
 
 
 func spawn_enemy(spawn_point: EnemySpawnPoint) -> void:

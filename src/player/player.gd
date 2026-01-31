@@ -21,6 +21,7 @@ const _DEATH_GAME_OVER_DELAY_SEC := 0.3
 
 var current_masks: Array[MaskType] = [MaskType.NONE]
 var selected_mask_index := 0
+var previous_mask_type := MaskType.NONE
 
 var current_health := _MAX_HEALTH
 
@@ -142,6 +143,12 @@ func copy(other: Player) -> void:
 	velocity = other.velocity
 	current_health = other.current_health
 	current_masks = other.current_masks
+	previous_mask_type = other.mask_type
 
-	selected_mask_index = current_masks.find(mask_type)
+	if mask_type == MaskType.NONE:
+		# When toggling off a mask, to revert back to the girl, remain with the
+		# previous mask selected.
+		selected_mask_index = current_masks.find(previous_mask_type)
+	else:
+		selected_mask_index = current_masks.find(mask_type)
 	G.check(selected_mask_index >= 0)
