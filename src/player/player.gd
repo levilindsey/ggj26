@@ -27,6 +27,8 @@ var previous_mask_type := MaskType.NONE
 
 var current_health := _MAX_HEALTH
 
+var half_size := Vector2.INF
+
 var last_invincibility_start_time_sec := -INF
 var is_invincible: bool:
 	get:
@@ -42,6 +44,9 @@ var is_dead: bool:
 
 func _ready() -> void:
 	super._ready()
+	half_size = Geometry.calculate_half_width_height(
+		collision_shape.shape,
+		false)
 
 
 func destroy() -> void:
