@@ -19,8 +19,6 @@ const _DEATH_GAME_OVER_DELAY_SEC := 0.3
 
 @export var defense := 1.0
 
-@export var camera: Camera2D
-
 var current_health := _MAX_HEALTH
 
 var is_dead: bool:
@@ -29,9 +27,7 @@ var is_dead: bool:
 
 
 func _ready() -> void:
-	G.check(is_instance_valid(camera))
 	super._ready()
-	camera.make_current()
 	play_sound("spawn")
 
 

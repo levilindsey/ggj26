@@ -4,6 +4,8 @@ extends Node2D
 
 const _GAME_OVER_READY_TO_START_NEXT_GAME_DELAY_SEC := 0.3
 
+const _PLAYER_CAMERA_OFFSET := Vector2(0, -10)
+
 var enemy_spawn_points: Array[EnemySpawnPoint] = []
 
 var player: Player
@@ -69,6 +71,13 @@ func _input(event: InputEvent) -> void:
 		event.is_action_pressed("scroll_right")
 	):
 		reset()
+
+
+func _physics_process(_delta: float) -> void:
+	if is_instance_valid(player):
+		%Camera2D.global_position = player.global_position + _PLAYER_CAMERA_OFFSET
+	else:
+		%Camera2D.global_position = %PlayerSpawnPoint.global_position + _PLAYER_CAMERA_OFFSET
 
 
 func register_enemy_spawn_point(point: EnemySpawnPoint) -> void:
