@@ -20,6 +20,7 @@ const _DEATH_GAME_OVER_DELAY_SEC := 0.3
 @export var defense := 1.0
 
 var current_masks: Array[MaskType] = [MaskType.NONE]
+var selected_mask_index := 0
 
 var current_health := _MAX_HEALTH
 
@@ -30,11 +31,18 @@ var is_dead: bool:
 
 func _ready() -> void:
 	super._ready()
-	play_sound("spawn")
 
 
 func destroy() -> void:
 	queue_free()
+
+
+func _trigger_ability() -> void:
+	G.fatal("Abstract Player._trigger_ability is not implemented")
+
+
+func _process(delta: float) -> void:
+	super._process(delta)
 
 
 func _physics_process(delta: float) -> void:
@@ -43,17 +51,26 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 	if Input.is_action_just_pressed("ability"):
-		# TODO
-		pass
+		_trigger_ability()
 	if Input.is_action_just_pressed("mask"):
-		# TODO
-		pass
+		var next_mask_type := current_masks[selected_mask_index]
+		if next_mask_type == mask_type:
+			# Reselecting the same mask toggles it off.
+			next_mask_type = MaskType.NONE
+		if next_mask_type == mask_type:
+			# We already are wearing this mask (only happens for the girl).
+			return
+		G.level.swap_mask(next_mask_type)
+		play_sound("mask")
 	if Input.is_action_just_pressed("scroll_left"):
-		# TODO
-		pass
+		selected_mask_index = (
+			(selected_mask_index - 1 + current_masks.size()) %
+			current_masks.size()
+		)
+		play_sound("mask_scroll")
 	if Input.is_action_just_pressed("scroll_right"):
-		# TODO
-		pass
+		selected_mask_index = (selected_mask_index + 1) % current_masks.size()
+		play_sound("mask_scroll")
 
 
 func _update_actions() -> void:
@@ -65,6 +82,28 @@ func play_sound(sound_name: String) -> void:
 		"spawn":
 			# TODO: ALDEN: Make that magic sound stuff happen, baby.
 			pass
+		"mask":
+			match mask_type:
+				MaskType.NONE:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				MaskType.COWBOY:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				MaskType.PIRATE:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				MaskType.WIZARD:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				MaskType.DINOSAUR:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				MaskType.CHICKEN:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				_:
+					G.fatal()
 		"jump":
 			# TODO: ALDEN: Make that magic sound stuff happen, baby.
 			pass
@@ -75,6 +114,9 @@ func play_sound(sound_name: String) -> void:
 			# TODO: ALDEN: Make that magic sound stuff happen, baby.
 			pass
 		"die":
+			# TODO: ALDEN: Make that magic sound stuff happen, baby.
+			pass
+		"mask_scroll":
 			# TODO: ALDEN: Make that magic sound stuff happen, baby.
 			pass
 		_:
@@ -100,3 +142,6 @@ func copy(other: Player) -> void:
 	velocity = other.velocity
 	current_health = other.current_health
 	current_masks = other.current_masks
+
+	selected_mask_index = current_masks.find(mask_type)
+	G.check(selected_mask_index >= 0)

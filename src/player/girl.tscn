@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cn6hdqmmufnvr"]
 
-[ext_resource type="Script" uid="uid://c1qdd50ca4hst" path="res://src/player/player.gd" id="1_pw3e2"]
+[ext_resource type="Script" uid="uid://cwa2rgyj8kyqn" path="res://src/player/girl.gd" id="1_pw3e2"]
 [ext_resource type="Resource" uid="uid://dq1d4nuh248j2" path="res://src/player/girl_movement_settings.tres" id="2_vytfq"]
 [ext_resource type="PackedScene" uid="uid://br1b7cse0hxmt" path="res://src/player/girl_animator.tscn" id="3_uecbg"]
 

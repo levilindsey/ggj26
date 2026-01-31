@@ -94,6 +94,7 @@ func register_enemy_spawn_point(point: EnemySpawnPoint) -> void:
 func spawn_player() -> void:
 	%SleepingGirl.visible = false
 	swap_mask(Player.MaskType.NONE)
+	player.play_sound("spawn")
 
 	# Optionally start with all masks.
 	if G.settings.start_with_all_masks:
@@ -101,14 +102,17 @@ func spawn_player() -> void:
 		for type in player.MaskType.values():
 			player.current_masks.append(type)
 
-	# TODO: Have the player start out lying down in bed.
-
 
 func swap_mask(mask_type: Player.MaskType) -> void:
 	var previous_player := player
 
+	var swap_position: Vector2 = (
+		previous_player.global_position if
+		is_instance_valid(previous_player) else
+		%PlayerSpawnPoint.global_position
+	)
+
 	player = G.settings.get_player_for_mask_type(mask_type).instantiate()
-	player.global_position = %PlayerSpawnPoint.global_position
 
 	if is_instance_valid(previous_player):
 		player.copy(previous_player)
@@ -116,6 +120,7 @@ func swap_mask(mask_type: Player.MaskType) -> void:
 	if is_instance_valid(previous_player):
 		previous_player.destroy()
 	%Players.add_child(player)
+	player.global_position = swap_position
 
 
 func spawn_enemy(spawn_point: EnemySpawnPoint) -> void:

@@ -33,7 +33,7 @@ tile_set = ExtResource("3_es1ad")
 
 [node name="PlayerSpawnPoint" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-81, -14)
+position = Vector2(-81, -4)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerSpawnPoint"]
 unique_name_in_owner = true

@@ -128,6 +128,10 @@ func _init_player_controller_action_source() -> void:
 	_action_sources.push_back(_character_action_source)
 
 
+func _process(delta: float) -> void:
+	pass
+
+
 func _physics_process(delta: float) -> void:
 	last_delta_scaled = G.time.scale_delta(delta)
 
