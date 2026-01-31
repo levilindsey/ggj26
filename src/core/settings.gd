@@ -15,6 +15,7 @@ extends Resource
 @export var mute_music := false
 @export var pauses_on_focus_out := true
 @export var is_screenshot_hotkey_enabled := true
+@export var start_with_all_masks := false
 
 @export var show_hud := true
 

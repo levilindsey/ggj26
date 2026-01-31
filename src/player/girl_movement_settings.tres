@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_q3kag")
-jump_boost = -360.0
+jump_boost = -320.0
 gravity_slow_rise_multiplier = 0.66
 walk_acceleration = 2000.0
 in_air_horizontal_acceleration = 1200.0

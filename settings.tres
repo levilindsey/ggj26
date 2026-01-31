@@ -13,6 +13,7 @@
 script = ExtResource("1_krfic")
 show_debug_player_state = true
 pauses_on_focus_out = false
+start_with_all_masks = true
 default_gravity_acceleration = 1400.0
 default_level_scene = ExtResource("1_legvn")
 girl_scene = ExtResource("5_e1gfc")

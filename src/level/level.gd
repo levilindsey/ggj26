@@ -2,7 +2,8 @@ class_name Level
 extends Node2D
 
 
-const _GAME_OVER_READY_TO_START_NEXT_GAME_DELAY_SEC := 0.3
+const _RESET_READY_TO_START_GAME_DELAY_SEC := 0.3
+const _GAME_OVER_READY_TO_RESET_DELAY_SEC := 0.3
 
 const _PLAYER_CAMERA_OFFSET := Vector2(0, -10)
 
@@ -27,8 +28,7 @@ func _exit_tree() -> void:
 
 
 func _ready() -> void:
-	await get_tree().create_timer(_GAME_OVER_READY_TO_START_NEXT_GAME_DELAY_SEC).timeout
-	is_ready_for_input_to_activate_next_game = true
+	reset()
 
 
 func reset() -> void:
@@ -39,20 +39,27 @@ func reset() -> void:
 		enemy.destroy()
 	enemies.clear()
 
-	spawn_player()
-
 	for spawn_point in enemy_spawn_points:
 		spawn_enemy(spawn_point)
 
-	has_started = true
+	has_started = false
 	has_finished = false
 	is_ready_for_input_to_activate_next_game = false
+
+	await get_tree().create_timer(_RESET_READY_TO_START_GAME_DELAY_SEC).timeout
+	is_ready_for_input_to_activate_next_game = true
+
+
+func start_game() -> void:
+	has_started = true
+	is_ready_for_input_to_activate_next_game = false
+	spawn_player()
 
 
 func game_over() -> void:
 	has_finished = true
-	await get_tree().create_timer(_GAME_OVER_READY_TO_START_NEXT_GAME_DELAY_SEC).timeout
-	is_ready_for_input_to_activate_next_game = true
+	await get_tree().create_timer(_GAME_OVER_READY_TO_RESET_DELAY_SEC).timeout
+	reset()
 
 
 func _input(event: InputEvent) -> void:
@@ -70,7 +77,7 @@ func _input(event: InputEvent) -> void:
 		event.is_action_pressed("scroll_left") or
 		event.is_action_pressed("scroll_right")
 	):
-		reset()
+		start_game()
 
 
 func _physics_process(_delta: float) -> void:
@@ -85,7 +92,15 @@ func register_enemy_spawn_point(point: EnemySpawnPoint) -> void:
 
 
 func spawn_player() -> void:
+	%SleepingGirl.visible = false
 	swap_mask(Player.MaskType.NONE)
+
+	# Optionally start with all masks.
+	if G.settings.start_with_all_masks:
+		player.current_masks.clear()
+		for type in player.MaskType.values():
+			player.current_masks.append(type)
+
 	# TODO: Have the player start out lying down in bed.
 
 

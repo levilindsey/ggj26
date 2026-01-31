@@ -19,6 +19,8 @@ const _DEATH_GAME_OVER_DELAY_SEC := 0.3
 
 @export var defense := 1.0
 
+var current_masks: Array[MaskType] = [MaskType.NONE]
+
 var current_health := _MAX_HEALTH
 
 var is_dead: bool:
@@ -90,7 +92,6 @@ func take_damage(damage: int) -> void:
 
 func die() -> void:
 	play_sound("die")
-	await get_tree().create_timer(_DEATH_GAME_OVER_DELAY_SEC).timeout
 	G.level.game_over()
 
 
@@ -98,3 +99,4 @@ func copy(other: Player) -> void:
 	global_position = other.global_position
 	velocity = other.velocity
 	current_health = other.current_health
+	current_masks = other.current_masks
