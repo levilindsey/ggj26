@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://djclvshfrmi2p"]
+[gd_scene load_steps=10 format=3 uid="uid://djclvshfrmi2p"]
 
 [ext_resource type="Script" uid="uid://dn207w6w75on0" path="res://enemies/dust_bunny.gd" id="1_u6v05"]
 [ext_resource type="Texture2D" uid="uid://bvsmb3iopc3ni" path="res://assets/images/scratch/dust_bunny.png" id="2_6da3l"]
@@ -18,12 +18,83 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="DustBunny" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6da3l"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n0tk1"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_io1tw"]
+radius = 102.0049
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0643i"]
+radius = 25.019993
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7kor"]
+radius = 0.1
+
+[node name="DustBunny" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "detection_area", "attack_max_range_area", "attack_min_range_area")]
+collision_layer = 16
+collision_mask = 7
 script = ExtResource("1_u6v05")
 animated_sprite = NodePath("AnimatedSprite2D")
+detection_area = NodePath("DetectionArea")
+attack_max_range_area = NodePath("AttackMaxRange")
+attack_min_range_area = NodePath("AttackMinRange")
 max_health = 10
-metadata/_custom_type_script = "uid://cp6ckv0gqrybd"
+metadata/_custom_type_script = "uid://dn207w6w75on0"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -10)
 sprite_frames = SubResource("SpriteFrames_0643i")
 animation = &"rest"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_6da3l")
+
+[node name="DamagePlayerArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="DamagePlayerShape" type="CollisionShape2D" parent="DamagePlayerArea"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_n0tk1")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_io1tw")
+
+[node name="AttackMaxRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="AttackMaxRangeShape" type="CollisionShape2D" parent="AttackMaxRange"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_0643i")
+
+[node name="AttackMinRange" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="AttackMinRangeShape" type="CollisionShape2D" parent="AttackMinRange"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_s7kor")
+
+[connection signal="body_entered" from="DamagePlayerArea" to="." method="_on_damage_player_area_body_entered"]
+[connection signal="body_exited" from="DamagePlayerArea" to="." method="_on_damage_player_area_body_exited"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_start_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_start_area_body_exited"]
+[connection signal="body_entered" from="AttackMaxRange" to="." method="_on_attack_max_range_body_entered"]
+[connection signal="body_exited" from="AttackMaxRange" to="." method="_on_attack_max_range_body_exited"]
+[connection signal="body_entered" from="AttackMinRange" to="." method="_on_attack_min_range_body_entered"]
+[connection signal="body_exited" from="AttackMinRange" to="." method="_on_attack_min_range_body_exited"]

@@ -12,6 +12,8 @@ enum MaskType {
 }
 
 const _MAX_HEALTH := 100
+const _INVINCIBILITY_DURATION_SEC := 1.0
+const _INVINCIBILITY_BLINK_PERIOD_SEC := 0.1
 const _DEATH_GAME_OVER_DELAY_SEC := 0.3
 
 
@@ -24,6 +26,14 @@ var selected_mask_index := 0
 var previous_mask_type := MaskType.NONE
 
 var current_health := _MAX_HEALTH
+
+var last_invincibility_start_time_sec := -INF
+var is_invincible: bool:
+	get:
+		return (
+			last_invincibility_start_time_sec + _INVINCIBILITY_DURATION_SEC >
+			G.time.get_play_time()
+		)
 
 var is_dead: bool:
 	get:
@@ -44,6 +54,22 @@ func _trigger_ability() -> void:
 
 func _process(delta: float) -> void:
 	super._process(delta)
+	_process_invincibility_blink()
+
+
+func _process_invincibility_blink() -> void:
+	if not is_invincible:
+		visible = true
+	else:
+		var elapsed_invincibility_time := (
+			G.time.get_play_time() - last_invincibility_start_time_sec
+		)
+		visible = (
+			floori(
+				elapsed_invincibility_time /
+				(_INVINCIBILITY_BLINK_PERIOD_SEC / 2.0)
+			) % 2 == 0
+		)
 
 
 func _physics_process(delta: float) -> void:
@@ -125,11 +151,18 @@ func play_sound(sound_name: String) -> void:
 
 
 func take_damage(damage: int) -> void:
+	var current_time := G.time.get_play_time()
+	if is_invincible:
+		# Ignore damage. Still invincible.
+		return
+
 	var modified_damage := floori(damage / defense)
 	current_health = maxi(current_health - modified_damage, 0)
+
 	if current_health == 0:
 		die()
 	else:
+		last_invincibility_start_time_sec = current_time
 		play_sound("ouch")
 
 
