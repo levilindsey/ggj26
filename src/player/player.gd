@@ -3,8 +3,6 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
-# - Make pickups oscillate.
-# - Show a shield instead of a heart for the dinosaur.
 # - Other enemies:
 #   - Movement/behavior settings
 #     - Ghost will have some custom stuff...
@@ -28,6 +26,11 @@ extends Character
 #   - 2-frame fall for each
 #   - Simple idle
 #   - Custom attack for each
+#   - Possibly "wake-up" and "sleep", should be simple though
+# - END GAME CONDITION:
+#   - Cookie jar and cookie sprite
+#   - Credits panel
+
 
 
 enum MaskType {
