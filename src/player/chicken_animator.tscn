@@ -202,7 +202,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"rest",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -219,7 +219,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [node name="ChickenAnimator" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
@@ -229,6 +229,6 @@ metadata/_custom_type_script = "uid://b50tfbt5wsthb"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pocwm")
-animation = &"walk"
+animation = &"jump_rise"
 autoplay = "rest"
-frame_progress = 0.7144552
+frame_progress = 0.43586662

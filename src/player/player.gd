@@ -46,6 +46,7 @@ const _MAX_HEALTH := 100
 const _INVINCIBILITY_DURATION_SEC := 1.0
 const _INVINCIBILITY_BLINK_PERIOD_SEC := 0.1
 const _DEATH_GAME_OVER_DELAY_SEC := 0.3
+const _MASK_SWAP_COOLDOWN_SEC := 1.0
 
 
 @export var mask_type := MaskType.NONE
@@ -69,6 +70,8 @@ var is_strong_defense: bool:
 var current_masks: Array[MaskType] = [MaskType.NONE]
 var selected_mask_index := 0
 var previous_mask_type := MaskType.NONE
+
+var last_mask_swap_time_sec := -INF
 
 var current_health := _MAX_HEALTH
 var health_progress: float:
@@ -126,37 +129,42 @@ func _process_invincibility_blink() -> void:
 
 
 func _physics_process(delta: float) -> void:
-    if is_dead:
-        return
-    super._physics_process(delta)
+	if is_dead:
+		return
+	super._physics_process(delta)
 
-    if Input.is_action_just_pressed("ability"):
-        last_ability_start_time_sec = G.time.get_play_time()
-        _trigger_ability()
-        animator.play("attack")
-        play_sound("ability")
-    if Input.is_action_just_pressed("mask"):
-        var next_mask_type := current_masks[selected_mask_index]
-        if next_mask_type == mask_type:
-            # Reselecting the same mask toggles it off.
-            next_mask_type = MaskType.NONE
-        if next_mask_type == mask_type:
-            # We already are wearing this mask (only happens for the girl).
-            return
-        G.level.swap_mask(next_mask_type)
-        G.hud.update_masks()
-        play_sound("mask")
-    if Input.is_action_just_pressed("scroll_left"):
-        selected_mask_index = (
-            (selected_mask_index - 1 + current_masks.size()) %
-            current_masks.size()
-        )
-        G.hud.update_masks()
-        play_sound("mask_scroll")
-    if Input.is_action_just_pressed("scroll_right"):
-        selected_mask_index = (selected_mask_index + 1) % current_masks.size()
-        G.hud.update_masks()
-        play_sound("mask_scroll")
+	if Input.is_action_just_pressed("ability"):
+		last_ability_start_time_sec = G.time.get_play_time()
+		_trigger_ability()
+		animator.play("attack")
+		play_sound("ability")
+	if Input.is_action_just_pressed("mask"):
+		# Don't allow rapid swaps.
+		var current_time := G.time.get_play_time()
+		if current_time < last_mask_swap_time_sec + _MASK_SWAP_COOLDOWN_SEC:
+			return
+
+		var next_mask_type := current_masks[selected_mask_index]
+		if next_mask_type == mask_type:
+			# Reselecting the same mask toggles it off.
+			next_mask_type = MaskType.NONE
+		if next_mask_type == mask_type:
+			# We already are wearing this mask (only happens for the girl).
+			return
+		G.level.swap_mask(next_mask_type)
+		G.hud.update_masks()
+		play_sound("mask")
+	if Input.is_action_just_pressed("scroll_left"):
+		selected_mask_index = (
+			(selected_mask_index - 1 + current_masks.size()) %
+			current_masks.size()
+		)
+		G.hud.update_masks()
+		play_sound("mask_scroll")
+	if Input.is_action_just_pressed("scroll_right"):
+		selected_mask_index = (selected_mask_index + 1) % current_masks.size()
+		G.hud.update_masks()
+		play_sound("mask_scroll")
 
 
 func _update_actions() -> void:

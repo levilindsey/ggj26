@@ -1,0 +1,261 @@
+[gd_scene load_steps=29 format=3 uid="uid://dc8hc6463ar2j"]
+
+[ext_resource type="Script" uid="uid://n2ec8c2ou2fi" path="res://src/enemies/hand.gd" id="1_4v1u7"]
+[ext_resource type="Texture2D" uid="uid://cj6xt4kftffq2" path="res://assets/images/scratch/hand.png" id="2_4v1u7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6whj"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(576, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au8i3"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(624, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_567m2"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(672, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cv827"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(720, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5mx"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(768, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_068t2"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(816, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bfqk"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(864, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70s11"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(912, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23yom"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(384, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssncs"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(432, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrbtj"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(480, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eh8r"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(528, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdeal"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(192, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8740"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(240, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt3go"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(288, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chd3p"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(336, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hupgt"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(0, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc6lu"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(48, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8jni"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(96, 0, 48, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmmqh"]
+atlas = ExtResource("2_4v1u7")
+region = Rect2(144, 0, 48, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0643i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6whj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au8i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_567m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv827")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5mx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_068t2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bfqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70s11")
+}],
+"loop": true,
+"name": &"reach",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23yom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssncs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrbtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eh8r")
+}],
+"loop": true,
+"name": &"rest",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdeal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8740")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xt3go")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chd3p")
+}],
+"loop": true,
+"name": &"sleep",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hupgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc6lu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8jni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmmqh")
+}],
+"loop": false,
+"name": &"wake_up",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6da3l"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n0tk1"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_io1tw"]
+radius = 82.006096
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0643i"]
+radius = 36.013885
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7kor"]
+radius = 0.1
+
+[node name="Hand" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collision_shape", "damage_player_area", "detection_range", "attack_max_range_area", "attack_min_range_area")]
+collision_layer = 16
+collision_mask = 7
+script = ExtResource("1_4v1u7")
+animated_sprite = NodePath("AnimatedSprite2D")
+collision_shape = NodePath("CollisionShape2D")
+damage_player_area = NodePath("DamagePlayerArea")
+detection_range = NodePath("DetectionRange")
+attack_max_range_area = NodePath("AttackMaxRange")
+attack_min_range_area = NodePath("AttackMinRange")
+chase_speed = 60.0
+wander_speed = 30.0
+bounces_when_walking = true
+walk_bounce_boost = 70.0
+chase_bounce_boost = 50.0
+gravity_multiplier = 0.2
+max_health = 10
+attack_duration_sec = 0.9
+idle_pause_duration_min_sec = 1.0
+idle_pause_duration_max_sec = 3.0
+metadata/_custom_type_script = "uid://n2ec8c2ou2fi"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -10)
+sprite_frames = SubResource("SpriteFrames_0643i")
+animation = &"reach"
+autoplay = "rest"
+frame_progress = 0.8056799
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_6da3l")
+
+[node name="DamagePlayerArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="DamagePlayerShape" type="CollisionShape2D" parent="DamagePlayerArea"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_n0tk1")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="DetectionRangeShape" type="CollisionShape2D" parent="DetectionRange"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_io1tw")
+
+[node name="AttackMaxRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="AttackMaxRangeShape" type="CollisionShape2D" parent="AttackMaxRange"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_0643i")
+
+[node name="AttackMinRange" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="AttackMinRangeShape" type="CollisionShape2D" parent="AttackMinRange"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_s7kor")
+
+[connection signal="body_entered" from="DamagePlayerArea" to="." method="_on_damage_player_area_body_entered"]
+[connection signal="body_exited" from="DamagePlayerArea" to="." method="_on_damage_player_area_body_exited"]
+[connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
+[connection signal="body_entered" from="AttackMaxRange" to="." method="_on_attack_max_range_body_entered"]
+[connection signal="body_exited" from="AttackMaxRange" to="." method="_on_attack_max_range_body_exited"]
+[connection signal="body_entered" from="AttackMinRange" to="." method="_on_attack_min_range_body_entered"]
+[connection signal="body_exited" from="AttackMinRange" to="." method="_on_attack_min_range_body_exited"]

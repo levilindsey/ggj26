@@ -146,7 +146,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump_fall",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -157,7 +157,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump_rise",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -203,7 +203,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [node name="WizardAnimator" type="Node2D" node_paths=PackedStringArray("animated_sprite")]
@@ -213,5 +213,6 @@ metadata/_custom_type_script = "uid://b50tfbt5wsthb"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ffpti")
-animation = &"attack"
+animation = &"walk"
 autoplay = "rest"
+frame_progress = 0.7839758
