@@ -13,6 +13,7 @@ const CATEGORY_SYSTEM_INITIALIZATION := &"SysInit"
 const CATEGORY_CORE_SYSTEMS := &"CoreSystems"
 const CATEGORY_PLAYER_ACTIONS := &"PlayerActions"
 const CATEGORY_INTERACTION := &"PlayerInteraction"
+const CATEGORY_BEHAVIORS := &"Behaviors"
 const CATEGORY_GAME_STATE := &"GameState"
 
 const _RAINBOW_BAR = (

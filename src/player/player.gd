@@ -172,13 +172,15 @@ func take_damage(damage: int) -> void:
 	if current_health == 0:
 		die()
 	else:
-		G.print("Player damaged: %s => %s" % [previous_health, current_health])
+		G.print(
+			"Player damaged: %s => %s" % [previous_health, current_health],
+			ScaffolderLog.CATEGORY_GAME_STATE)
 		last_invincibility_start_time_sec = current_time
 		play_sound("ouch")
 
 
 func die() -> void:
-	G.print("Player died")
+	G.print("Player died", ScaffolderLog.CATEGORY_GAME_STATE)
 	play_sound("die")
 	G.level.game_over()
 

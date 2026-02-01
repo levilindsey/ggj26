@@ -20,7 +20,7 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	G.print("main._ready")
+	G.print("main._ready", ScaffolderLog.CATEGORY_SYSTEM_INITIALIZATION)
 
 	randomize()
 
@@ -71,7 +71,8 @@ func _unhandled_input(event: InputEvent) -> void:
 						G.hud.visible = not G.hud.visible
 						G.print(
 							"Toggled HUD visibility: %s" %
-							("visible" if G.hud.visible else "hidden"))
+							("visible" if G.hud.visible else "hidden"),
+							ScaffolderLog.CATEGORY_CORE_SYSTEMS)
 				KEY_ESCAPE:
 					if G.settings.pauses_on_focus_out:
 						is_paused = true
@@ -82,7 +83,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func close_app() -> void:
 	if G.utils.were_screenshots_taken:
 		G.utils.open_screenshot_folder()
-	G.print("Shell.close_app")
+	G.print("Main.close_app", ScaffolderLog.CATEGORY_CORE_SYSTEMS)
 	get_tree().call_deferred("quit")
 
 

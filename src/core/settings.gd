@@ -87,6 +87,7 @@ func get_scene_for_enemy_type(type: Enemy.Type) -> PackedScene:
 	ScaffolderLog.CATEGORY_SYSTEM_INITIALIZATION,
 	ScaffolderLog.CATEGORY_PLAYER_ACTIONS,
 	#ScaffolderLog.CATEGORY_INTERACTION,
+	#ScaffolderLog.CATEGORY_BEHAVIORS,
 	#ScaffolderLog.CATEGORY_GAME_STATE,
 ]
 ## If true, warning logs will be shown regardless of category filtering.

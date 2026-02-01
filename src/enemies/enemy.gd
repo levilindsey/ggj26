@@ -469,7 +469,7 @@ func _start_behavior(
 		behavior_keys[previous_behavior],
 		behavior_keys[current_behavior],
 		name,
-	])
+	], ScaffolderLog.CATEGORY_BEHAVIORS)
 
 	match current_behavior:
 		Behavior.NONE:
