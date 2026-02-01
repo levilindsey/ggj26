@@ -14,6 +14,7 @@ func _physics_process(_delta: float) -> void:
 	super._physics_process(_delta)
 
 
+
 func _trigger_ability() -> void:
 	# TODO: LEVI: Implement abilities.
 	pass

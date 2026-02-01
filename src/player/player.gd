@@ -52,6 +52,16 @@ const _DEATH_GAME_OVER_DELAY_SEC := 0.3
 
 @export var defense := 1.0
 
+@export var abilty_duration_sec := 0.5
+
+var last_ability_start_time_sec := -INF
+var is_ability_active: bool:
+	get:
+		return (
+			last_ability_start_time_sec + abilty_duration_sec >
+			G.time.get_play_time()
+		)
+
 var is_strong_defense: bool:
 	get:
 		return defense > 1.5
@@ -121,7 +131,9 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 	if Input.is_action_just_pressed("ability"):
+		last_ability_start_time_sec = G.time.get_play_time()
 		_trigger_ability()
+		animator.play("attack")
 		play_sound("ability")
 	if Input.is_action_just_pressed("mask"):
 		var next_mask_type := current_masks[selected_mask_index]
@@ -149,6 +161,15 @@ func _physics_process(delta: float) -> void:
 
 func _update_actions() -> void:
 	super._update_actions()
+
+
+func _process_animation() -> void:
+	if is_ability_active:
+		# Do nothing. "attack" animation is already playing, and triggering it
+		# again would cause looping.
+		pass
+	else:
+		super._process_animation()
 
 
 func play_sound(sound_name: String) -> void:

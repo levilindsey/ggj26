@@ -17,7 +17,7 @@ movement_settings = ExtResource("2_vytfq")
 metadata/_custom_type_script = "uid://c1qdd50ca4hst"
 
 [node name="GirlAnimator" parent="." instance=ExtResource("3_uecbg")]
-position = Vector2(0, -11)
+position = Vector2(0, -9.5)
 
 [node name="PlayerBodyCollisionShape" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true

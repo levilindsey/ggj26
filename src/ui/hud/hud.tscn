@@ -86,37 +86,31 @@ theme_override_constants/separation = 0
 [node name="HudMaskCard" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 is_collected = true
-is_selected = null
 
 [node name="HudMaskCard2" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 mask_type = 1
 is_collected = true
-is_selected = null
 
 [node name="HudMaskCard3" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 mask_type = 2
 is_collected = true
-is_selected = null
 
 [node name="HudMaskCard4" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 mask_type = 3
 is_collected = true
-is_selected = null
 
 [node name="HudMaskCard5" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 mask_type = 4
 is_collected = true
-is_selected = null
 
 [node name="HudMaskCard6" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 mask_type = 5
 is_collected = true
-is_selected = null
 
 [node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

@@ -18,7 +18,7 @@ movement_settings = ExtResource("2_vytfq")
 metadata/_custom_type_script = "uid://c1qdd50ca4hst"
 
 [node name="WizardAnimator" parent="." instance=ExtResource("3_ikom1")]
-position = Vector2(0, -12)
+position = Vector2(1, -11)
 
 [node name="PlayerBodyCollisionShape" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true

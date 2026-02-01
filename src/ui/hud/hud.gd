@@ -48,6 +48,17 @@ func update_masks() -> void:
 	elif G.level.player.current_masks.size() <= 1:
 		_clear_mask_cards()
 	else:
+		var cards_by_type := {}
+		for card in mask_cards:
+			cards_by_type[card.mask_type] = card
+
+		# Re-order.
+		for i in range(G.level.player.current_masks.size()):
+			var mask_type := G.level.player.current_masks[i]
+			var card: HudMaskCard = cards_by_type[mask_type]
+			%MasksContainer.move_child(card, i)
+
+		# Mark collected and selected.
 		for card in mask_cards:
 			card.is_collected = G.level.player.current_masks.has(card.mask_type)
 			#var is_equipped = G.level.player.mask_type == card.mask_type
