@@ -42,6 +42,11 @@ extends Resource
 @export var spider_scene: PackedScene
 @export_group("")
 
+@export var color_swap_palettes: Texture2D
+
+@export var color_swap_original_palette_row_index := 0
+
+
 
 func get_player_for_mask_type(type: Player.MaskType) -> PackedScene:
 	match type:

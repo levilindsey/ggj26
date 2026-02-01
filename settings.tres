@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Settings" load_steps=10 format=3 uid="uid://dv60bmaw1pdx6"]
+[gd_resource type="Resource" script_class="Settings" load_steps=11 format=3 uid="uid://dv60bmaw1pdx6"]
 
 [ext_resource type="PackedScene" uid="uid://b44pqn12oqw7u" path="res://src/player/chicken.tscn" id="1_i3tmf"]
 [ext_resource type="Script" uid="uid://cqomr88ncj2d3" path="res://src/core/settings.gd" id="1_krfic"]
 [ext_resource type="PackedScene" uid="uid://bfl5qv8bb5apr" path="res://src/level/default_level.tscn" id="1_legvn"]
 [ext_resource type="PackedScene" uid="uid://bsv6tbcljk7i5" path="res://src/player/cowboy.tscn" id="2_4irwu"]
+[ext_resource type="Texture2D" uid="uid://is44urul5h23" path="res://assets/images/scratch/color_swap_palette.png" id="2_bav20"]
 [ext_resource type="PackedScene" uid="uid://ca5hd413dshan" path="res://src/player/dinosaur.tscn" id="4_bav20"]
 [ext_resource type="PackedScene" uid="uid://djclvshfrmi2p" path="res://src/enemies/dust_bunny.tscn" id="5_4irwu"]
 [ext_resource type="PackedScene" uid="uid://cn6hdqmmufnvr" path="res://src/player/girl.tscn" id="5_e1gfc"]
@@ -24,3 +25,5 @@ wizard_scene = ExtResource("8_wuxul")
 dinosaur_scene = ExtResource("4_bav20")
 chicken_scene = ExtResource("1_i3tmf")
 dust_bunny_scene = ExtResource("5_4irwu")
+color_swap_palettes = ExtResource("2_bav20")
+color_swap_original_palette_row_index = 1

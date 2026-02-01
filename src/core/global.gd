@@ -24,6 +24,8 @@ var game_panel: GamePanel
 var session: Session
 var level: Level
 
+var palette_swapper: PaletteSwapper
+
 
 func _enter_tree() -> void:
 	time.name = "Time"

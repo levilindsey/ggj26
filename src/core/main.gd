@@ -30,6 +30,9 @@ func _ready() -> void:
 
 	_move_window()
 
+	G.palette_swapper = %ColorRect.material
+	G.palette_swapper.set_up()
+
 	start_game()
 
 

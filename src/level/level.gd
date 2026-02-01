@@ -131,6 +131,10 @@ func swap_mask(mask_type: Player.MaskType) -> void:
 	%Players.add_child(player)
 	player.global_position = previous_position
 
+	# Swap the color palette.
+	G.palette_swapper.swap_index = player.get_palette_swap_index_for_mask(
+		player.mask_type)
+
 
 func spawn_enemy(spawn_point: EnemySpawnPoint) -> void:
 	var enemy: Enemy = G.settings.get_scene_for_enemy_type(spawn_point.enemy_type).instantiate()

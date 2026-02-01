@@ -128,7 +128,7 @@ func _init_player_controller_action_source() -> void:
 	_action_sources.push_back(_character_action_source)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

@@ -84,6 +84,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("ability"):
 		_trigger_ability()
+		play_sound("ability")
 	if Input.is_action_just_pressed("mask"):
 		var next_mask_type := current_masks[selected_mask_index]
 		if next_mask_type == mask_type:
@@ -115,6 +116,28 @@ func play_sound(sound_name: String) -> void:
 			# TODO: ALDEN: Make that magic sound stuff happen, baby.
 			pass
 		"mask":
+			match mask_type:
+				MaskType.NONE:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				MaskType.COWBOY:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				MaskType.PIRATE:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				MaskType.WIZARD:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				MaskType.DINOSAUR:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				MaskType.CHICKEN:
+					# TODO: ALDEN: Make that magic sound stuff happen, baby.
+					pass
+				_:
+					G.fatal()
+		"ability":
 			match mask_type:
 				MaskType.NONE:
 					# TODO: ALDEN: Make that magic sound stuff happen, baby.
@@ -199,3 +222,22 @@ func copy(other: Player) -> void:
 	else:
 		selected_mask_index = current_masks.find(mask_type)
 	G.check(selected_mask_index >= 0)
+
+
+func get_palette_swap_index_for_mask(p_mask_type: MaskType) -> int:
+	match p_mask_type:
+		MaskType.NONE:
+			return 1
+		MaskType.COWBOY:
+			return 3
+		MaskType.PIRATE:
+			return 4
+		MaskType.WIZARD:
+			return 5
+		MaskType.DINOSAUR:
+			return 2
+		MaskType.CHICKEN:
+			return 1
+		_:
+			G.fatal()
+			return 0
