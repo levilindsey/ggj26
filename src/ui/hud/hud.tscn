@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt1la6s52krxe"]
+[gd_scene load_steps=8 format=3 uid="uid://bt1la6s52krxe"]
 
 [ext_resource type="Theme" uid="uid://cl3pkwueh4mag" path="res://src/core/main_theme.tres" id="1_4rn03"]
 [ext_resource type="Script" uid="uid://cvmchc2851mho" path="res://src/ui/hud/hud.gd" id="1_eqvli"]
 [ext_resource type="Texture2D" uid="uid://cljgkydr5nckn" path="res://assets/images/scratch/health_bar_background_texture_rect.png" id="3_076te"]
 [ext_resource type="Texture2D" uid="uid://d2eysf3ljvqkr" path="res://assets/images/scratch/heart_icon.png" id="3_ariom"]
+[ext_resource type="Texture2D" uid="uid://dijmjmc6bnxio" path="res://assets/images/scratch/shield_icon.png" id="4_4dm8p"]
 [ext_resource type="Texture2D" uid="uid://p1h66vedvo7x" path="res://assets/images/scratch/health_bar_progress_texture_rect.png" id="4_ariom"]
 [ext_resource type="PackedScene" uid="uid://cm46trhxs8fvs" path="res://src/ui/hud/hud_mask_card.tscn" id="6_cio14"]
 
@@ -44,10 +45,18 @@ size_flags_vertical = 3
 [node name="HealthRow" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftContent"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftContent/HealthRow"]
+[node name="HeartIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftContent/HealthRow"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(18, 16)
 layout_mode = 2
 texture = ExtResource("3_ariom")
+
+[node name="ShieldIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftContent/HealthRow"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(18, 16)
+layout_mode = 2
+texture = ExtResource("4_4dm8p")
 
 [node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer/LeftContent/HealthRow"]
 unique_name_in_owner = true

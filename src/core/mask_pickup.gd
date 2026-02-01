@@ -2,6 +2,9 @@ class_name MaskPickup
 extends Node2D
 
 
+const _OSCILLATION_PERIOD_SEC := 3.0
+const _OSCILLATION_AMPLITUDE := 4.0
+
 @export var mask_type := Player.MaskType.COWBOY:
 	set(value):
 		mask_type = value

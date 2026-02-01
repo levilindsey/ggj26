@@ -59,6 +59,13 @@ func update_masks() -> void:
 				card_index_in_player_collection
 			)
 
+	# Update heart vs shield icon.
+	var is_strong_defense := (
+		is_instance_valid(G.level.player) and G.level.player.is_strong_defense
+	)
+	%HeartIcon.visible = not is_strong_defense
+	%ShieldIcon.visible = is_strong_defense
+
 
 func _clear_mask_cards() -> void:
 	for card in mask_cards:

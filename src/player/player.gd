@@ -2,6 +2,34 @@ class_name Player
 extends Character
 
 
+# FIXME: LEFT OFF HERE:
+# - Make pickups oscillate.
+# - Show a shield instead of a heart for the dinosaur.
+# - Other enemies:
+#   - Movement/behavior settings
+#     - Ghost will have some custom stuff...
+#   - Attacks (mostly move a hitbox around to match the animation):
+#     - Nightmare swipe
+#     - Spider reach stomp
+#     - Ghost rush
+#     - Rat lunge
+#     - Make the dust bunny do a much higher sort of bounce attack, less lunge (calculate parabolic motion time for heigh, and use that to get horizontal speed based off current distance).
+# - Player abilities:
+#   - Movement settings for each mask
+#   - Abilities:
+#     - Pirate sword
+#     - Cowboy gun
+#     - Wizard ice spike
+#     - Dinosaur chomp
+#     - Chicken buh-cawk! (gonna need a sound for that...)
+# - Animations:
+#   - 4-frame walk for each
+#   - 2-frame rise for each
+#   - 2-frame fall for each
+#   - Simple idle
+#   - Custom attack for each
+
+
 enum MaskType {
 	NONE,
 	COWBOY,
@@ -20,6 +48,10 @@ const _DEATH_GAME_OVER_DELAY_SEC := 0.3
 @export var mask_type := MaskType.NONE
 
 @export var defense := 1.0
+
+var is_strong_defense: bool:
+	get:
+		return defense > 1.5
 
 var current_masks: Array[MaskType] = [MaskType.NONE]
 var selected_mask_index := 0
