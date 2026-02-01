@@ -149,6 +149,16 @@ var toward_wall_sign := 0
 var is_facing_right: bool:
 	get: return horizontal_facing_sign > 0
 
+var last_floor_time := -INF
+
+var is_within_coyote_time: bool:
+	get:
+		return (
+			is_attaching_to_floor or
+			G.time.get_play_time() - last_floor_time <=
+			character.movement_settings.late_jump_forgiveness_threshold_sec
+		)
+
 # TODO: Do something with this.
 var surface_properties: SurfaceProperties = SurfaceProperties.new()
 
@@ -650,6 +660,9 @@ func _update_attachment_state() -> void:
 		character.movement_settings.can_attach_to_walls and \
 		(is_attaching_to_wall or \
 				character.actions.pressed_up)
+
+	if just_attached_floor:
+		last_floor_time = G.time.get_play_time()
 
 
 func _update_attachment_contact() -> void:

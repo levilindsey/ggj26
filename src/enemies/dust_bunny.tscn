@@ -25,10 +25,10 @@ radius = 5.0
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_io1tw"]
-radius = 102.0049
+radius = 82.006096
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0643i"]
-radius = 25.019993
+radius = 36.013885
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s7kor"]
 radius = 0.1
@@ -37,14 +37,21 @@ radius = 0.1
 collision_layer = 16
 collision_mask = 7
 script = ExtResource("1_u6v05")
-attack_duration_sec = 0.9
+attack_bounce_vertical_boost = 90.0
 animated_sprite = NodePath("AnimatedSprite2D")
 collision_shape = NodePath("CollisionShape2D")
 damage_player_area = NodePath("DamagePlayerArea")
 detection_range = NodePath("DetectionRange")
 attack_max_range_area = NodePath("AttackMaxRange")
 attack_min_range_area = NodePath("AttackMinRange")
+chase_speed = 60.0
+wander_speed = 30.0
+bounces_when_walking = true
+walk_bounce_boost = 70.0
+chase_bounce_boost = 50.0
+gravity_multiplier = 0.2
 max_health = 10
+attack_duration_sec = 0.9
 metadata/_custom_type_script = "uid://dn207w6w75on0"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -95,8 +102,8 @@ shape = SubResource("CircleShape2D_s7kor")
 
 [connection signal="body_entered" from="DamagePlayerArea" to="." method="_on_damage_player_area_body_entered"]
 [connection signal="body_exited" from="DamagePlayerArea" to="." method="_on_damage_player_area_body_exited"]
-[connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_start_area_body_entered"]
-[connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_start_area_body_exited"]
+[connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
 [connection signal="body_entered" from="AttackMaxRange" to="." method="_on_attack_max_range_body_entered"]
 [connection signal="body_exited" from="AttackMaxRange" to="." method="_on_attack_max_range_body_exited"]
 [connection signal="body_entered" from="AttackMinRange" to="." method="_on_attack_min_range_body_entered"]

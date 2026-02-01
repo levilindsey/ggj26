@@ -18,7 +18,8 @@ func _init() -> void:
 
 func process(character) -> bool:
 	if character.actions.just_pressed_jump and \
-			character.jump_count < character.movement_settings.max_jump_chain:
+			(character.jump_count < character.movement_settings.max_jump_chain or
+			character.surface_state.is_within_coyote_time):
 		if character.surface_state.just_entered_air:
 			character.jump_count = 1
 		else:

@@ -35,7 +35,7 @@ enum IdleType {
 
 
 const _BODY_CONTACT_DAMAGE := 20
-const _LOSE_DETECTION_DELAY_SEC := 3.5
+const _LOSE_DETECTION_DELAY_SEC := 1.0
 const _APPROACH_DISTANCE_THRESHOLD := 2.0
 const _IDLE_PAUSE_DURATION_MIN_SEC := 0.5
 const _IDLE_PAUSE_DURATION_MAX_SEC := 1.0
@@ -44,25 +44,16 @@ const _WANDER_STEP_DISTANCE_MAX := 128.0
 const _EDGE_DETECTION_RAY_CAST_LENGTH := 50.0
 
 
-@export var type := Type.DUST_BUNNY
-
-@export var idle_type := IdleType.WANDER
-
-## This is only relevant for IdleType.SLEEP.
-@export var wake_up_duration_sec := 0.0
-
-@export var attack_duration_sec := 0.5
-
-@export var pre_chase_pause_duration_sec := 0.2
-@export var attack_pause_duration_sec := 1.0
-@export var player_died_pause_duration_sec := 1.0
-
 @export var animated_sprite: AnimatedSprite2D
 @export var collision_shape: CollisionShape2D
 @export var damage_player_area: Area2D
 @export var detection_range: Area2D
 @export var attack_max_range_area: Area2D
 @export var attack_min_range_area: Area2D
+
+@export var type := Type.DUST_BUNNY
+
+@export var idle_type := IdleType.WANDER
 
 @export var chase_speed := 100.0
 @export var wander_speed := 50.0
@@ -75,11 +66,22 @@ const _EDGE_DETECTION_RAY_CAST_LENGTH := 50.0
 ## Only relevant if bounces_when_walking is true.
 @export var chase_bounce_boost := 70.0
 
+@export var gravity_multiplier := 1.0
+
 @export var faces_right_by_default := false
 
 @export var max_health := 100
 
 @export var defense := 1.0
+
+@export var attack_duration_sec := 0.5
+
+## This is only relevant for IdleType.SLEEP.
+@export var wake_up_duration_sec := 0.0
+
+@export var pre_chase_pause_duration_sec := 0.2
+@export var attack_pause_duration_sec := 1.0
+@export var player_died_pause_duration_sec := 1.0
 
 @onready var current_health := max_health
 
@@ -281,6 +283,9 @@ func _process_behaviors() -> void:
 
 	var current_time := G.time.get_play_time()
 
+	if not is_instance_valid(G.level.player) or G.level.player.is_dead:
+		is_player_in_detection_range = false
+
 	if is_player_in_detection_range:
 		last_detection_time_sec = current_time
 
@@ -313,13 +318,9 @@ func _process_behaviors() -> void:
 					# We just detected the player. Chase them.
 					_start_behavior(Behavior.PRE_CHASE_PAUSE)
 				else:
-					var distance_squared := (
-						global_position.distance_squared_to(current_behavior_target)
-					)
-					var threshold_squared := (
-						_APPROACH_DISTANCE_THRESHOLD * _APPROACH_DISTANCE_THRESHOLD
-					)
-					if distance_squared < threshold_squared:
+					var distance := absf(
+						global_position.x - current_behavior_target.x)
+					if distance < _APPROACH_DISTANCE_THRESHOLD:
 						_start_behavior(Behavior.IDLE_PAUSE)
 					else:
 						# Haven't yet reached the destination, keep walking.
@@ -338,7 +339,8 @@ func _process_behaviors() -> void:
 					# Do nothing. Player is not close enough to wake up.
 					pass
 			Behavior.CHASE, \
-			Behavior.STOP_AT_EDGE_FOR_CHASE:
+			Behavior.STOP_AT_EDGE_FOR_CHASE, \
+			Behavior.REPOSITION_FOR_ATTACK:
 				var time_since_last_detection := (
 					current_time - last_detection_time_sec
 				)
@@ -349,17 +351,29 @@ func _process_behaviors() -> void:
 					if is_player_in_attack_min_range:
 						# Player is too close to attack.
 						_start_behavior(Behavior.REPOSITION_FOR_ATTACK)
+						# Make sure we're moving in the current away direction, in case
+						# the player moved to our other side.
+						current_behavior_target = _calculate_attack_reposition_target()
+						_update_behavior_velocity()
 					elif not is_player_in_attack_max_range:
 						# Player is not close enough to attack, but is still in
-						# range, keep chasing.
-						pass
+						# range. Chase.
+						_start_behavior(Behavior.CHASE)
+						# Make sure we're moving in the current away direction, in case
+						# the player moved to our other side.
+						current_behavior_target = G.level.player.global_position
+						_update_behavior_velocity()
 					else:
 						# Player is in attack range.
 						_start_behavior(Behavior.ATTACK)
 				else:
 					# Player is out of detection range, but we've seen them
 					# recently, so keep chasing.
-					pass
+					_start_behavior(Behavior.CHASE)
+					# Make sure we're moving in the current away direction, in case
+					# the player moved to our other side.
+					current_behavior_target = G.level.player.global_position
+					_update_behavior_velocity()
 			Behavior.ATTACK:
 				if current_time > current_behavior_end_time_sec:
 					# Pause before the next attack.
@@ -367,17 +381,6 @@ func _process_behaviors() -> void:
 				else:
 					# Still waiting.
 					pass
-			Behavior.REPOSITION_FOR_ATTACK:
-				if not is_player_in_attack_max_range:
-					# They got away. Give chase.
-					_start_behavior(Behavior.CHASE)
-				if is_player_in_attack_min_range:
-					# Make sure we're moving in the current away direction, in case
-					# the player moved to our other side.
-					current_behavior_target = _calculate_attack_reposition_target()
-					_update_behavior_velocity()
-				else:
-					_start_behavior(Behavior.ATTACK)
 			Behavior.IDLE_PAUSE:
 				if is_player_in_detection_range:
 					# We just detected the player. Chase them.
@@ -421,8 +424,39 @@ func _process_behaviors() -> void:
 					pass
 			Behavior.ATTACK_PAUSE:
 				if current_time > current_behavior_end_time_sec:
-					# Attack again.
-					_start_behavior(Behavior.ATTACK)
+					var time_since_last_detection := (
+						current_time - last_detection_time_sec
+					)
+					if time_since_last_detection >= _LOSE_DETECTION_DELAY_SEC:
+						# Player has been out of range for too long, go back.
+						_start_behavior(Behavior.RETURN)
+					elif is_player_in_detection_range:
+						if is_player_in_attack_min_range:
+							# Player is too close to attack.
+							_start_behavior(Behavior.REPOSITION_FOR_ATTACK)
+							# Make sure we're moving in the current away direction, in case
+							# the player moved to our other side.
+							current_behavior_target = _calculate_attack_reposition_target()
+							_update_behavior_velocity()
+						elif not is_player_in_attack_max_range:
+							# Player is not close enough to attack, but is still in
+							# range. Chase.
+							_start_behavior(Behavior.CHASE)
+							# Make sure we're moving in the current away direction, in case
+							# the player moved to our other side.
+							current_behavior_target = G.level.player.global_position
+							_update_behavior_velocity()
+						else:
+							# Player is in attack range.
+							_start_behavior(Behavior.ATTACK)
+					else:
+						# Player is out of detection range, but we've seen them
+						# recently, so keep chasing.
+						_start_behavior(Behavior.CHASE)
+						# Make sure we're moving in the current away direction, in case
+						# the player moved to our other side.
+						current_behavior_target = G.level.player.global_position
+						_update_behavior_velocity()
 				else:
 					# Still waiting.
 					pass
@@ -449,6 +483,10 @@ func _start_behavior(
 		not G.ensure(is_instance_valid(G.level.player))
 	):
 		# This new behavior requires a player, but there is none.
+		return
+
+	if current_behavior == next_behavior:
+		# We're already doing this
 		return
 
 	previous_behavior = current_behavior
@@ -585,7 +623,9 @@ func _process_movement(delta: float) -> void:
 
 	# Gravity just keeps pulling us all down...
 	velocity.y += (
-		G.time.scale_delta(delta) * G.settings.default_gravity_acceleration
+		G.time.scale_delta(delta) *
+		G.settings.default_gravity_acceleration *
+		gravity_multiplier
 	)
 
 	move_and_slide()

@@ -97,6 +97,9 @@ var gravity_double_jump_slow_rise_acceleration: float:
 @export var min_horizontal_speed := 5.0
 @export var min_vertical_speed := 0.0
 
+## Coyote time.
+@export var late_jump_forgiveness_threshold_sec := 0.3
+
 @export var action_handler_types: Array[ActionHandlerType] = [
 	ActionHandlerType.FLOOR_DEFAULT,
 	ActionHandlerType.AIR_DEFAULT,
