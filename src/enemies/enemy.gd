@@ -34,14 +34,7 @@ enum IdleType {
 }
 
 
-const _BODY_CONTACT_DAMAGE := 20
-const _LOSE_DETECTION_DELAY_SEC := 1.0
 const _APPROACH_DISTANCE_THRESHOLD := 2.0
-const _IDLE_PAUSE_DURATION_MIN_SEC := 0.5
-const _IDLE_PAUSE_DURATION_MAX_SEC := 1.0
-const _WANDER_STEP_DISTANCE_MIN := 32.0
-const _WANDER_STEP_DISTANCE_MAX := 128.0
-const _EDGE_DETECTION_RAY_CAST_LENGTH := 50.0
 
 
 @export var animated_sprite: AnimatedSprite2D
@@ -73,15 +66,26 @@ const _EDGE_DETECTION_RAY_CAST_LENGTH := 50.0
 @export var max_health := 100
 
 @export var defense := 1.0
+@export var body_contact_damage := 20
 
 @export var attack_duration_sec := 0.5
 
 ## This is only relevant for IdleType.SLEEP.
 @export var wake_up_duration_sec := 0.0
 
+@export var lose_detection_delay_sec := 1.0
+
 @export var pre_chase_pause_duration_sec := 0.2
 @export var attack_pause_duration_sec := 1.0
 @export var player_died_pause_duration_sec := 1.0
+
+@export var idle_pause_duration_min_sec := 0.5
+@export var idle_pause_duration_max_sec := 1.0
+
+@export var wander_step_distance_min := 32.0
+@export var wander_step_distance_max := 128.0
+
+@export var edge_detection_ray_cast_length := 50.0
 
 @onready var current_health := max_health
 
@@ -231,7 +235,7 @@ func _ready() -> void:
 	# Creat a ray-cast for detected edges of platforms.
 	edge_detection_ray_cast = RayCast2D.new()
 	edge_detection_ray_cast.target_position = (
-		Vector2.DOWN * _EDGE_DETECTION_RAY_CAST_LENGTH
+		Vector2.DOWN * edge_detection_ray_cast_length
 	)
 	set_collision_mask_value(
 		Character._NORMAL_SURFACES_COLLISION_MASK_BIT,
@@ -268,7 +272,7 @@ func _physics_process(delta: float) -> void:
 		is_player_in_body_contact_damage_range and
 		is_instance_valid(G.level.player)
 	):
-		G.level.player.take_damage(_BODY_CONTACT_DAMAGE)
+		G.level.player.take_damage(body_contact_damage)
 
 
 func _process_behaviors() -> void:
@@ -344,7 +348,7 @@ func _process_behaviors() -> void:
 				var time_since_last_detection := (
 					current_time - last_detection_time_sec
 				)
-				if time_since_last_detection >= _LOSE_DETECTION_DELAY_SEC:
+				if time_since_last_detection >= lose_detection_delay_sec:
 					# Player has been out of range for too long, go back.
 					_start_behavior(Behavior.RETURN)
 				elif is_player_in_detection_range:
@@ -427,7 +431,7 @@ func _process_behaviors() -> void:
 					var time_since_last_detection := (
 						current_time - last_detection_time_sec
 					)
-					if time_since_last_detection >= _LOSE_DETECTION_DELAY_SEC:
+					if time_since_last_detection >= lose_detection_delay_sec:
 						# Player has been out of range for too long, go back.
 						_start_behavior(Behavior.RETURN)
 					elif is_player_in_detection_range:
@@ -516,8 +520,8 @@ func _start_behavior(
 		Behavior.WANDER_LEFT, \
 		Behavior.WANDER_RIGHT:
 			var distance := randf_range(
-				_WANDER_STEP_DISTANCE_MIN,
-				_WANDER_STEP_DISTANCE_MAX)
+				wander_step_distance_min,
+				wander_step_distance_max)
 			var direction_sign := (
 				-1 if
 				current_behavior == Behavior.WANDER_LEFT else
@@ -551,8 +555,8 @@ func _start_behavior(
 			_update_behavior_velocity()
 		Behavior.IDLE_PAUSE:
 			var duration := randf_range(
-				_IDLE_PAUSE_DURATION_MIN_SEC,
-				_IDLE_PAUSE_DURATION_MAX_SEC)
+				idle_pause_duration_min_sec,
+				idle_pause_duration_max_sec)
 			current_behavior_end_time_sec = current_time + duration
 		Behavior.PLAYER_DIED_PAUSE:
 			current_behavior_end_time_sec = (
@@ -584,16 +588,27 @@ func _update_behavior_velocity() -> void:
 		velocity.x = 0.0
 		return
 
-	var is_slow := _is_behavior_a_slow_walk(current_behavior)
-	var speed := wander_speed if is_slow else chase_speed
 	var direction_sign := _get_direction_sign_to_target(
 		current_behavior_target)
-	velocity.x = speed * direction_sign
 
+	# Face the player.
 	if direction_sign < 0:
 		face_left()
 	else:
 		face_right()
+
+	if (current_behavior == Behavior.CHASE and
+		absf(G.level.player.global_position.x - global_position.x) <
+		_APPROACH_DISTANCE_THRESHOLD
+	):
+		# We're already close enough.
+		velocity.x = 0.0
+		return
+
+	# Set the speed.
+	var is_slow := _is_behavior_a_slow_walk(current_behavior)
+	var speed := wander_speed if is_slow else chase_speed
+	velocity.x = speed * direction_sign
 
 
 func _calculate_attack_reposition_target() -> Vector2:
@@ -614,7 +629,11 @@ func _process_movement(delta: float) -> void:
 		has_ever_been_on_floor = true
 
 	# Keep on bouncing (if you're that kinda dude).
-	if bounces_when_walking and is_on_floor():
+	if (
+		bounces_when_walking and
+		is_on_floor() and
+		_is_behavior_movement(current_behavior)
+	):
 		var is_slow := _is_behavior_a_slow_walk(current_behavior)
 		var jump_boost := (
 			walk_bounce_boost if is_slow else chase_bounce_boost
