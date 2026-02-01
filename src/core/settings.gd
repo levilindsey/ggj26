@@ -25,6 +25,14 @@ extends Resource
 
 @export var default_level_scene: PackedScene
 
+@export_group("Mask icons")
+@export var cowboy_icon: Texture2D
+@export var pirate_icon: Texture2D
+@export var wizard_icon: Texture2D
+@export var dinosaur_icon: Texture2D
+@export var chicken_icon: Texture2D
+@export_group("")
+
 @export_group("Player scenes")
 @export var girl_scene: PackedScene
 @export var cowboy_scene: PackedScene
@@ -45,6 +53,25 @@ extends Resource
 @export var color_swap_palettes: Texture2D
 
 @export var color_swap_original_palette_row_index := 0
+
+
+func get_mask_icon_for_mask_type(type: Player.MaskType) -> Texture2D:
+	match type:
+		Player.MaskType.NONE:
+			return null
+		Player.MaskType.COWBOY:
+			return cowboy_icon
+		Player.MaskType.PIRATE:
+			return pirate_icon
+		Player.MaskType.WIZARD:
+			return wizard_icon
+		Player.MaskType.DINOSAUR:
+			return dinosaur_icon
+		Player.MaskType.CHICKEN:
+			return chicken_icon
+		_:
+			G.fatal()
+			return null
 
 
 

@@ -26,6 +26,9 @@ var selected_mask_index := 0
 var previous_mask_type := MaskType.NONE
 
 var current_health := _MAX_HEALTH
+var health_progress: float:
+	get:
+		return current_health / float(_MAX_HEALTH)
 
 var half_size := Vector2.INF
 
@@ -94,15 +97,18 @@ func _physics_process(delta: float) -> void:
 			# We already are wearing this mask (only happens for the girl).
 			return
 		G.level.swap_mask(next_mask_type)
+		G.hud.update_masks()
 		play_sound("mask")
 	if Input.is_action_just_pressed("scroll_left"):
 		selected_mask_index = (
 			(selected_mask_index - 1 + current_masks.size()) %
 			current_masks.size()
 		)
+		G.hud.update_masks()
 		play_sound("mask_scroll")
 	if Input.is_action_just_pressed("scroll_right"):
 		selected_mask_index = (selected_mask_index + 1) % current_masks.size()
+		G.hud.update_masks()
 		play_sound("mask_scroll")
 
 
@@ -174,8 +180,19 @@ func play_sound(sound_name: String) -> void:
 		"mask_scroll":
 			# TODO: ALDEN: Make that magic sound stuff happen, baby.
 			pass
+		"mask_pickup":
+			# TODO: ALDEN: Make that magic sound stuff happen, baby.
+			pass
 		_:
 			G.fatal()
+
+
+func pick_up_mask(p_mask_type: MaskType) -> void:
+	if current_masks.has(p_mask_type):
+		return
+	current_masks.append(p_mask_type)
+	G.level.swap_mask(p_mask_type)
+	play_sound("mask_pickup")
 
 
 func take_damage(damage: int) -> void:
@@ -201,6 +218,8 @@ func take_damage(damage: int) -> void:
 		last_invincibility_start_time_sec = current_time
 		play_sound("ouch")
 
+	G.hud.update_health()
+
 
 func die() -> void:
 	G.print("Player died", ScaffolderLog.CATEGORY_GAME_STATE)
@@ -218,7 +237,7 @@ func copy(other: Player) -> void:
 	if mask_type == MaskType.NONE:
 		# When toggling off a mask, to revert back to the girl, remain with the
 		# previous mask selected.
-		selected_mask_index = current_masks.find(previous_mask_type)
+		selected_mask_index = other.selected_mask_index
 	else:
 		selected_mask_index = current_masks.find(mask_type)
 	G.check(selected_mask_index >= 0)

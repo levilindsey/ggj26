@@ -1,23 +1,32 @@
-[gd_resource type="Resource" script_class="Settings" load_steps=11 format=3 uid="uid://dv60bmaw1pdx6"]
+[gd_resource type="Resource" script_class="Settings" load_steps=16 format=3 uid="uid://dv60bmaw1pdx6"]
 
+[ext_resource type="Texture2D" uid="uid://diovfkjm8dygi" path="res://assets/images/scratch/mask_icon_chicken.png" id="1_b2txj"]
 [ext_resource type="PackedScene" uid="uid://b44pqn12oqw7u" path="res://src/player/chicken.tscn" id="1_i3tmf"]
 [ext_resource type="Script" uid="uid://cqomr88ncj2d3" path="res://src/core/settings.gd" id="1_krfic"]
 [ext_resource type="PackedScene" uid="uid://bfl5qv8bb5apr" path="res://src/level/default_level.tscn" id="1_legvn"]
 [ext_resource type="PackedScene" uid="uid://bsv6tbcljk7i5" path="res://src/player/cowboy.tscn" id="2_4irwu"]
 [ext_resource type="Texture2D" uid="uid://is44urul5h23" path="res://assets/images/scratch/color_swap_palette.png" id="2_bav20"]
+[ext_resource type="Texture2D" uid="uid://vcl2ukagmuw6" path="res://assets/images/scratch/mask_icon_cowboy.png" id="4_7ybur"]
 [ext_resource type="PackedScene" uid="uid://ca5hd413dshan" path="res://src/player/dinosaur.tscn" id="4_bav20"]
 [ext_resource type="PackedScene" uid="uid://djclvshfrmi2p" path="res://src/enemies/dust_bunny.tscn" id="5_4irwu"]
 [ext_resource type="PackedScene" uid="uid://cn6hdqmmufnvr" path="res://src/player/girl.tscn" id="5_e1gfc"]
 [ext_resource type="PackedScene" uid="uid://be7lolcs1slrr" path="res://src/player/pirate.tscn" id="6_32itx"]
+[ext_resource type="Texture2D" uid="uid://d3yhmimme8ntg" path="res://assets/images/scratch/mask_icon_dinosaur.png" id="7_htelm"]
 [ext_resource type="PackedScene" uid="uid://cplh64v2pmjin" path="res://src/player/wizard.tscn" id="8_wuxul"]
+[ext_resource type="Texture2D" uid="uid://d2yj5ohpjo6on" path="res://assets/images/scratch/mask_icon_pirate.png" id="11_7nxwi"]
+[ext_resource type="Texture2D" uid="uid://cdp0uv06anh6u" path="res://assets/images/scratch/mask_icon_wizard.png" id="14_sowkg"]
 
 [resource]
 script = ExtResource("1_krfic")
 show_debug_player_state = true
 pauses_on_focus_out = false
-start_with_all_masks = true
 default_gravity_acceleration = 1400.0
 default_level_scene = ExtResource("1_legvn")
+cowboy_icon = ExtResource("4_7ybur")
+pirate_icon = ExtResource("11_7nxwi")
+wizard_icon = ExtResource("14_sowkg")
+dinosaur_icon = ExtResource("7_htelm")
+chicken_icon = ExtResource("1_b2txj")
 girl_scene = ExtResource("5_e1gfc")
 cowboy_scene = ExtResource("2_4irwu")
 pirate_scene = ExtResource("6_32itx")

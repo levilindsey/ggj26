@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm46trhxs8fvs"]
+
+[ext_resource type="Script" uid="uid://dmbo7iqil1vjt" path="res://src/ui/hud/hud_mask_card.gd" id="1_uw60p"]
+[ext_resource type="Texture2D" uid="uid://d3yhmimme8ntg" path="res://assets/images/scratch/mask_icon_dinosaur.png" id="2_yyn3t"]
+[ext_resource type="Texture2D" uid="uid://b2pskxf8pjqfe" path="res://assets/images/scratch/mask_icon_highlight.png" id="3_if1dm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yyn3t"]
+
+[node name="HudMaskCard" type="PanelContainer"]
+custom_minimum_size = Vector2(48, 44)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yyn3t")
+script = ExtResource("1_uw60p")
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_yyn3t")
+
+[node name="Highlight" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("3_if1dm")

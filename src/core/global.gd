@@ -28,6 +28,9 @@ var palette_swapper: PaletteSwapper
 
 
 func _enter_tree() -> void:
+	if Engine.is_editor_hint():
+		settings = load("res://settings.tres")
+
 	time.name = "Time"
 	add_child(time)
 

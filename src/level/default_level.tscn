@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://bfl5qv8bb5apr"]
+[gd_scene load_steps=8 format=4 uid="uid://bfl5qv8bb5apr"]
 
 [ext_resource type="Script" uid="uid://bqj50lqds4nhs" path="res://src/level/level.gd" id="1_n1ky5"]
 [ext_resource type="Texture2D" uid="uid://b7p66cfvjo1ju" path="res://assets/images/scratch/sleeping_girl.png" id="3_0qg8c"]
 [ext_resource type="Script" uid="uid://w43fkpgoh88w" path="res://src/level/enemy_spawn_point.gd" id="3_5bkgc"]
 [ext_resource type="TileSet" uid="uid://mtwu14d78k40" path="res://src/level/default_tile_set.tres" id="3_es1ad"]
+[ext_resource type="PackedScene" uid="uid://ccyouyooj0fx7" path="res://src/core/mask_pickup.tscn" id="4_5bkgc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5bkgc"]
 atlas = ExtResource("3_0qg8c")
@@ -50,6 +51,28 @@ metadata/_edit_lock_ = true
 position = Vector2(102, 16)
 script = ExtResource("3_5bkgc")
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
+
+[node name="MaskPickups" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CowboyPickup" parent="MaskPickups" instance=ExtResource("4_5bkgc")]
+position = Vector2(152, -45)
+
+[node name="PiratePickup" parent="MaskPickups" instance=ExtResource("4_5bkgc")]
+position = Vector2(230, -109)
+mask_type = 2
+
+[node name="WizardPickup" parent="MaskPickups" instance=ExtResource("4_5bkgc")]
+position = Vector2(101, -94)
+mask_type = 3
+
+[node name="DinosaurPickup" parent="MaskPickups" instance=ExtResource("4_5bkgc")]
+position = Vector2(224, 0)
+mask_type = 4
+
+[node name="ChickenPickup" parent="MaskPickups" instance=ExtResource("4_5bkgc")]
+position = Vector2(303, -24)
+mask_type = 5
 
 [node name="SleepingGirl" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true

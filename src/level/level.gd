@@ -8,6 +8,7 @@ const _GAME_OVER_READY_TO_RESET_DELAY_SEC := 0.3
 const _PLAYER_CAMERA_OFFSET := Vector2(0, -10)
 
 var enemy_spawn_points: Array[EnemySpawnPoint] = []
+var mask_pickups: Array[MaskPickup] = []
 
 var player: Player
 
@@ -41,6 +42,9 @@ func reset() -> void:
 
 	for spawn_point in enemy_spawn_points:
 		spawn_enemy(spawn_point)
+
+	for pickup in mask_pickups:
+		pickup.enabled = true
 
 	has_started = false
 	has_finished = false
@@ -138,6 +142,8 @@ func swap_mask(mask_type: Player.MaskType) -> void:
 	# Swap the color palette.
 	G.palette_swapper.swap_index = Player.get_palette_swap_index_for_mask(
 		player.mask_type)
+
+	G.hud.update_masks()
 
 
 func spawn_enemy(spawn_point: EnemySpawnPoint) -> void:

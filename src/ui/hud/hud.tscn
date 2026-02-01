@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt1la6s52krxe"]
+[gd_scene load_steps=7 format=3 uid="uid://bt1la6s52krxe"]
 
 [ext_resource type="Theme" uid="uid://cl3pkwueh4mag" path="res://src/core/main_theme.tres" id="1_4rn03"]
 [ext_resource type="Script" uid="uid://cvmchc2851mho" path="res://src/ui/hud/hud.gd" id="1_eqvli"]
+[ext_resource type="Texture2D" uid="uid://cljgkydr5nckn" path="res://assets/images/scratch/health_bar_background_texture_rect.png" id="3_076te"]
+[ext_resource type="Texture2D" uid="uid://d2eysf3ljvqkr" path="res://assets/images/scratch/heart_icon.png" id="3_ariom"]
+[ext_resource type="Texture2D" uid="uid://p1h66vedvo7x" path="res://assets/images/scratch/health_bar_progress_texture_rect.png" id="4_ariom"]
+[ext_resource type="PackedScene" uid="uid://cm46trhxs8fvs" path="res://src/ui/hud/hud_mask_card.tscn" id="6_cio14"]
 
 [node name="Hud" type="PanelContainer"]
 anchors_preset = 15
@@ -31,6 +35,79 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
+
+[node name="Spacer2" type="Control" parent="MarginContainer/HBoxContainer/LeftContent"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HealthRow" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftContent"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftContent/HealthRow"]
+custom_minimum_size = Vector2(18, 16)
+layout_mode = 2
+texture = ExtResource("3_ariom")
+
+[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer/LeftContent/HealthRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+value = 1.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("3_076te")
+texture_progress = ExtResource("4_ariom")
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/LeftContent"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+
+[node name="MasksContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftContent"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HudMaskCard" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+layout_mode = 2
+is_collected = true
+is_selected = null
+
+[node name="HudMaskCard2" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+layout_mode = 2
+mask_type = 1
+is_collected = true
+is_selected = null
+
+[node name="HudMaskCard3" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+layout_mode = 2
+mask_type = 2
+is_collected = true
+is_selected = null
+
+[node name="HudMaskCard4" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+layout_mode = 2
+mask_type = 3
+is_collected = true
+is_selected = null
+
+[node name="HudMaskCard5" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+layout_mode = 2
+mask_type = 4
+is_collected = true
+is_selected = null
+
+[node name="HudMaskCard6" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+layout_mode = 2
+mask_type = 5
+is_collected = true
+is_selected = null
 
 [node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

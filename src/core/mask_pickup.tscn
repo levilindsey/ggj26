@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccyouyooj0fx7"]
+
+[ext_resource type="Script" uid="uid://dar2ryry11ghh" path="res://src/core/mask_pickup.gd" id="1_a0sjq"]
+[ext_resource type="Shader" uid="uid://bxugqsc4t8k3g" path="res://src/core/outline.gdshader" id="1_axbay"]
+[ext_resource type="Texture2D" uid="uid://d3yhmimme8ntg" path="res://assets/images/scratch/mask_icon_dinosaur.png" id="3_a0sjq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6u64k"]
+shader = ExtResource("1_axbay")
+shader_parameter/outline_color = Color(0.9843137, 0.9764706, 0.9372549, 1)
+shader_parameter/outline_width = 1.0000000475
+shader_parameter/outline_enabled = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m3w2j"]
+radius = 10.049875
+
+[node name="MaskPickup" type="Node2D"]
+script = ExtResource("1_a0sjq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_6u64k")
+offset_left = -12.0
+offset_top = -11.0
+offset_right = 12.0
+offset_bottom = 11.0
+texture = ExtResource("3_a0sjq")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_m3w2j")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
