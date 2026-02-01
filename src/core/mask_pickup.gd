@@ -5,7 +5,9 @@ extends Node2D
 const _OSCILLATION_PERIOD_SEC := 3.0
 const _OSCILLATION_AMPLITUDE := 4.0
 
-@export var mask_type := Player.MaskType.COWBOY:
+var _texture_anchor := Vector2.ZERO
+
+@export var mask_type := Player.MaskType.NONE:
 	set(value):
 		mask_type = value
 		_update_texture()
@@ -16,6 +18,16 @@ var enabled: bool:
 		return visible
 	set(value):
 		visible = value
+
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	var offset := (
+		sin(G.time.get_play_time() * 2.0 * PI / _OSCILLATION_PERIOD_SEC) *
+		_OSCILLATION_AMPLITUDE
+	)
+	%TextureRect.position.y = _texture_anchor.y + offset
 
 
 func _enter_tree() -> void:
@@ -43,8 +55,10 @@ func _update_texture() -> void:
 	var image := texture.get_image()
 	var size := Vector2(image.get_width(), image.get_height())
 
+	_texture_anchor = -size / 2.0
+
 	%TextureRect.size = size
-	%TextureRect.position = -size / 2.0
+	%TextureRect.position = _texture_anchor
 	%TextureRect.texture = texture
 
 

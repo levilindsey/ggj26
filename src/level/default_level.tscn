@@ -57,6 +57,7 @@ unique_name_in_owner = true
 
 [node name="CowboyPickup" parent="MaskPickups" instance=ExtResource("4_5bkgc")]
 position = Vector2(152, -45)
+mask_type = 1
 
 [node name="PiratePickup" parent="MaskPickups" instance=ExtResource("4_5bkgc")]
 position = Vector2(230, -109)
