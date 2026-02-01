@@ -48,6 +48,10 @@ func reset() -> void:
 
 	%SleepingGirl.visible = true
 
+	# Swap the color palette.
+	G.palette_swapper.swap_index = Player.get_palette_swap_index_for_mask(
+		Player.MaskType.NONE)
+
 	await get_tree().create_timer(_RESET_READY_TO_START_GAME_DELAY_SEC).timeout
 
 	G.print("Ready to receive input", ScaffolderLog.CATEGORY_GAME_STATE)
@@ -132,7 +136,7 @@ func swap_mask(mask_type: Player.MaskType) -> void:
 	player.global_position = previous_position
 
 	# Swap the color palette.
-	G.palette_swapper.swap_index = player.get_palette_swap_index_for_mask(
+	G.palette_swapper.swap_index = Player.get_palette_swap_index_for_mask(
 		player.mask_type)
 
 

@@ -224,7 +224,7 @@ func copy(other: Player) -> void:
 	G.check(selected_mask_index >= 0)
 
 
-func get_palette_swap_index_for_mask(p_mask_type: MaskType) -> int:
+static func get_palette_swap_index_for_mask(p_mask_type: MaskType) -> int:
 	match p_mask_type:
 		MaskType.NONE:
 			return 1
