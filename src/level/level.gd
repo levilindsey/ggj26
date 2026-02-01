@@ -126,6 +126,6 @@ func swap_mask(mask_type: Player.MaskType) -> void:
 func spawn_enemy(spawn_point: EnemySpawnPoint) -> void:
 	var enemy: Enemy = G.settings.get_scene_for_enemy_type(spawn_point.enemy_type).instantiate()
 	enemy.spawn_point = spawn_point
-	enemy.global_position = spawn_point.global_position
+	enemy.global_position = spawn_point.global_position + Vector2.UP * 0.5
 	enemies.append(enemy)
 	%Enemies.add_child(enemy)

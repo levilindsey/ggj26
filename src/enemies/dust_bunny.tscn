@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://djclvshfrmi2p"]
 
-[ext_resource type="Script" uid="uid://dn207w6w75on0" path="res://enemies/dust_bunny.gd" id="1_u6v05"]
+[ext_resource type="Script" uid="uid://dn207w6w75on0" path="res://src/enemies/dust_bunny.gd" id="1_u6v05"]
 [ext_resource type="Texture2D" uid="uid://bvsmb3iopc3ni" path="res://assets/images/scratch/dust_bunny.png" id="2_6da3l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io1tw"]
@@ -37,6 +37,7 @@ radius = 0.1
 collision_layer = 16
 collision_mask = 7
 script = ExtResource("1_u6v05")
+attack_duration_sec = 0.9
 animated_sprite = NodePath("AnimatedSprite2D")
 collision_shape = NodePath("CollisionShape2D")
 damage_player_area = NodePath("DamagePlayerArea")

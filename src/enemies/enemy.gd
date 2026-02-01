@@ -461,6 +461,14 @@ func _start_behavior(
 	current_behavior_target = next_target
 	current_behavior_end_time_sec = 0.0
 
+	# Very useful logs.
+	var behavior_keys := Behavior.keys()
+	G.print("%s => %s (for %s)" % [
+		behavior_keys[previous_behavior],
+		behavior_keys[current_behavior],
+		name,
+	])
+
 	match current_behavior:
 		Behavior.NONE:
 			G.fatal("Behavior.NONE should only happen when " +
