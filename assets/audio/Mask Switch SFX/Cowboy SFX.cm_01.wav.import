@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bnk28p6snbwql"
+path="res://.godot/imported/Cowboy SFX.cm_01.wav-2c4dcec5276b9df517bc7959beebc052.sample"
+
+[deps]
+
+source_file="res://assets/audio/Mask Switch SFX/Cowboy SFX.cm_01.wav"
+dest_files=["res://.godot/imported/Cowboy SFX.cm_01.wav-2c4dcec5276b9df517bc7959beebc052.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

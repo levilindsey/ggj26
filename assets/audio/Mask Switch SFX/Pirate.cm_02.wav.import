@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://xe6d0u0xv1xc"
+path="res://.godot/imported/Pirate.cm_02.wav-93d3656f6aabcf5b598fd0d645f32887.sample"
+
+[deps]
+
+source_file="res://assets/audio/Mask Switch SFX/Pirate.cm_02.wav"
+dest_files=["res://.godot/imported/Pirate.cm_02.wav-93d3656f6aabcf5b598fd0d645f32887.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

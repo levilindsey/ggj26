@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cove2x7ihqgqm"
+path="res://.godot/imported/Wizard SFX.cm.cm_01.wav-09f8cd98de07ac1561761ac137a43e13.sample"
+
+[deps]
+
+source_file="res://assets/audio/Mask Switch SFX/Wizard SFX.cm.cm_01.wav"
+dest_files=["res://.godot/imported/Wizard SFX.cm.cm_01.wav-09f8cd98de07ac1561761ac137a43e13.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
