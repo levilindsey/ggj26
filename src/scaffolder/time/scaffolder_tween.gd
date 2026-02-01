@@ -196,9 +196,6 @@ class _SubTween extends RefCounted:
 	var initial_val
 	var final_val
 	var duration: float
-	# TODO: Replace this with better built-in EaseType/TransType easing support
-	#	   when it's ready
-	#	   (https://github.com/godotengine/godot-proposals/issues/36).
 	var ease_name: String
 	var delay: float
 	var time_type: int

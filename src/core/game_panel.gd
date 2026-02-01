@@ -22,7 +22,6 @@ func end_game() -> void:
 
 
 func reset() -> void:
-	# TODO
 	pass
 
 

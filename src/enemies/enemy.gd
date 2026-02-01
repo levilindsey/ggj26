@@ -731,7 +731,7 @@ func face_right() -> void:
 
 
 func play_animation(animation_name: String) -> void:
-	# TODO: Hook-up the other animations.
+	# TODO: LEVI: Hook-up the other animations.
 	if animation_name != "idle":
 		return
 	animated_sprite.play(animation_name)

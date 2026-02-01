@@ -2,11 +2,6 @@ class_name SurfaceProperties
 extends RefCounted
 
 
-# TODO:
-# - Add some way of checking fall-through/walk-through state.
-#   - And add a way to validate that this matches the normal TileSet encoding.
-
-
 const KEYS := [
 	"can_attach",
 	"friction_multiplier",

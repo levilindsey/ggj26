@@ -4,7 +4,7 @@ extends RefCounted
 ## -   This is updated each physics frame.[br]
 
 
-# TODO: Add support for tracking is_sliding
+# : Add support for tracking is_sliding
 # - When is_touching_wall and not is_attached_to_surface and not is_attached_to_floor.
 
 
@@ -106,13 +106,13 @@ var is_triggering_fall_through := false
 var is_triggering_jump := false
 
 var is_descending_through_floors := false
-# TODO(OLD): Add support for grabbing jump-through ceilings.
+# (OLD): Add support for grabbing jump-through ceilings.
 # - Not via a directional key.
 # - Make this configurable for climb_adjacent_surfaces behavior.
 #   - Add a property that indicates probability of climbing through instead of onto.
 #   - Use the same probability for fall-through-floor.
 
-# TODO: Create support for a ceiling_jump_up_action.gd?
+# : Create support for a ceiling_jump_up_action.gd?
 # - Might need a new surface state property called
 #   is_triggering_jump_up_through, which would be similar to
 #   is_triggering_fall_through.
@@ -159,7 +159,7 @@ var is_within_coyote_time: bool:
 			character.movement_settings.late_jump_forgiveness_threshold_sec
 		)
 
-# TODO: Do something with this.
+# : Do something with this.
 var surface_properties: SurfaceProperties = SurfaceProperties.new()
 
 # Dictionary<String, Collision>
@@ -649,7 +649,7 @@ func _update_attachment_state() -> void:
 		_:
 			push_error("CharacterSurfaceState._update_attachment_state")
 
-	# TODO(OLD): ------- Add support for an ascend-through ceiling input.
+	# (OLD): ------- Add support for an ascend-through ceiling input.
 	# Whether we should ascend-up through jump-through ceilings.
 	is_ascending_through_ceilings = \
 		!character.movement_settings.can_attach_to_ceilings or \

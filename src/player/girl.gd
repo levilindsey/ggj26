@@ -15,6 +15,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func _trigger_ability() -> void:
-	# TODO: Implement abilities.
+	# TODO: LEVI: Implement abilities.
 	pass
 	G.warning("WOAH! That ability was so cool!")

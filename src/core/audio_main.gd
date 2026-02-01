@@ -13,7 +13,6 @@ extends Node2D
 	"menu_theme" = %MenuThemeStreamPlayer,
 	"main_theme" = %MainThemeStreamPlayer,
 	"click" = %ClickStreamPlayer,
-	# TODO: Make a better sound.
 	"godot_splash" = %ClickStreamPlayer,
 	"scg_splash" = %SnoringCatStreamPlayer,
 	"success" = %SuccessCadenceStreamPlayer,

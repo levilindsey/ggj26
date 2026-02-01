@@ -28,8 +28,6 @@ func _ready() -> void:
 
 	await get_tree().process_frame
 
-	# TODO: Open first screen/level based on manifest settings.
-
 	_move_window()
 
 	start_game()
@@ -48,7 +46,6 @@ func _notification(notification_type: int) -> void:
 			if false:
 				close_app()
 			else:
-				# TODO: Close the current screen/context.
 				pass
 		NOTIFICATION_WM_CLOSE_REQUEST:
 			close_app()
