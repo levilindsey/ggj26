@@ -731,6 +731,9 @@ func face_right() -> void:
 
 
 func play_animation(animation_name: String) -> void:
+	const EXCLUDED_ANIMATION_NAMES := ["jump_rise", "jump_fall"]
+	if EXCLUDED_ANIMATION_NAMES.has(animation_name):
+		return
 	animated_sprite.play(animation_name)
 
 

@@ -137,6 +137,7 @@ func swap_mask(mask_type: Player.MaskType) -> void:
 	if is_instance_valid(previous_player):
 		previous_player.destroy()
 	%Players.call_deferred("add_child", player)
+	player.global_position = previous_position
 	player.call_deferred("set_global_position", previous_position)
 
 	# Swap the color palette.
