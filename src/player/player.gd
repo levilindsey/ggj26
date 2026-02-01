@@ -156,22 +156,29 @@ func play_sound(sound_name: String) -> void:
 
 
 func take_damage(damage: int) -> void:
-	var current_time := G.time.get_play_time()
+	if is_dead:
+		# Ignore damage. Already dead.
+		return
 	if is_invincible:
 		# Ignore damage. Still invincible.
 		return
 
+	var current_time := G.time.get_play_time()
+
+	var previous_health := current_health
 	var modified_damage := floori(damage / defense)
 	current_health = maxi(current_health - modified_damage, 0)
 
 	if current_health == 0:
 		die()
 	else:
+		G.print("Player damaged: %s => %s" % [previous_health, current_health])
 		last_invincibility_start_time_sec = current_time
 		play_sound("ouch")
 
 
 func die() -> void:
+	G.print("Player died")
 	play_sound("die")
 	G.level.game_over()
 

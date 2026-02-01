@@ -231,7 +231,6 @@ func _ready() -> void:
 	edge_detection_ray_cast.target_position = (
 		Vector2.DOWN * _EDGE_DETECTION_RAY_CAST_LENGTH
 	)
-	edge_detection_ray_cast.position = Vector2(-half_size.x, half_size.y)
 	set_collision_mask_value(
 		Character._NORMAL_SURFACES_COLLISION_MASK_BIT,
 		true)
@@ -291,7 +290,10 @@ func _process_behaviors() -> void:
 		else:
 			face_right()
 
-	var has_reached_edge := not edge_detection_ray_cast.is_colliding()
+	var has_reached_edge := (
+		not edge_detection_ray_cast.is_colliding() or
+		is_on_wall()
+	)
 	if has_reached_edge and _is_behavior_movement(current_behavior):
 		if _is_behavior_a_slow_walk(current_behavior):
 			_start_behavior(Behavior.STOP_AT_EDGE_FOR_WANDER)
@@ -661,12 +663,12 @@ func play_sound(sound_name: String) -> void:
 
 func face_left() -> void:
 	animated_sprite.flip_h = faces_right_by_default
-	edge_detection_ray_cast.position = Vector2(-half_size.x, half_size.y)
+	edge_detection_ray_cast.position = Vector2(-half_size.x, 0)
 
 
 func face_right() -> void:
 	animated_sprite.flip_h = not faces_right_by_default
-	edge_detection_ray_cast.position = Vector2(half_size.x, half_size.y)
+	edge_detection_ray_cast.position = Vector2(half_size.x, 0)
 
 
 func play_animation(animation_name: String) -> void:

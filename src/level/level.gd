@@ -46,19 +46,28 @@ func reset() -> void:
 	has_finished = false
 	is_ready_for_input_to_activate_next_game = false
 
+	%SleepingGirl.visible = true
+
 	await get_tree().create_timer(_RESET_READY_TO_START_GAME_DELAY_SEC).timeout
+
+	G.print("Ready to receive input")
+
 	is_ready_for_input_to_activate_next_game = true
 
 
 func start_game() -> void:
+	G.print("Starting game")
+
 	has_started = true
 	is_ready_for_input_to_activate_next_game = false
 	spawn_player()
 
 
 func game_over() -> void:
+	G.print("Game over")
 	has_finished = true
 	await get_tree().create_timer(_GAME_OVER_READY_TO_RESET_DELAY_SEC).timeout
+	G.print("Resetting for next game")
 	reset()
 
 
