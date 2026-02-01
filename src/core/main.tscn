@@ -1,19 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpnl5pn3ydite"]
+[gd_scene load_steps=11 format=3 uid="uid://bpnl5pn3ydite"]
 
 [ext_resource type="Script" uid="uid://cb3gdybtwy0ry" path="res://src/core/main.gd" id="1_avv2o"]
 [ext_resource type="Resource" uid="uid://dv60bmaw1pdx6" path="res://settings.tres" id="2_ivtyw"]
 [ext_resource type="PackedScene" uid="uid://bt1la6s52krxe" path="res://src/ui/hud/hud.tscn" id="2_ukt3u"]
 [ext_resource type="PackedScene" uid="uid://diqnxd2kabxfk" path="res://src/core/audio_main.tscn" id="3_nlf45"]
 [ext_resource type="PackedScene" uid="uid://luccssf71n0" path="res://src/core/game_panel.tscn" id="3_x62ka"]
-[ext_resource type="AudioStream" uid="uid://bbs4x4f6c576y" path="res://assets/audio/Themes/GGJ_DinoTheme_02.mp3" id="4_x6e73"]
-[ext_resource type="AudioStream" uid="uid://quskyvue0u85" path="res://assets/audio/Themes/GGJ_GirlTheme_03.mp3" id="5_m33k1"]
-[ext_resource type="AudioStream" uid="uid://d3nj6q6ubbm4d" path="res://assets/audio/Themes/GGJ_PirateTheme_01.mp3" id="6_i5nkp"]
 [ext_resource type="PackedScene" uid="uid://dlvy2ayb4r382" path="res://src/core/screens_main.tscn" id="6_q2b63"]
 [ext_resource type="Shader" uid="uid://svh6vtrucv7f" path="res://src/core/palette_swap.gdshader" id="7_2uitn"]
 [ext_resource type="PackedScene" uid="uid://bvkt5maj64yqm" path="res://src/ui/super_hud/super_hud.tscn" id="7_nxx65"]
-[ext_resource type="AudioStream" uid="uid://cpv4bs1fd8m0u" path="res://assets/audio/Themes/GGJ_Western_02.mp3" id="7_qgou3"]
 [ext_resource type="Script" uid="uid://dal2vuo0lcy0p" path="res://src/core/palette_swapper.gd" id="8_2uitn"]
-[ext_resource type="AudioStream" uid="uid://bpq72slx12wvn" path="res://assets/audio/Themes/GGJ_WizardTheme_02.mp3" id="8_i7mjs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2uitn"]
 shader = ExtResource("7_2uitn")
@@ -30,24 +25,6 @@ settings = ExtResource("2_ivtyw")
 
 [node name="AudioMain" parent="." instance=ExtResource("3_nlf45")]
 unique_name_in_owner = true
-
-[node name="DinoTheme" type="AudioStreamPlayer" parent="AudioMain"]
-stream = ExtResource("4_x6e73")
-bus = &"Music"
-
-[node name="GirlTheme" type="AudioStreamPlayer" parent="AudioMain"]
-stream = ExtResource("5_m33k1")
-bus = &"Music"
-
-[node name="PirateTheme" type="AudioStreamPlayer" parent="AudioMain"]
-stream = ExtResource("6_i5nkp")
-bus = &"Music"
-
-[node name="WesternTheme" type="AudioStreamPlayer" parent="AudioMain"]
-stream = ExtResource("7_qgou3")
-
-[node name="WizardTheme" type="AudioStreamPlayer" parent="AudioMain"]
-stream = ExtResource("8_i7mjs")
 
 [node name="GamePanel" parent="." instance=ExtResource("3_x62ka")]
 unique_name_in_owner = true

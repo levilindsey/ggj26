@@ -1,9 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://diqnxd2kabxfk"]
+[gd_scene load_steps=18 format=3 uid="uid://diqnxd2kabxfk"]
 
 [ext_resource type="Script" uid="uid://b5hrwox1n2lt0" path="res://src/core/audio_main.gd" id="1_tdp82"]
 [ext_resource type="AudioStream" uid="uid://d3nqcobglu0sa" path="res://assets/audio/pause_menu.wav" id="2_0ukso"]
+[ext_resource type="AudioStream" uid="uid://bbs4x4f6c576y" path="res://assets/audio/Themes/GGJ_DinoTheme_02.mp3" id="2_8ub3w"]
 [ext_resource type="AudioStream" uid="uid://bvt7ipmcwtm12" path="res://assets/audio/on_a_quest.wav" id="3_o2pvq"]
+[ext_resource type="AudioStream" uid="uid://cpv4bs1fd8m0u" path="res://assets/audio/Themes/GGJ_Western_02.mp3" id="3_q1bt0"]
 [ext_resource type="AudioStream" uid="uid://505pi6oqhfst" path="res://assets/audio/Click/Click-cm-02.wav" id="3_seawu"]
+[ext_resource type="AudioStream" uid="uid://quskyvue0u85" path="res://assets/audio/Themes/GGJ_GirlTheme_03.mp3" id="3_y6b5k"]
+[ext_resource type="AudioStream" uid="uid://bpq72slx12wvn" path="res://assets/audio/Themes/GGJ_WizardTheme_02.mp3" id="4_0ah1i"]
+[ext_resource type="AudioStream" uid="uid://d3nj6q6ubbm4d" path="res://assets/audio/Themes/GGJ_PirateTheme_01.mp3" id="4_wvndb"]
 [ext_resource type="AudioStream" uid="uid://dmh678v0gek8c" path="res://assets/audio/Click/Click-cm-04.wav" id="4_wywav"]
 [ext_resource type="AudioStream" uid="uid://b3achb3rytv11" path="res://assets/audio/Click/Click-cm-06.wav" id="5_wtepx"]
 [ext_resource type="AudioStream" uid="uid://qk2yfhofcotd" path="res://assets/audio/Click/Click-cm-07.wav" id="6_24bi3"]
@@ -25,11 +30,34 @@ script = ExtResource("1_tdp82")
 main_theme_volume = -8.0
 menu_theme_volume = 2.247
 
-[node name="MenuThemeStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="DinoTheme" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
-stream = ExtResource("2_0ukso")
-volume_db = 2.247
+stream = ExtResource("2_8ub3w")
+bus = &"Music"
+
+[node name="GirlTheme" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("3_y6b5k")
+bus = &"Music"
+
+[node name="PirateTheme" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("4_wvndb")
+bus = &"Music"
+
+[node name="WesternTheme" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("3_q1bt0")
+bus = &"Music"
+
+[node name="WizardTheme" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("4_0ah1i")
 bus = &"Music"
 
 [node name="MainThemeStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -37,6 +65,13 @@ unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("3_o2pvq")
 volume_db = -8.0
+bus = &"Music"
+
+[node name="MenuThemeStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+stream = ExtResource("2_0ukso")
+volume_db = 2.247
 bus = &"Music"
 
 [node name="ClickStreamPlayer" type="AudioStreamPlayer" parent="."]

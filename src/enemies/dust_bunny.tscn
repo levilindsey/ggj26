@@ -257,16 +257,6 @@ damage_player_area = NodePath("DamagePlayerArea")
 detection_range = NodePath("DetectionRange")
 attack_max_range_area = NodePath("AttackMaxRange")
 attack_min_range_area = NodePath("AttackMinRange")
-chase_speed = 60.0
-wander_speed = 30.0
-bounces_when_walking = true
-walk_bounce_boost = 70.0
-chase_bounce_boost = 50.0
-gravity_multiplier = 0.2
-max_health = 10
-attack_duration_sec = 0.9
-idle_pause_duration_min_sec = 1.0
-idle_pause_duration_max_sec = 3.0
 metadata/_custom_type_script = "uid://dn207w6w75on0"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
