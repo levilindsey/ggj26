@@ -139,11 +139,6 @@ func _physics_process(delta: float) -> void:
 		animator.play("attack")
 		play_sound("ability")
 	if Input.is_action_just_pressed("mask"):
-		# Don't allow rapid swaps.
-		var current_time := G.time.get_play_time()
-		if current_time < last_mask_swap_time_sec + _MASK_SWAP_COOLDOWN_SEC:
-			return
-
 		var next_mask_type := current_masks[selected_mask_index]
 		if next_mask_type == mask_type:
 			# Reselecting the same mask toggles it off.
