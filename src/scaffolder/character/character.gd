@@ -13,8 +13,8 @@ const _HACK_FOR_EDGE_DETECTION_COLLISION_MASK_BIT := 1 << 7
 const _MIN_FALL_DAMAGE_DISTANCE := 250.0
 const _MAX_FALL_DAMAGE_DISTANCE := 1024.0
 
-const _MIN_FALL_DAMAGE := 20.0
-const _MAX_FALL_DAMAGE := 80.0
+const _MIN_FALL_DAMAGE := 15.0
+const _MAX_FALL_DAMAGE := 70.0
 
 @export var collision_shape: CollisionShape2D
 @export var animator: CharacterAnimator
