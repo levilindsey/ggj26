@@ -9,7 +9,6 @@ extends Character
 # - Spider
 
 
-
 enum MaskType {
 	NONE,
 	COWBOY,
