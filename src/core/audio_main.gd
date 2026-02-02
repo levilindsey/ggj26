@@ -31,6 +31,7 @@ extends Node2D
 	"dino_jump" = %DinoJump,
 	"cowboy_jump" = %CowboyJump,
 	"wizard_jump" = %WizJump,
+	"bird_flap" = %BirdFlap,
 	"girl_death" = %GirlDeath,
 	"ice_shatter" = %IceShatter,
 	"click" = %ClickStreamPlayer,
@@ -280,6 +281,7 @@ func play_player_sound(
 					pass
 				Player.MaskType.PIRATE:
 					play.call("cowboy_jump")
+					play.call("bird_flap")
 					pass
 				Player.MaskType.WIZARD:
 					play.call("wizard_jump")
@@ -294,7 +296,7 @@ func play_player_sound(
 					G.fatal()
 			pass
 		"land":
-			#play.call("land")
+			stop_sound("bird_flap")
 			pass
 		"walk":
 			match G.level.player.mask_type:
