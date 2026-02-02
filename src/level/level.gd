@@ -19,6 +19,7 @@ var ice_spikes: Array[IceSpike] = []
 
 var has_started := false
 var has_finished := false
+var has_won := false
 var is_ready_for_input_to_activate_next_game := false
 
 
@@ -88,8 +89,9 @@ func game_over() -> void:
 
 
 func win() -> void:
-	# FIXME
-	pass
+	G.hud.fade_in_credits()
+	has_won = true
+	swap_mask(Player.MaskType.NONE)
 
 
 func _input(event: InputEvent) -> void:

@@ -291,6 +291,8 @@ func _process_invincibility_blink() -> void:
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
+	if G.level.has_won:
+		return
 
 	just_switched_behaviors = false
 
@@ -731,6 +733,8 @@ func _process_sounds() -> void:
 
 
 func play_sound(sound_name: String, force_restart := false) -> void:
+	if G.level.has_won:
+		return
 	G.audio.play_enemy_sound(sound_name, type, force_restart)
 
 
@@ -774,6 +778,8 @@ func play_animation(animation_name: String) -> void:
 
 
 func take_damage(damage: int) -> void:
+	if G.level.has_won:
+		return
 	if is_dead:
 		# Ignore damage. Already dead.
 		return

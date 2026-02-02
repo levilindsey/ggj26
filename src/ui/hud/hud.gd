@@ -12,6 +12,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	# Hide the title, so we can fade it in.
 	%Title.modulate.a = 0.0
+	%Credits.modulate.a = 0.0
 
 	# Wait for G.settings to be assigned.
 	await get_tree().process_frame
@@ -45,6 +46,12 @@ func fade_in_title() -> void:
 func fade_out_title() -> void:
 	fade_in(%GameState)
 	fade_out(%Title)
+
+
+func fade_in_credits() -> void:
+	fade_in(%Credits)
+	fade_in(%Title)
+	fade_out(%GameState)
 
 
 func fade_in(node: CanvasItem) -> void:

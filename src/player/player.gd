@@ -126,6 +126,8 @@ func _process_invincibility_blink() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if G.level.has_won:
+		return
 	if is_dead:
 		return
 	var last_floor_position := surface_state.last_floor_position.y
@@ -219,6 +221,8 @@ func stop_melee_animation() -> void:
 
 
 func play_sound(sound_name: String, force_restart := false) -> void:
+	if G.level.has_won:
+		return
 	G.audio.play_player_sound(sound_name, force_restart)
 
 
@@ -233,6 +237,8 @@ func pick_up_mask(p_mask_type: MaskType) -> void:
 func take_damage(damage: int, enemy: Enemy) -> void:
 	if is_dead:
 		# Ignore damage. Already dead.
+		return
+	if G.level.has_won:
 		return
 	if is_invincible:
 		# Ignore damage. Still invincible.

@@ -374,4 +374,3 @@ func stop_player_sound(sound_name: String) -> void:
 			stop_sound("dino_feet")
 			stop_sound("boots_loop")
 			stop_sound("bootspeg_loop")
-			
