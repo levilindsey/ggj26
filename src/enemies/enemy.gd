@@ -8,6 +8,7 @@ enum Type {
 	GHOST,
 	NIGHTMARE,
 	SPIDER,
+	HAND,
 }
 
 enum Behavior {
@@ -71,7 +72,7 @@ const _APPROACH_DISTANCE_THRESHOLD := 2.0
 @export var attack_duration_sec := 0.5
 
 ## This is only relevant for IdleType.SLEEP.
-@export var wake_up_duration_sec := 0.0
+@export var wake_up_duration_sec := 0.5
 
 @export var lose_detection_delay_sec := 1.0
 
@@ -109,9 +110,9 @@ var is_player_in_attack_min_range := false
 var last_detection_time_sec := 0.0
 
 var half_size := Vector2.INF
-var damage_player_radius := 0.0
-var detection_range_radius := 0.0
-var attack_max_range_radius := 0.0
+#var damage_player_radius := 0.0
+#var detection_range_radius := 0.0
+#var attack_max_range_radius := 0.0
 var attack_min_range_radius := 0.0
 
 var just_switched_behaviors := false
@@ -119,6 +120,10 @@ var just_switched_behaviors := false
 var was_on_floor := false
 var has_ever_been_on_floor := false
 var just_jumped := false
+
+var last_played_animation := ""
+
+var initial_animated_sprite_position := Vector2.INF
 
 var is_in_air: bool:
 	get:
@@ -224,9 +229,11 @@ func _ready() -> void:
 	G.check(pre_chase_pause_duration_sec > 0.0)
 	G.check(attack_pause_duration_sec > 0.0)
 
-	damage_player_radius = damage_player_area.get_child(0).shape.radius
-	detection_range_radius = detection_range.get_child(0).shape.radius
-	attack_max_range_radius = attack_max_range_area.get_child(0).shape.radius
+	initial_animated_sprite_position = animated_sprite.position
+
+	#damage_player_radius = damage_player_area.get_child(0).shape.radius
+	#detection_range_radius = detection_range.get_child(0).shape.radius
+	#attack_max_range_radius = attack_max_range_area.get_child(0).shape.radius
 	attack_min_range_radius = attack_min_range_area.get_child(0).shape.radius
 
 	half_size = Geometry.calculate_half_width_height(
@@ -652,21 +659,21 @@ func _process_movement(delta: float) -> void:
 
 func _process_animation() -> void:
 	if current_behavior == Behavior.ATTACK:
-		play_animation("attack")
+		play_animation_wrapper("attack")
 	elif current_behavior == Behavior.WAKE_UP:
-		play_animation("wake_up")
+		play_animation_wrapper("wake_up")
 	elif current_behavior == Behavior.SLEEP:
-		play_animation("sleep")
+		play_animation_wrapper("sleep")
 	elif is_on_floor():
 		if _is_behavior_movement(current_behavior):
-			play_animation("walk")
+			play_animation_wrapper("walk")
 		else:
-			play_animation("rest")
+			play_animation_wrapper("rest")
 	else:
 		if velocity.y > 0:
-			play_animation("jump_fall")
+			play_animation_wrapper("jump_fall")
 		else:
-			play_animation("jump_rise")
+			play_animation_wrapper("jump_rise")
 
 
 func _process_sounds() -> void:
@@ -722,12 +729,32 @@ func play_sound(sound_name: String) -> void:
 
 func face_left() -> void:
 	animated_sprite.flip_h = faces_right_by_default
+	if animated_sprite.flip_h:
+		animated_sprite.position.x = -initial_animated_sprite_position.x
+	else:
+		animated_sprite.position.x = initial_animated_sprite_position.x
 	edge_detection_ray_cast.position = Vector2(-half_size.x, 0)
 
 
 func face_right() -> void:
 	animated_sprite.flip_h = not faces_right_by_default
+	if animated_sprite.flip_h:
+		animated_sprite.position.x = -initial_animated_sprite_position.x
+	else:
+		animated_sprite.position.x = initial_animated_sprite_position.x
 	edge_detection_ray_cast.position = Vector2(half_size.x, 0)
+
+
+func play_animation_wrapper(animation_name: String) -> void:
+	const ONE_TIME_ANIMATIONS := ["attack", "wake_up", "sleep"]
+	if (
+		last_played_animation == animation_name and
+		ONE_TIME_ANIMATIONS.has(animation_name)
+	):
+		# Skip repeat plays for non-repeating animations.
+		return
+	last_played_animation = animation_name
+	play_animation(animation_name)
 
 
 func play_animation(animation_name: String) -> void:

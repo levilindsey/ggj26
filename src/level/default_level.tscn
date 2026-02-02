@@ -48,8 +48,9 @@ unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
 [node name="EnemySpawnPoint" type="Node2D" parent="EnemySpawnPoints"]
-position = Vector2(102, 16)
+position = Vector2(184, 16)
 script = ExtResource("3_5bkgc")
+enemy_type = 3
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
 [node name="MaskPickups" type="Node2D" parent="."]

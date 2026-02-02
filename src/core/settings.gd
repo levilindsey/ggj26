@@ -48,6 +48,7 @@ extends Resource
 @export var ghost_scene: PackedScene
 @export var nightmare_scene: PackedScene
 @export var spider_scene: PackedScene
+@export var hand_scene: PackedScene
 @export_group("")
 
 @export var color_swap_palettes: Texture2D
@@ -106,6 +107,8 @@ func get_scene_for_enemy_type(type: Enemy.Type) -> PackedScene:
 			return nightmare_scene
 		Enemy.Type.SPIDER:
 			return spider_scene
+		Enemy.Type.HAND:
+			return hand_scene
 		_:
 			G.fatal()
 			return null
