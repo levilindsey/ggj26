@@ -248,7 +248,7 @@ radius = 0.1
 
 [node name="DustBunny" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collision_shape", "damage_player_area", "detection_range", "attack_max_range_area", "attack_min_range_area")]
 collision_layer = 16
-collision_mask = 7
+collision_mask = 135
 script = ExtResource("1_u6v05")
 attack_bounce_vertical_boost = 90.0
 animated_sprite = NodePath("AnimatedSprite2D")

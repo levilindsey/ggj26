@@ -124,6 +124,7 @@ face_right={
 2d_physics/layer_5="enemy"
 2d_physics/layer_6="player_projectile"
 2d_physics/layer_7="enemy_projectile"
+2d_physics/layer_8="hack_for_edge_detection"
 
 [rendering]
 

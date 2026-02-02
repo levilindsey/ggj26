@@ -250,13 +250,14 @@ func _ready() -> void:
 	edge_detection_ray_cast.target_position = (
 		Vector2.DOWN * edge_detection_ray_cast_length
 	)
+	#set_collision_mask_value(
+		#Character._NORMAL_SURFACES_COLLISION_MASK_BIT,
+		#true)
 	set_collision_mask_value(
-		Character._NORMAL_SURFACES_COLLISION_MASK_BIT,
-		true)
-	set_collision_mask_value(
-		Character._FALL_THROUGH_FLOORS_COLLISION_MASK_BIT,
+		Character._HACK_FOR_EDGE_DETECTION_COLLISION_MASK_BIT,
 		true)
 	add_child(edge_detection_ray_cast)
+	edge_detection_ray_cast.enabled = true
 
 	face_left()
 
@@ -740,7 +741,7 @@ func face_left() -> void:
 		animated_sprite.position.x = -initial_animated_sprite_position.x
 	else:
 		animated_sprite.position.x = initial_animated_sprite_position.x
-	edge_detection_ray_cast.position = Vector2(-half_size.x, 0)
+	edge_detection_ray_cast.position = Vector2(-half_size.x, -2.0)
 
 
 func face_right() -> void:
@@ -749,7 +750,7 @@ func face_right() -> void:
 		animated_sprite.position.x = -initial_animated_sprite_position.x
 	else:
 		animated_sprite.position.x = initial_animated_sprite_position.x
-	edge_detection_ray_cast.position = Vector2(half_size.x, 0)
+	edge_detection_ray_cast.position = Vector2(half_size.x, -2.0)
 
 
 func play_animation_wrapper(animation_name: String) -> void:
