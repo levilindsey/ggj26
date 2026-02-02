@@ -6,4 +6,4 @@ extends Node2D
 
 
 func _ready() -> void:
-	G.level.register_enemy_spawn_point(self)
+    G.level.register_enemy_spawn_point(self)
