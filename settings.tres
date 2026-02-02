@@ -24,7 +24,6 @@
 [resource]
 script = ExtResource("1_krfic")
 pauses_on_focus_out = false
-is_screenshot_hotkey_enabled = false
 default_gravity_acceleration = 1400.0
 default_level_scene = ExtResource("1_legvn")
 bullet_scene = ExtResource("1_mrrpg")

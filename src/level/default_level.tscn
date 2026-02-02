@@ -38,7 +38,7 @@ metadata/_edit_lock_ = true
 
 [node name="PlayerSpawnPoint" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-84, -4)
+position = Vector2(-83, -4)
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="PlayerSpawnPoint"]
