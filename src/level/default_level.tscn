@@ -52,6 +52,12 @@ position = Vector2(183, 9)
 script = ExtResource("3_5bkgc")
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
+[node name="EnemySpawnPoint2" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(112, -85)
+script = ExtResource("3_5bkgc")
+debug = true
+metadata/_custom_type_script = "uid://w43fkpgoh88w"
+
 [node name="EnemySpawnPoint3" type="Node2D" parent="EnemySpawnPoints"]
 position = Vector2(627, 4)
 script = ExtResource("3_5bkgc")

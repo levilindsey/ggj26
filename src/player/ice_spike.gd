@@ -85,6 +85,7 @@ func shatter() -> void:
 	%DamageArea.monitoring = false
 	# Disable the walking surface collision
 	%WalkingSurface/CollisionShape2D.disabled = true
+	G.audio.play_sound("ice_shatter")
 
 
 func _on_damage_area_body_entered(body: Node2D) -> void:

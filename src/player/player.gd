@@ -3,14 +3,11 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
+# - Fix pirate stuck swinging.
+# - Fix enemies on platforms.
+# - Fix damage collision shape size on sword and dino.
 # - Pirate fly jump.
-# - Gun.
-# - Ice spike.
-#   - Fall from above.
-#   - Surface to walk on.
-#   - Shatter if landing below the player trigger y.
-#   - Only check landing collision of tip.
-#   - Separate enemy collision area.
+# - HANDSY.
 # - Wizard floating big jump.
 # - All player movement.
 # - Palette adjustments, to emphasize the accent color.

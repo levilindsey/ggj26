@@ -96,6 +96,8 @@ const _INVINCIBILITY_BLINK_PERIOD_SEC := 0.1
 
 var spawn_point: EnemySpawnPoint
 
+var debug := false
+
 var edge_detection_ray_cast: RayCast2D
 
 var current_behavior := Behavior.NONE
@@ -334,6 +336,9 @@ func _process_behaviors() -> void:
 			not edge_detection_ray_cast.is_colliding()) or
 		is_on_wall()
 	)
+	if has_reached_edge and debug:
+		G.print("> %s %s" % [edge_detection_ray_cast.is_colliding(), is_on_wall()])
+		pass
 	if has_reached_edge and _is_behavior_movement(current_behavior):
 		if _is_behavior_a_slow_walk(current_behavior):
 			_start_behavior(Behavior.STOP_AT_EDGE_FOR_WANDER)
@@ -538,11 +543,12 @@ func _start_behavior(
 
 	# Very useful logs.
 	var behavior_keys := Behavior.keys()
-	G.print("%s => %s (for %s)" % [
-		behavior_keys[previous_behavior],
-		behavior_keys[current_behavior],
-		name,
-	], ScaffolderLog.CATEGORY_BEHAVIORS)
+	if debug:
+		G.print("%s => %s (for %s)" % [
+			behavior_keys[previous_behavior],
+			behavior_keys[current_behavior],
+			name,
+		], ScaffolderLog.CATEGORY_BEHAVIORS)
 
 	match current_behavior:
 		Behavior.NONE:
