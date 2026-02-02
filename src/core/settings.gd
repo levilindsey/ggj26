@@ -24,6 +24,8 @@ extends Resource
 @export var default_gravity_acceleration := 5000.0
 
 @export var default_level_scene: PackedScene
+@export var bullet_scene: PackedScene
+@export var ice_spike_scene: PackedScene
 
 @export_group("Mask icons")
 @export var cowboy_icon: Texture2D

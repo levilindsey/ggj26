@@ -53,6 +53,9 @@ script = ExtResource("3_5bkgc")
 enemy_type = 3
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
+[node name="Projectiles" type="Node2D" parent="."]
+unique_name_in_owner = true
+
 [node name="MaskPickups" type="Node2D" parent="."]
 unique_name_in_owner = true
 

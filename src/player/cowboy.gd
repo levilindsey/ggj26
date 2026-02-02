@@ -15,6 +15,12 @@ func _physics_process(_delta: float) -> void:
 
 
 func _trigger_ability() -> void:
-	# TODO: LEVI: Implement abilities.
-	pass
-	G.warning("WOAH! That ability was so cool!")
+	G.print("Pew")
+
+	var bullet_offset: Vector2 = %BulletSpawnPositionRight.position
+	if not surface_state.is_facing_right:
+		bullet_offset.x *= -1
+
+	G.level.add_bullet(
+		global_position + bullet_offset,
+		surface_state.is_facing_right)

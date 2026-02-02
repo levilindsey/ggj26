@@ -14,6 +14,9 @@ var player: Player
 
 var enemies: Array[Enemy] = []
 
+var bullets: Array[Bullet] = []
+var ice_spikes: Array[IceSpike] = []
+
 var has_started := false
 var has_finished := false
 var is_ready_for_input_to_activate_next_game := false
@@ -160,3 +163,28 @@ func spawn_enemy(spawn_point: EnemySpawnPoint) -> void:
 func remove_enemy(enemy: Enemy) -> void:
 	enemies.erase(enemy)
 	enemy.queue_free()
+
+
+func add_bullet(p_position: Vector2, p_is_moving_right: bool) -> void:
+	var bullet: Bullet = G.settings.bullet_scene.instantiate()
+	%Projectiles.add_child(bullet)
+	bullet.global_position = p_position
+	bullet.is_moving_right = p_is_moving_right
+	bullets.append(bullet)
+
+
+func remove_bullet(bullet: Bullet) -> void:
+	bullets.erase(bullet)
+	bullet.queue_free()
+
+
+func add_ice_spike(p_position: Vector2) -> void:
+	var ice_spike: IceSpike = G.settings.ice_spike_scene.instantiate()
+	%Projectiles.add_child(ice_spike)
+	ice_spike.global_position = p_position
+	ice_spikes.append(ice_spike)
+
+
+func remove_ice_spike(ice_spike: IceSpike) -> void:
+	ice_spikes.erase(ice_spike)
+	ice_spike.queue_free()

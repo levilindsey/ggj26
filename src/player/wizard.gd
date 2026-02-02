@@ -15,6 +15,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func _trigger_ability() -> void:
-	# TODO: LEVI: Implement abilities.
-	pass
-	G.warning("WOAH! That ability was so cool!")
+	G.print("ICE SPIKE!")
+
+	var ice_spike_offset: Vector2 = %IceSpikeSpawnPositionRight.position
+	if not surface_state.is_facing_right:
+		ice_spike_offset.x *= -1
+
+	G.level.add_ice_spike(global_position + ice_spike_offset)

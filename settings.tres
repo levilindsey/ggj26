@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Settings" load_steps=19 format=3 uid="uid://dv60bmaw1pdx6"]
+[gd_resource type="Resource" script_class="Settings" load_steps=21 format=3 uid="uid://dv60bmaw1pdx6"]
 
 [ext_resource type="Texture2D" uid="uid://diovfkjm8dygi" path="res://assets/images/scratch/mask_icon_chicken.png" id="1_b2txj"]
 [ext_resource type="PackedScene" uid="uid://b44pqn12oqw7u" path="res://src/player/chicken.tscn" id="1_i3tmf"]
 [ext_resource type="Script" uid="uid://cqomr88ncj2d3" path="res://src/core/settings.gd" id="1_krfic"]
 [ext_resource type="PackedScene" uid="uid://bfl5qv8bb5apr" path="res://src/level/default_level.tscn" id="1_legvn"]
+[ext_resource type="PackedScene" uid="uid://dx7d0qyudt275" path="res://src/player/bullet.tscn" id="1_mrrpg"]
 [ext_resource type="PackedScene" uid="uid://bsv6tbcljk7i5" path="res://src/player/cowboy.tscn" id="2_4irwu"]
 [ext_resource type="Texture2D" uid="uid://is44urul5h23" path="res://assets/images/scratch/color_swap_palette.png" id="2_bav20"]
 [ext_resource type="Texture2D" uid="uid://vcl2ukagmuw6" path="res://assets/images/scratch/mask_icon_cowboy.png" id="4_7ybur"]
@@ -17,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://d2yj5ohpjo6on" path="res://assets/images/scratch/mask_icon_pirate.png" id="11_7nxwi"]
 [ext_resource type="PackedScene" uid="uid://dc8hc6463ar2j" path="res://src/enemies/hand.tscn" id="12_sowkg"]
 [ext_resource type="PackedScene" uid="uid://cp1yxvkk668tq" path="res://src/enemies/nightmare.tscn" id="13_mrrpg"]
+[ext_resource type="PackedScene" uid="uid://cisj5ycdw06v5" path="res://src/player/ice_spike.tscn" id="14_p8ob7"]
 [ext_resource type="Texture2D" uid="uid://cdp0uv06anh6u" path="res://assets/images/scratch/mask_icon_wizard.png" id="14_sowkg"]
 
 [resource]
@@ -25,6 +27,8 @@ show_debug_player_state = true
 pauses_on_focus_out = false
 default_gravity_acceleration = 1400.0
 default_level_scene = ExtResource("1_legvn")
+bullet_scene = ExtResource("1_mrrpg")
+ice_spike_scene = ExtResource("14_p8ob7")
 cowboy_icon = ExtResource("4_7ybur")
 pirate_icon = ExtResource("11_7nxwi")
 wizard_icon = ExtResource("14_sowkg")

@@ -1,0 +1,106 @@
+[gd_scene load_steps=12 format=3 uid="uid://cisj5ycdw06v5"]
+
+[ext_resource type="Script" uid="uid://cwqu1ud2hw56v" path="res://src/player/ice_spike.gd" id="1_kunt1"]
+[ext_resource type="Texture2D" uid="uid://dcup4a4o5duqh" path="res://assets/images/scratch/ice_spike.png" id="2_xlbjl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skoo0"]
+atlas = ExtResource("2_xlbjl")
+region = Rect2(0, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56nab"]
+atlas = ExtResource("2_xlbjl")
+region = Rect2(48, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ix4b"]
+atlas = ExtResource("2_xlbjl")
+region = Rect2(96, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4qif"]
+atlas = ExtResource("2_xlbjl")
+region = Rect2(144, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5awc"]
+atlas = ExtResource("2_xlbjl")
+region = Rect2(192, 0, 48, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlbak"]
+atlas = ExtResource("2_xlbjl")
+region = Rect2(240, 0, 48, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xlbjl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skoo0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56nab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ix4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4qif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5awc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlbak")
+}],
+"loop": true,
+"name": &"shatter",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlbjl"]
+size = Vector2(32, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skoo0"]
+size = Vector2(6, 12)
+
+[node name="IceSpike" type="Node2D"]
+script = ExtResource("1_kunt1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -25)
+sprite_frames = SubResource("SpriteFrames_xlbjl")
+autoplay = "default"
+frame_progress = 0.13595241
+
+[node name="DamageArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DamageArea"]
+polygon = PackedVector2Array(-13, -34, 13, -34, 2, 1, -2, 1)
+
+[node name="WalkingSurface" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WalkingSurface"]
+position = Vector2(0, -46.5)
+shape = SubResource("RectangleShape2D_xlbjl")
+
+[node name="GroundDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 7
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetector"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_skoo0")
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_entered" from="GroundDetector" to="." method="_on_ground_detector_body_entered"]
