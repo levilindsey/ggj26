@@ -27,6 +27,8 @@ extends Node2D
 	"girl_attack" = %GirlAttack,
 	"girl_damage" = %GirlDamage,
 	"girl_footsteps_loop" = %GirlFootstepsLoop,
+	"boots_loop" = %BootsLoop,
+	"bootspeg_loop" = %BootsPegLoop,
 	"girl_jump" = %GirlJump,
 	"dino_feet" = %DinoFeet,
 	"dino_jump" = %DinoJump,
@@ -308,10 +310,10 @@ func play_player_sound(
 					play.call("girl_footsteps_loop")
 					pass
 				Player.MaskType.COWBOY:
-					play.call("girl_footsteps_loop")
+					play.call("boots_loop")
 					pass
 				Player.MaskType.PIRATE:
-					play.call("girl_footsteps_loop")
+					play.call("bootspeg_loop")
 					pass
 				Player.MaskType.WIZARD:
 					play.call("girl_footsteps_loop")
@@ -364,3 +366,6 @@ func stop_player_sound(sound_name: String) -> void:
 		"walk":
 			stop_sound("girl_footsteps_loop")
 			stop_sound("dino_feet")
+			stop_sound("boots_loop")
+			stop_sound("bootspeg_loop")
+			
