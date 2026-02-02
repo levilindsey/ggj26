@@ -48,11 +48,6 @@ position_smoothing_enabled = true
 unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
-[node name="EnemySpawnPoint" type="Node2D" parent="EnemySpawnPoints"]
-position = Vector2(183, 9)
-script = ExtResource("3_5bkgc")
-metadata/_custom_type_script = "uid://w43fkpgoh88w"
-
 [node name="EnemySpawnPoint2" type="Node2D" parent="EnemySpawnPoints"]
 position = Vector2(628, -98)
 script = ExtResource("3_5bkgc")
@@ -92,7 +87,6 @@ enemy_type = 5
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
 [node name="EnemySpawnPoint7" type="Node2D" parent="EnemySpawnPoints"]
-position = Vector2(1504, 136)
 script = ExtResource("3_5bkgc")
 enemy_type = 5
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
@@ -254,7 +248,7 @@ enemy_type = 2
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
 [node name="EnemySpawnPoint28" type="Node2D" parent="EnemySpawnPoints"]
-position = Vector2(23, 1440)
+position = Vector2(123, 15)
 script = ExtResource("3_5bkgc")
 enemy_type = 5
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
