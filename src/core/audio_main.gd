@@ -58,6 +58,15 @@ func play_sound(sound_name: StringName) -> void:
 		stream_player.play()
 
 
+func stop_sound(sound_name: StringName) -> void:
+	if not G.ensure(STREAM_PLAYERS_BY_NAME.has(sound_name)):
+		return
+
+	var stream_player: AudioStreamPlayer = STREAM_PLAYERS_BY_NAME[sound_name]
+	if stream_player.playing:
+		stream_player.stop()
+
+
 func fade_to_mask_theme(mask_type: Player.MaskType) -> void:
 	var player_name := get_player_name_for_mask(mask_type)
 	fade_to_theme(player_name)
@@ -250,7 +259,7 @@ func play_player_sound(sound_name: String) -> void:
 			pass
 		"walk":
 			play_sound("girl_footsteps_loop")
-			pass			
+			pass
 		"ouch":
 			play_sound("girl_damage")
 			pass
@@ -284,3 +293,9 @@ func play_player_sound(sound_name: String) -> void:
 					G.fatal()
 		_:
 			G.fatal()
+
+
+func stop_player_sound(sound_name: String) -> void:
+	match sound_name:
+		"walk":
+			stop_sound("girl_footsteps_loop")

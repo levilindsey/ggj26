@@ -290,8 +290,11 @@ func _process_sounds() -> void:
 		play_sound("land")
 	elif surface_state.just_touched_surface:
 		play_sound("land")
-	elif is_walking:
+
+	if is_walking:
 		play_sound("walk")
+	else:
+		G.audio.stop_player_sound("walk")
 
 
 func play_sound(_sound_name: String) -> void:
