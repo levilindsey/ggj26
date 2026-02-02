@@ -15,6 +15,7 @@ extends Node2D
 	"pirate_theme" = %PirateTheme,
 	"western_theme" = %WesternTheme,
 	"wizard_theme" = %WizardTheme,
+	"chickenz" = %Chickenz,
 	"wiz_mask" = %WizardMask,
 	"dino_mask" = %DinoMask,
 	"cowboy_mask" = %CowboyMask,
@@ -245,7 +246,7 @@ func play_player_sound(
 					play.call("dino_mask")
 					pass
 				Player.MaskType.CHICKEN:
-					#play.call("chicken_mask")
+					play.call("chickenz")
 					pass
 				_:
 					G.fatal()
@@ -267,7 +268,7 @@ func play_player_sound(
 					play.call("dino_bite")
 					pass
 				Player.MaskType.CHICKEN:
-					#play.call("chicken_ability")
+					play.call("chickenz")
 					pass
 				_:
 					G.fatal()
@@ -290,7 +291,7 @@ func play_player_sound(
 					play.call("dino_jump")
 					pass
 				Player.MaskType.CHICKEN:
-					#play.call("girl_jump")
+					play.call("chickenz")
 					pass
 				_:
 					G.fatal()
@@ -347,7 +348,7 @@ func play_player_sound(
 					play.call("dino_mask")
 					pass
 				Player.MaskType.CHICKEN:
-					#play.call("chicken_mask")
+					play.call("chickenz")
 					pass
 				_:
 					G.fatal()
