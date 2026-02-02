@@ -3,9 +3,6 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
-# - Fix enemies on platforms.
-# - Fix damage collision shape size on sword and dino.
-# - Pirate fly jump.
 # - HANDSY.
 # - Wizard floating big jump.
 # - All player movement.

@@ -3,7 +3,7 @@ extends Node2D
 
 
 const _ICE_SPIKE_DAMAGE := 25
-const _ICE_SPIKE_SPEED := 180.0
+const _ICE_SPIKE_SPEED := 400.0
 const _ICE_SPIKE_GROUNDED_DURATION_SEC := 4.0
 const _SHATTER_DURATION_SEC := 5 * 1/12.0
 const _ICE_SPIKE_FALL_DURATION_THRESHOLD_SEC := 4.0
@@ -37,6 +37,10 @@ var frame_count := 0
 
 func _ready() -> void:
 	spawn_time_sec = G.time.get_play_time()
+
+	# THERE CAN BE, ONLY, ONE!
+	for ice_spike in G.level.ice_spikes:
+		ice_spike.shatter()
 
 
 func _physics_process(delta: float) -> void:

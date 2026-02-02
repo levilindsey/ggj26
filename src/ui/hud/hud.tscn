@@ -27,39 +27,40 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="GameState" type="HBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="LeftContent" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="LeftContent" type="VBoxContainer" parent="MarginContainer/GameState"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="Spacer2" type="Control" parent="MarginContainer/HBoxContainer/LeftContent"]
+[node name="Spacer2" type="Control" parent="MarginContainer/GameState/LeftContent"]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HealthRow" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftContent"]
+[node name="HealthRow" type="HBoxContainer" parent="MarginContainer/GameState/LeftContent"]
 layout_mode = 2
 
-[node name="HeartIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftContent/HealthRow"]
+[node name="HeartIcon" type="TextureRect" parent="MarginContainer/GameState/LeftContent/HealthRow"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(18, 16)
 layout_mode = 2
 texture = ExtResource("3_ariom")
 
-[node name="ShieldIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftContent/HealthRow"]
+[node name="ShieldIcon" type="TextureRect" parent="MarginContainer/GameState/LeftContent/HealthRow"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(18, 16)
 layout_mode = 2
 texture = ExtResource("4_4dm8p")
 
-[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/HBoxContainer/LeftContent/HealthRow"]
+[node name="HealthBar" type="TextureProgressBar" parent="MarginContainer/GameState/LeftContent/HealthRow"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
@@ -75,60 +76,60 @@ stretch_margin_bottom = 4
 texture_under = ExtResource("3_076te")
 texture_progress = ExtResource("4_ariom")
 
-[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/LeftContent"]
+[node name="Spacer" type="Control" parent="MarginContainer/GameState/LeftContent"]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
-[node name="MasksContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftContent"]
+[node name="MasksContainer" type="HBoxContainer" parent="MarginContainer/GameState/LeftContent"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="HudMaskCard" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+[node name="HudMaskCard" parent="MarginContainer/GameState/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 is_collected = true
 
-[node name="HudMaskCard2" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+[node name="HudMaskCard2" parent="MarginContainer/GameState/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 mask_type = 1
 is_collected = true
 
-[node name="HudMaskCard3" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+[node name="HudMaskCard3" parent="MarginContainer/GameState/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 mask_type = 2
 is_collected = true
 
-[node name="HudMaskCard4" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+[node name="HudMaskCard4" parent="MarginContainer/GameState/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 mask_type = 3
 is_collected = true
 
-[node name="HudMaskCard5" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+[node name="HudMaskCard5" parent="MarginContainer/GameState/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 mask_type = 4
 is_collected = true
 
-[node name="HudMaskCard6" parent="MarginContainer/HBoxContainer/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
+[node name="HudMaskCard6" parent="MarginContainer/GameState/LeftContent/MasksContainer" instance=ExtResource("6_cio14")]
 layout_mode = 2
 mask_type = 5
 is_collected = true
 
-[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/GameState"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="MiddleContent" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="MiddleContent" type="VBoxContainer" parent="MarginContainer/GameState"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Spacer2" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Spacer2" type="Control" parent="MarginContainer/GameState"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="RightContent" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="RightContent" type="VBoxContainer" parent="MarginContainer/GameState"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2

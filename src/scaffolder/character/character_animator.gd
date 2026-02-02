@@ -23,7 +23,7 @@ extends Node2D
 
 var _is_facing_right := true
 
-var initial_animated_sprite_position := Vector2.INF
+var initial_position := Vector2.INF
 
 var is_melee := false
 
@@ -35,25 +35,25 @@ func _ready() -> void:
 	player = get_parent() as Player
 	is_melee = Player.is_melee_mask(player.mask_type)
 
-	initial_animated_sprite_position = animated_sprite.position
+	initial_position = position
 
 
 func face_left() -> void:
 	_is_facing_right = false
 	animated_sprite.flip_h = faces_right_by_default
 	if animated_sprite.flip_h:
-		animated_sprite.position.x = -initial_animated_sprite_position.x
+		position.x = -initial_position.x
 	else:
-		animated_sprite.position.x = initial_animated_sprite_position.x
+		position.x = initial_position.x
 
 
 func face_right() -> void:
 	_is_facing_right = true
 	animated_sprite.flip_h = not faces_right_by_default
 	if animated_sprite.flip_h:
-		animated_sprite.position.x = -initial_animated_sprite_position.x
+		position.x = -initial_position.x
 	else:
-		animated_sprite.position.x = initial_animated_sprite_position.x
+		position.x = initial_position.x
 
 
 func play(animation_name: String) -> void:

@@ -10,6 +10,9 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	# Hide the title, so we can fade it in.
+	%Title.modulate.a = 0.0
+
 	# Wait for G.settings to be assigned.
 	await get_tree().process_frame
 
@@ -35,20 +38,30 @@ func update_visibility() -> void:
 
 
 func fade_in_title() -> void:
-	%Title.modulate.a = 0.0
+	fade_in(%Title)
+	fade_out(%GameState)
+
+
+func fade_out_title() -> void:
+	fade_in(%GameState)
+	fade_out(%Title)
+
+
+func fade_in(node: CanvasItem) -> void:
+	node.modulate.a = 0.0
 	var tween := create_tween()
 	tween.tween_property(
-		%Title,
+		node,
 		"modulate:a",
 		1.0,
 		0.3)
 
 
-func fade_out_title() -> void:
-	%Title.modulate.a = 1.0
+func fade_out(node: CanvasItem) -> void:
+	node.modulate.a = 1.0
 	var tween := create_tween()
 	tween.tween_property(
-		%Title,
+		node,
 		"modulate:a",
 		0.0,
 		0.3)

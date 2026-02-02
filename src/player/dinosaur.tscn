@@ -8,7 +8,7 @@
 size = Vector2(41, 13)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cs5uc"]
-radius = 8.0
+radius = 16.0
 
 [sub_resource type="Animation" id="Animation_db3ki"]
 length = 0.001
@@ -46,7 +46,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(6, -33)]
+"values": [Vector2(1, -25)]
 }
 
 [sub_resource type="Animation" id="Animation_s0gwj"]
@@ -87,7 +87,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.045454547, 0.13636364, 0.18181819, 0.22727273, 0.3181818),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-4, -34), Vector2(-4, -38), Vector2(-22, -21), Vector2(-27, -5), Vector2(-27, -8), Vector2(-22, -21)]
+"values": [Vector2(0, -26), Vector2(0, -27), Vector2(-14, -18), Vector2(-16, -10), Vector2(-16, -10), Vector2(-13, -18)]
 }
 
 [sub_resource type="Animation" id="Animation_cs5uc"]
@@ -128,7 +128,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.09090909, 0.13636364, 0.18181819, 0.3181818),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(6, -33), Vector2(7, -37), Vector2(24, -24), Vector2(26, -8), Vector2(23, -21)]
+"values": [Vector2(-2, -26), Vector2(0, -28), Vector2(12, -20), Vector2(16, -14), Vector2(12, -21)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_db3ki"]
@@ -164,7 +164,7 @@ metadata/_edit_lock_ = true
 
 [node name="AttackDamageArea" type="Area2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(6, -33)
+position = Vector2(1, -25)
 collision_layer = 0
 collision_mask = 16
 monitorable = false

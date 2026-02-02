@@ -56,6 +56,9 @@ func reset() -> void:
 	%SleepingGirl.visible = true
 	G.hud.fade_in_title()
 
+	G.hud.update_health()
+	G.hud.update_masks()
+
 	# Swap the color palette.
 	G.palette_swapper.swap_index = Player.get_palette_swap_index_for_mask(
 		Player.MaskType.NONE)
@@ -123,6 +126,9 @@ func spawn_player() -> void:
 		player.current_masks.clear()
 		for type in player.MaskType.values():
 			player.current_masks.append(type)
+
+	G.hud.update_health()
+	G.hud.update_masks()
 
 
 func swap_mask(mask_type: Player.MaskType) -> void:
