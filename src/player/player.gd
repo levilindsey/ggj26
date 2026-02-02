@@ -3,11 +3,11 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
+$# - Gun
+# - Ice spike
 # - Pirate fly jump.
 # - Wizard floating big jump.
 # - All player movement.
-# - Gun
-# - Ice spike
 # - Hand
 # - Spider
 # - Chicken buh-cawk! (gonna need a sound for that...)
