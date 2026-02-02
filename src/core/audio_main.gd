@@ -26,6 +26,7 @@ extends Node2D
 	"girl_attack" = %GirlAttack,
 	"girl_damage" = %GirlDamage,
 	"girl_footsteps_loop" = %GirlFootstepsLoop,
+	"girl_death" = %GirlDeath,
 	"click" = %ClickStreamPlayer,
 	"godot_splash" = %ClickStreamPlayer,
 	"scg_splash" = %SnoringCatStreamPlayer,
@@ -276,7 +277,7 @@ func play_player_sound(
 			play.call("girl_damage")
 			pass
 		"die":
-			#play.call("die")
+			play_sound("girl_death")
 			pass
 		"mask_scroll":
 			#play.call("mask_scroll")
