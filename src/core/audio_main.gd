@@ -35,6 +35,7 @@ extends Node2D
 	"bird_flap" = %BirdFlap,
 	"girl_death" = %GirlDeath,
 	"ice_shatter" = %IceShatter,
+	"mask_scroll" = %MaskScroll,
 	"click" = %ClickStreamPlayer,
 	"godot_splash" = %ClickStreamPlayer,
 	"scg_splash" = %SnoringCatStreamPlayer,
@@ -328,7 +329,7 @@ func play_player_sound(
 			play_sound("girl_death")
 			pass
 		"mask_scroll":
-			#play.call("mask_scroll")
+			play.call("mask_scroll")
 			pass
 		"mask_pickup":
 			match G.level.player.mask_type:
