@@ -523,6 +523,9 @@ position = Vector2(73, -67)
 mask_type = 4
 
 [node name="CookieJar" parent="." instance=ExtResource("5_y072y")]
+position = Vector2(3463, 642)
+
+[node name="CookieJar2" parent="." instance=ExtResource("5_y072y")]
 position = Vector2(61, 1)
 
 [node name="SleepingGirl" type="AnimatedSprite2D" parent="."]

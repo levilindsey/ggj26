@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://diqnxd2kabxfk"]
+[gd_scene load_steps=89 format=3 uid="uid://diqnxd2kabxfk"]
 
 [ext_resource type="Script" uid="uid://b5hrwox1n2lt0" path="res://src/core/audio_main.gd" id="1_tdp82"]
 [ext_resource type="AudioStream" uid="uid://bbs4x4f6c576y" path="res://assets/audio/Themes/GGJ_DinoTheme_02.mp3" id="2_8ub3w"]
@@ -66,6 +66,7 @@
 [ext_resource type="AudioStream" uid="uid://psix5grh7obo" path="res://assets/audio/EnemyDeath/enemy death.cm_03.wav" id="64_rsjq6"]
 [ext_resource type="AudioStream" uid="uid://dsjfgvjaqachc" path="res://assets/audio/Boots.wav" id="65_rk4fb"]
 [ext_resource type="AudioStream" uid="uid://be5ie1hcnjcm6" path="res://assets/audio/EnemyDeath/BootsPeg2.wav" id="66_rsjq6"]
+[ext_resource type="AudioStream" uid="uid://clpqp00i5wy8a" path="res://assets/audio/EnemyDeath/CookieJar.cm-01.wav" id="67_tc2wm"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2b2qe"]
 streams_count = 4
@@ -383,4 +384,9 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("66_rsjq6")
 volume_db = -7.0
+bus = &"SFX"
+
+[node name="CookieJar" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("67_tc2wm")
 bus = &"SFX"

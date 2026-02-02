@@ -40,6 +40,7 @@ extends Node2D
 	"mask_scroll" = %MaskScroll,
 	"enemy_ouch" = %EnemyDamaged,
 	"enemy_die" = %EnemyDeath,
+	"cookie_jar" = %CookieJar,
 	"click" = %ClickStreamPlayer,
 	"godot_splash" = %ClickStreamPlayer,
 	"scg_splash" = %SnoringCatStreamPlayer,
@@ -231,7 +232,7 @@ func play_player_sound(
 	# TODO: ALDEN
 	match sound_name:
 		"acquired_cookie":
-			#play.call("acquired_cookie")
+			play.call("cookie_jar")
 			pass
 		"game_win":
 			#play.call("game_win")
