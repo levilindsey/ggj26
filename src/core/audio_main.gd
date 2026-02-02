@@ -24,7 +24,7 @@ extends Node2D
 	"pirate_sword" = %PirateSword,
 	"wiz_spell" = %WizSpell,
 	"girl_attack" = %GirlAttack,
-	"girl_damage" = %GirlDamage
+	"girl_damage" = %GirlDamage,
 	"click" = %ClickStreamPlayer,
 	"godot_splash" = %ClickStreamPlayer,
 	"scg_splash" = %SnoringCatStreamPlayer,

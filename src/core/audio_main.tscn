@@ -111,8 +111,6 @@ stream_3/stream = ExtResource("39_tffn8")
 [node name="AudioMain" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_tdp82")
-theme_fade_duration_sec = null
-mute_volume = null
 main_theme_volume = -8.0
 menu_theme_volume = 2.247
 
