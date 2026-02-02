@@ -12,9 +12,8 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	super._physics_process(_delta)
+	%AttackDamageArea.monitoring = is_ability_active
 
 
 func _trigger_ability() -> void:
-	# TODO: LEVI: Implement abilities.
-	pass
-	G.warning("WOAH! That ability was so cool!")
+	%AnimationPlayer.play("attack")

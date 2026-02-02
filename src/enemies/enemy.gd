@@ -36,6 +36,8 @@ enum IdleType {
 
 
 const _APPROACH_DISTANCE_THRESHOLD := 2.0
+const _INVINCIBILITY_DURATION_SEC := 0.5
+const _INVINCIBILITY_BLINK_PERIOD_SEC := 0.1
 
 
 @export var animated_sprite: AnimatedSprite2D
@@ -126,6 +128,14 @@ var just_jumped := false
 var last_played_animation := ""
 
 var initial_animated_sprite_position := Vector2.INF
+
+var last_invincibility_start_time_sec := -INF
+var is_invincible: bool:
+	get:
+		return (
+			last_invincibility_start_time_sec + _INVINCIBILITY_DURATION_SEC >
+			G.time.get_play_time()
+		)
 
 var just_landed: bool:
 	get:
@@ -255,6 +265,25 @@ func destroy() -> void:
 
 func _trigger_attack() -> void:
 	G.fatal("Abstract Enemy._trigger_attack not implemented.")
+
+
+func _process(_delta: float) -> void:
+	_process_invincibility_blink()
+
+
+func _process_invincibility_blink() -> void:
+	if not is_invincible:
+		visible = true
+	else:
+		var elapsed_invincibility_time := (
+			G.time.get_play_time() - last_invincibility_start_time_sec
+		)
+		visible = (
+			floori(
+				elapsed_invincibility_time /
+				(_INVINCIBILITY_BLINK_PERIOD_SEC / 2.0)
+			) % 2 == 0
+		)
 
 
 func _physics_process(delta: float) -> void:
@@ -696,30 +725,7 @@ func _process_sounds() -> void:
 
 
 func play_sound(sound_name: String) -> void:
-	match sound_name:
-		"jump":
-			# TODO: ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"land":
-			# TODO: ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"ouch":
-			# TODO: [Optional, might be triggered on the player's attack] ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"die":
-			# TODO: ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"attack":
-			# TODO: [Optional] ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"awaken":
-			# TODO: [Optional] ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"detected":
-			# TODO: [Optional] ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		_:
-			G.fatal()
+	G.audio.play_enemy_sound(sound_name, type)
 
 
 func face_left() -> void:
@@ -760,16 +766,33 @@ func play_animation(animation_name: String) -> void:
 
 
 func take_damage(damage: int) -> void:
+	if is_dead:
+		# Ignore damage. Already dead.
+		return
+	if is_invincible:
+		# Ignore damage. Still invincible.
+		return
+
+	var current_time := G.time.get_play_time()
+
+	var previous_health := current_health
 	var modified_damage := floori(damage / defense)
 	current_health = maxi(current_health - modified_damage, 0)
+
 	if current_health == 0:
 		die()
 	else:
+		G.print(
+			"Enemy damaged: %s => %s" % [previous_health, current_health],
+			ScaffolderLog.CATEGORY_GAME_STATE)
+		last_invincibility_start_time_sec = current_time
 		play_sound("ouch")
 
 
 func die() -> void:
+	G.print("Enemy died", ScaffolderLog.CATEGORY_GAME_STATE)
 	play_sound("die")
+	G.level.remove_enemy(self)
 
 
 func _on_damage_player_area_body_entered(body: Node2D) -> void:

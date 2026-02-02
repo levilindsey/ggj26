@@ -53,6 +53,8 @@ const _MASK_SWAP_COOLDOWN_SEC := 1.0
 
 @export var defense := 1.0
 
+@export var attack_damage := 10
+
 @export var abilty_duration_sec := 0.5
 
 var last_ability_start_time_sec := -INF
@@ -136,7 +138,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ability"):
 		last_ability_start_time_sec = G.time.get_play_time()
 		_trigger_ability()
-		animator.play("attack")
+		const MELEE_MASKS := [MaskType.NONE, MaskType.PIRATE, MaskType.DINOSAUR]
+		if not MELEE_MASKS.has(mask_type):
+			animator.play("attack")
 		play_sound("ability")
 	if Input.is_action_just_pressed("mask"):
 		# Don't allow rapid swaps.
@@ -181,74 +185,7 @@ func _process_animation() -> void:
 
 
 func play_sound(sound_name: String) -> void:
-	match sound_name:
-		"spawn":
-			# TODO: ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"mask":
-			match mask_type:
-				MaskType.NONE:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				MaskType.COWBOY:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				MaskType.PIRATE:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				MaskType.WIZARD:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				MaskType.DINOSAUR:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				MaskType.CHICKEN:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				_:
-					G.fatal()
-		"ability":
-			match mask_type:
-				MaskType.NONE:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				MaskType.COWBOY:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				MaskType.PIRATE:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				MaskType.WIZARD:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				MaskType.DINOSAUR:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				MaskType.CHICKEN:
-					# TODO: ALDEN: Make that magic sound stuff happen, baby.
-					pass
-				_:
-					G.fatal()
-		"jump":
-			# TODO: ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"land":
-			# TODO: ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"ouch":
-			# TODO: ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"die":
-			# TODO: ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"mask_scroll":
-			# TODO: ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		"mask_pickup":
-			# TODO: ALDEN: Make that magic sound stuff happen, baby.
-			pass
-		_:
-			G.fatal()
+	G.audio.play_player_sound(sound_name)
 
 
 func pick_up_mask(p_mask_type: MaskType) -> void:
@@ -324,3 +261,13 @@ static func get_palette_swap_index_for_mask(p_mask_type: MaskType) -> int:
 		_:
 			G.fatal()
 			return 0
+
+
+func _on_attack_damage_area_body_entered(body: Node2D) -> void:
+	if not body is Enemy:
+		return
+	var enemy := body as Enemy
+	if not is_ability_active:
+		# Ignore collisions when we aren't attacking.
+		return
+	enemy.take_damage(attack_damage)

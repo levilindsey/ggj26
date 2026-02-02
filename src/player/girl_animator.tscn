@@ -206,6 +206,7 @@ metadata/_custom_type_script = "uid://b50tfbt5wsthb"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_eeopx")
-animation = &"walk"
+animation = &"attack"
 autoplay = "rest"
-frame_progress = 0.62133217
+frame = 7
+frame_progress = 1.0

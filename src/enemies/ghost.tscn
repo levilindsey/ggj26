@@ -142,7 +142,7 @@ radius = 36.0
 radius = 0.1
 
 [node name="Ghost" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collision_shape", "damage_player_area", "detection_range", "attack_max_range_area", "attack_min_range_area")]
-collision_layer = 0
+collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_ig8a7")
 attack_vertical_speed = 40.0

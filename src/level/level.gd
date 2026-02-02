@@ -155,3 +155,8 @@ func spawn_enemy(spawn_point: EnemySpawnPoint) -> void:
 	enemy.global_position = spawn_point.global_position + Vector2.UP * 0.5
 	enemies.append(enemy)
 	%Enemies.add_child(enemy)
+
+
+func remove_enemy(enemy: Enemy) -> void:
+	enemies.erase(enemy)
+	enemy.queue_free()

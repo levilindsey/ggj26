@@ -12,10 +12,13 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	super._physics_process(_delta)
-
+	%AttackDamageArea.monitoring = is_ability_active
 
 
 func _trigger_ability() -> void:
-	# TODO: LEVI: Implement abilities.
-	pass
-	G.warning("WOAH! That ability was so cool!")
+	var animation_name := (
+		"attack_right" if
+		surface_state.is_facing_right else
+		"attack_left"
+	)
+	%AnimationPlayer.play(animation_name)

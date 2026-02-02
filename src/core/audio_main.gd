@@ -136,3 +136,118 @@ func apply_music_mute() -> void:
 		main_player.volume_db = mute_volume if (
 			G.settings.mute_music
 		) else main_theme_volume
+
+
+func play_enemy_sound(sound_name: String, enemy_type: Enemy.Type) -> void:
+	# TODO: ALDEN
+	match sound_name:
+		"jump":
+			#play_sound("enemy_jump")
+			pass
+		"land":
+			#play_sound("enemy_land")
+			pass
+		"ouch":
+			#play_sound("enemy_ouch")
+			pass
+		"die":
+			#play_sound("enemy_die")
+			pass
+		"attack":
+			#play_sound("enemy_attack")
+			pass
+		"awaken":
+			#play_sound("enemy_awaken")
+			pass
+		"detected":
+			#play_sound("enemy_detected_player")
+			pass
+		_:
+			G.fatal()
+	#match enemy_type:
+		#Enemy.Type.DUST_BUNNY:
+			#pass
+		#Enemy.Type.RAT:
+			#pass
+		#Enemy.Type.GHOST:
+			#pass
+		#Enemy.Type.NIGHTMARE:
+			#pass
+		#Enemy.Type.SPIDER:
+			#pass
+		#Enemy.Type.HAND:
+			#pass
+		#_:
+			#G.fatal()
+
+
+func play_player_sound(sound_name: String) -> void:
+	# TODO: ALDEN
+	match sound_name:
+		"spawn":
+			#play_sound("spawn")
+			pass
+		"mask":
+			match G.level.player.mask_type:
+				Player.MaskType.NONE:
+					#play_sound("girl_mask")
+					pass
+				Player.MaskType.COWBOY:
+					#play_sound("cowboy_mask")
+					pass
+				Player.MaskType.PIRATE:
+					#play_sound("pirate_mask")
+					pass
+				Player.MaskType.WIZARD:
+					#play_sound("wizard_mask")
+					pass
+				Player.MaskType.DINOSAUR:
+					#play_sound("dinosaur_mask")
+					pass
+				Player.MaskType.CHICKEN:
+					#play_sound("chicken_mask")
+					pass
+				_:
+					G.fatal()
+		"ability":
+			match G.level.player.mask_type:
+				Player.MaskType.NONE:
+					#play_sound("girl_ability")
+					pass
+				Player.MaskType.COWBOY:
+					#play_sound("cowboy_ability")
+					pass
+				Player.MaskType.PIRATE:
+					#play_sound("pirate_ability")
+					pass
+				Player.MaskType.WIZARD:
+					#play_sound("wizard_ability")
+					pass
+				Player.MaskType.DINOSAUR:
+					#play_sound("dinosaur_ability")
+					pass
+				Player.MaskType.CHICKEN:
+					#play_sound("chicken_ability")
+					pass
+				_:
+					G.fatal()
+		"jump":
+			#play_sound("jump")
+			pass
+		"land":
+			#play_sound("land")
+			pass
+		"ouch":
+			#play_sound("ouch")
+			pass
+		"die":
+			#play_sound("die")
+			pass
+		"mask_scroll":
+			#play_sound("mask_scroll")
+			pass
+		"mask_pickup":
+			#play_sound("mask_pickup")
+			pass
+		_:
+			G.fatal()

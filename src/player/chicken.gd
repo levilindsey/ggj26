@@ -18,3 +18,7 @@ func _trigger_ability() -> void:
 	# TODO: LEVI: Implement abilities.
 	pass
 	G.warning("WOAH! That ability was so cool!")
+
+
+func take_damage(damage: int) -> void:
+	G.print("Chicken is ignoring damage: %d" % damage)
