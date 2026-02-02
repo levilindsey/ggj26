@@ -48,6 +48,14 @@ func fade_out_title() -> void:
 	fade_out(%Title)
 
 
+func fade_in_controls() -> void:
+	fade_in(%Controls)
+
+
+func fade_out_controls() -> void:
+	fade_out(%Controls)
+
+
 func fade_in_credits() -> void:
 	fade_in(%Credits)
 	fade_in(%Title)

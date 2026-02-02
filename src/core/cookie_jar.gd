@@ -11,5 +11,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_nommed() -> void:
+	if G.level.has_finished or not G.level.has_started:
+		return
 	G.audio.play_player_sound("game_win")
 	G.level.win()

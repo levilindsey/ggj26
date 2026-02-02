@@ -56,6 +56,7 @@ func reset() -> void:
 
 	%SleepingGirl.visible = true
 	G.hud.fade_in_title()
+	G.hud.fade_in_controls()
 
 	G.hud.update_health()
 	G.hud.update_masks()
@@ -78,6 +79,7 @@ func start_game() -> void:
 	is_ready_for_input_to_activate_next_game = false
 	spawn_player()
 	G.hud.fade_out_title()
+	G.hud.fade_out_controls()
 
 
 func game_over() -> void:
