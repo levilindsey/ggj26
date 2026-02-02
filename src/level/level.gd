@@ -178,6 +178,7 @@ func add_bullet(p_position: Vector2, p_is_moving_right: bool) -> void:
 	var bullet: Bullet = G.settings.bullet_scene.instantiate()
 	%Projectiles.add_child(bullet)
 	bullet.global_position = p_position
+	bullet.start_position = p_position
 	bullet.is_moving_right = p_is_moving_right
 	bullets.append(bullet)
 

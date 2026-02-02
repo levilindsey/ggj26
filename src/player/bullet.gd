@@ -4,9 +4,11 @@ extends Node2D
 
 const _BULLET_DAMAGE := 10
 const _BULLET_SPEED := 200.0
+const _BULLET_MAX_DISTANCE := 256.0
 
 
 var is_moving_right := true
+var start_position := Vector2.INF
 
 
 func _physics_process(delta: float) -> void:
@@ -16,6 +18,8 @@ func _physics_process(delta: float) -> void:
 		-1
 	)
 	position.x += (_BULLET_SPEED * direction_sign) * delta
+	if absf(global_position.x - start_position.x) > _BULLET_MAX_DISTANCE:
+		G.level.remove_bullet(self)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

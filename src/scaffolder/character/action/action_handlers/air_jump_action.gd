@@ -25,7 +25,8 @@ func process(character) -> bool:
 	var is_auto_jump_from_hold: bool = (
 		character.actions.pressed_jump and
 		current_time >
-			last_jump_time_sec + AUTO_JUMP_FROM_HOLD_THROTTLE_PERIOD_SEC
+			last_jump_time_sec + AUTO_JUMP_FROM_HOLD_THROTTLE_PERIOD_SEC and
+		not character.surface_state.is_attaching_to_surface
 	)
 	var is_jump_triggered: bool = (
 		character.actions.just_pressed_jump or

@@ -175,16 +175,18 @@ func _physics_process(delta: float) -> void:
 		G.hud.update_masks()
 		play_sound("mask")
 	if Input.is_action_just_pressed("scroll_left"):
-		selected_mask_index = (
-			(selected_mask_index - 1 + current_masks.size()) %
-			current_masks.size()
-		)
-		G.hud.update_masks()
-		play_sound("mask_scroll")
+		if current_masks.size() > 1:
+			selected_mask_index = (
+				(selected_mask_index - 1 + current_masks.size()) %
+				current_masks.size()
+			)
+			G.hud.update_masks()
+			play_sound("mask_scroll")
 	if Input.is_action_just_pressed("scroll_right"):
-		selected_mask_index = (selected_mask_index + 1) % current_masks.size()
-		G.hud.update_masks()
-		play_sound("mask_scroll")
+		if current_masks.size() > 1:
+			selected_mask_index = (selected_mask_index + 1) % current_masks.size()
+			G.hud.update_masks()
+			play_sound("mask_scroll")
 
 
 func _update_actions() -> void:
@@ -197,9 +199,6 @@ func _process_animation() -> void:
 		# again would cause looping.
 		pass
 	else:
-		# Stop the melee animator when ability is no longer active
-		if is_melee_mask(mask_type) and melee_animator.is_playing():
-			melee_animator.stop()
 		super._process_animation()
 
 
@@ -209,12 +208,12 @@ func play_melee_animation() -> void:
 		surface_state.is_facing_right else
 		"attack_left"
 	)
-	animator.stop()
 	melee_animator.play(animation_name)
 
 
 func stop_melee_animation() -> void:
-	melee_animator.stop()
+	if melee_animator and melee_animator.is_playing():
+		melee_animator.stop()
 
 
 func play_sound(sound_name: String, force_restart := false) -> void:
