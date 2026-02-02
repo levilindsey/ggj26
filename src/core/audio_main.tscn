@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://diqnxd2kabxfk"]
+[gd_scene load_steps=86 format=3 uid="uid://diqnxd2kabxfk"]
 
 [ext_resource type="Script" uid="uid://b5hrwox1n2lt0" path="res://src/core/audio_main.gd" id="1_tdp82"]
 [ext_resource type="AudioStream" uid="uid://bbs4x4f6c576y" path="res://assets/audio/Themes/GGJ_DinoTheme_02.mp3" id="2_8ub3w"]
@@ -60,6 +60,10 @@
 [ext_resource type="AudioStream" uid="uid://3nrxta5xdw5x" path="res://assets/audio/MaskScroll/Mask swap.cm_02.wav" id="58_3xrgy"]
 [ext_resource type="AudioStream" uid="uid://3wmyfh5l0esk" path="res://assets/audio/MaskScroll/Mask swap.cm_03.wav" id="59_vgmmk"]
 [ext_resource type="AudioStream" uid="uid://babracst12pkv" path="res://assets/audio/MaskScroll/Mask swap.cm_04.wav" id="60_bd6is"]
+[ext_resource type="AudioStream" uid="uid://b57t57hc3f3jp" path="res://assets/audio/MaskScroll/enemy damage.cm_01.wav" id="61_3xrgy"]
+[ext_resource type="AudioStream" uid="uid://qbyrvdq8p0l5" path="res://assets/audio/EnemyDeath/enemy death.cm_01.wav" id="62_8i08a"]
+[ext_resource type="AudioStream" uid="uid://cq2epsc6jcy0i" path="res://assets/audio/EnemyDeath/enemy death.cm_02.wav" id="63_rk4fb"]
+[ext_resource type="AudioStream" uid="uid://psix5grh7obo" path="res://assets/audio/EnemyDeath/enemy death.cm_03.wav" id="64_rsjq6"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2b2qe"]
 streams_count = 4
@@ -175,6 +179,18 @@ stream_0/stream = ExtResource("57_2mkdc")
 stream_1/stream = ExtResource("58_3xrgy")
 stream_2/stream = ExtResource("59_vgmmk")
 stream_3/stream = ExtResource("60_bd6is")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vgmmk"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("61_3xrgy")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tc2wm"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("62_8i08a")
+stream_1/stream = ExtResource("63_rk4fb")
+stream_2/stream = ExtResource("64_rsjq6")
 
 [node name="AudioMain" type="Node2D"]
 process_mode = 3
@@ -341,4 +357,16 @@ unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_8i08a")
 volume_db = -8.0
 pitch_scale = 1.1
+bus = &"SFX"
+
+[node name="EnemyDamaged" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_vgmmk")
+volume_db = -8.908
+bus = &"SFX"
+
+[node name="EnemyDeath" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_tc2wm")
+volume_db = 3.25
 bus = &"SFX"

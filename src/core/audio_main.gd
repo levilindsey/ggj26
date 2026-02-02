@@ -36,6 +36,8 @@ extends Node2D
 	"girl_death" = %GirlDeath,
 	"ice_shatter" = %IceShatter,
 	"mask_scroll" = %MaskScroll,
+	"enemy_ouch" = %EnemyDamaged,
+	"enemy_die" = %EnemyDeath,
 	"click" = %ClickStreamPlayer,
 	"godot_splash" = %ClickStreamPlayer,
 	"scg_splash" = %SnoringCatStreamPlayer,
@@ -184,10 +186,10 @@ func play_enemy_sound(
 			#play.call("enemy_land")
 			pass
 		"ouch":
-			#play.call("enemy_ouch")
+			play.call("enemy_ouch")
 			pass
 		"die":
-			#play.call("enemy_die")
+			play.call("enemy_die")
 			pass
 		"attack":
 			#play.call("enemy_attack")
