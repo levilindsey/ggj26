@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cu7m8rlw05uw2"
+path="res://.godot/imported/Girl Voice.cm_02.wav-dc55f8c0eb7c82305c55ee62bc31cb26.sample"
+
+[deps]
+
+source_file="res://assets/audio/girl_attack/Girl Voice.cm_02.wav"
+dest_files=["res://.godot/imported/Girl Voice.cm_02.wav-dc55f8c0eb7c82305c55ee62bc31cb26.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

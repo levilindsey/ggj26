@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://diqnxd2kabxfk"]
+[gd_scene load_steps=51 format=3 uid="uid://diqnxd2kabxfk"]
 
 [ext_resource type="Script" uid="uid://b5hrwox1n2lt0" path="res://src/core/audio_main.gd" id="1_tdp82"]
 [ext_resource type="AudioStream" uid="uid://bbs4x4f6c576y" path="res://assets/audio/Themes/GGJ_DinoTheme_02.mp3" id="2_8ub3w"]
@@ -23,6 +23,22 @@
 [ext_resource type="AudioStream" uid="uid://xe6d0u0xv1xc" path="res://assets/audio/Mask Switch SFX/Pirate.cm_02.wav" id="21_nigky"]
 [ext_resource type="AudioStream" uid="uid://644eksh51gsw" path="res://assets/audio/Mask Switch SFX/Pirate.cm_03.wav" id="22_joad8"]
 [ext_resource type="AudioStream" uid="uid://cove2x7ihqgqm" path="res://assets/audio/Mask Switch SFX/Wizard SFX.cm.cm_01.wav" id="23_2cdrb"]
+[ext_resource type="AudioStream" uid="uid://bbmeo276557mt" path="res://assets/audio/DinoBite/Dino Bite.cm_01.wav" id="24_2cdrb"]
+[ext_resource type="AudioStream" uid="uid://bfm3f54yn4cr5" path="res://assets/audio/DinoBite/Dino Bite.cm_02.wav" id="25_lahjg"]
+[ext_resource type="AudioStream" uid="uid://c8krgrcguya0p" path="res://assets/audio/DinoBite/Dino Bite.cm_03.wav" id="26_r4r5m"]
+[ext_resource type="AudioStream" uid="uid://cfsfwqckjfbfe" path="res://assets/audio/Gunshot/Pistol.cm-01.wav" id="27_icnwp"]
+[ext_resource type="AudioStream" uid="uid://c0e84pv7hul0i" path="res://assets/audio/Sword/Sword Pt_01.wav" id="28_avorg"]
+[ext_resource type="AudioStream" uid="uid://0118w6ah1fkt" path="res://assets/audio/Sword/Sword Pt_02.wav" id="29_uopto"]
+[ext_resource type="AudioStream" uid="uid://beqhun4jjqxju" path="res://assets/audio/Sword/Sword Pt_03.wav" id="30_6i2kb"]
+[ext_resource type="AudioStream" uid="uid://un5abxf3quht" path="res://assets/audio/WizSpell/Wiz attack1.cm_01.wav" id="31_bakxl"]
+[ext_resource type="AudioStream" uid="uid://b6u2nto4e8kye" path="res://assets/audio/girl_attack/Girl Voice.cm_01.wav" id="32_f5wgw"]
+[ext_resource type="AudioStream" uid="uid://cu7m8rlw05uw2" path="res://assets/audio/girl_attack/Girl Voice.cm_02.wav" id="33_s3tuh"]
+[ext_resource type="AudioStream" uid="uid://d3dp03oivbmbo" path="res://assets/audio/girl_attack/Girl Voice.cm_03.wav" id="34_ngjjr"]
+[ext_resource type="AudioStream" uid="uid://bgffdgk1nod8q" path="res://assets/audio/girl_attack/Girl Voice.cm_04.wav" id="35_g3b8w"]
+[ext_resource type="AudioStream" uid="uid://drkeas67kxxok" path="res://assets/audio/girl_damage/Girl Voice.cm_05.wav" id="36_4djgs"]
+[ext_resource type="AudioStream" uid="uid://dhbxhl3i34xlk" path="res://assets/audio/girl_damage/Girl Voice.cm_06.wav" id="37_u1e8y"]
+[ext_resource type="AudioStream" uid="uid://dqvxv4pbrcpd3" path="res://assets/audio/girl_damage/Girl Voice.cm_07.wav" id="38_adcoe"]
+[ext_resource type="AudioStream" uid="uid://b5twbffhnho6i" path="res://assets/audio/girl_damage/Girl Voice.cm_08.wav" id="39_tffn8"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2b2qe"]
 streams_count = 4
@@ -52,9 +68,51 @@ stream_2/stream = ExtResource("22_joad8")
 streams_count = 1
 stream_0/stream = ExtResource("23_2cdrb")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f5wgw"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("24_2cdrb")
+stream_1/stream = ExtResource("25_lahjg")
+stream_2/stream = ExtResource("26_r4r5m")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s3tuh"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("27_icnwp")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ngjjr"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("28_avorg")
+stream_1/stream = ExtResource("29_uopto")
+stream_2/stream = ExtResource("30_6i2kb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g3b8w"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("31_bakxl")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5ktbc"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("32_f5wgw")
+stream_1/stream = ExtResource("33_s3tuh")
+stream_2/stream = ExtResource("34_ngjjr")
+stream_3/stream = ExtResource("35_g3b8w")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oqepp"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("36_4djgs")
+stream_1/stream = ExtResource("37_u1e8y")
+stream_2/stream = ExtResource("38_adcoe")
+stream_3/stream = ExtResource("39_tffn8")
+
 [node name="AudioMain" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_tdp82")
+theme_fade_duration_sec = null
+mute_volume = null
 main_theme_volume = -8.0
 menu_theme_volume = 2.247
 
@@ -130,3 +188,36 @@ bus = &"Mask SFX"
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_avorg")
 bus = &"Mask SFX"
+
+[node name="DinoBite" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_f5wgw")
+volume_db = 3.029
+bus = &"Attack SFX"
+
+[node name="CowboyGun" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_s3tuh")
+volume_db = -6.132
+bus = &"Attack SFX"
+
+[node name="PirateSword" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_ngjjr")
+bus = &"Attack SFX"
+
+[node name="WizSpell" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_g3b8w")
+volume_db = 2.019
+bus = &"Attack SFX"
+
+[node name="GirlAttack" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_5ktbc")
+bus = &"Attack SFX"
+
+[node name="GirlDamage" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_oqepp")
+bus = &"SFX"

@@ -19,6 +19,12 @@ extends Node2D
 	"dino_mask" = %DinoMask,
 	"cowboy_mask" = %CowboyMask,
 	"pirate_mask" = %PirateMask,
+	"dino_bite" = %DinoBite,
+	"cowboy_gun" = %CowboyGun,
+	"pirate_sword" = %PirateSword,
+	"wiz_spell" = %WizSpell,
+	"girl_attack" = %GirlAttack,
+	"girl_damage" = %GirlDamage
 	"click" = %ClickStreamPlayer,
 	"godot_splash" = %ClickStreamPlayer,
 	"scg_splash" = %SnoringCatStreamPlayer,
@@ -216,19 +222,19 @@ func play_player_sound(sound_name: String) -> void:
 		"ability":
 			match G.level.player.mask_type:
 				Player.MaskType.NONE:
-					#play_sound("girl_ability")
+					play_sound("girl_attack")
 					pass
 				Player.MaskType.COWBOY:
-					#play_sound("cowboy_ability")
+					play_sound("cowboy_gun")
 					pass
 				Player.MaskType.PIRATE:
-					#play_sound("pirate_ability")
+					play_sound("pirate_sword")
 					pass
 				Player.MaskType.WIZARD:
-					#play_sound("wizard_ability")
+					play_sound("wiz_spell")
 					pass
 				Player.MaskType.DINOSAUR:
-					#play_sound("dinosaur_ability")
+					play_sound("dino_bite")
 					pass
 				Player.MaskType.CHICKEN:
 					#play_sound("chicken_ability")
@@ -242,7 +248,7 @@ func play_player_sound(sound_name: String) -> void:
 			#play_sound("land")
 			pass
 		"ouch":
-			#play_sound("ouch")
+			play_sound("girl_damage")
 			pass
 		"die":
 			#play_sound("die")
