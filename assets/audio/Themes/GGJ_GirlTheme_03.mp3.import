@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/GGJ_GirlTheme_03.mp3-0c8baa75eb4189df79eda079
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

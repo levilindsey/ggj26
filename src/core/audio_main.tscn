@@ -1,9 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://diqnxd2kabxfk"]
+[gd_scene load_steps=29 format=3 uid="uid://diqnxd2kabxfk"]
 
 [ext_resource type="Script" uid="uid://b5hrwox1n2lt0" path="res://src/core/audio_main.gd" id="1_tdp82"]
-[ext_resource type="AudioStream" uid="uid://d3nqcobglu0sa" path="res://assets/audio/pause_menu.wav" id="2_0ukso"]
 [ext_resource type="AudioStream" uid="uid://bbs4x4f6c576y" path="res://assets/audio/Themes/GGJ_DinoTheme_02.mp3" id="2_8ub3w"]
-[ext_resource type="AudioStream" uid="uid://bvt7ipmcwtm12" path="res://assets/audio/on_a_quest.wav" id="3_o2pvq"]
 [ext_resource type="AudioStream" uid="uid://cpv4bs1fd8m0u" path="res://assets/audio/Themes/GGJ_Western_02.mp3" id="3_q1bt0"]
 [ext_resource type="AudioStream" uid="uid://505pi6oqhfst" path="res://assets/audio/Click/Click-cm-02.wav" id="3_seawu"]
 [ext_resource type="AudioStream" uid="uid://quskyvue0u85" path="res://assets/audio/Themes/GGJ_GirlTheme_03.mp3" id="3_y6b5k"]
@@ -16,6 +14,15 @@
 [ext_resource type="AudioStream" uid="uid://byhc1v5pobgjj" path="res://assets/audio/cadence_win.wav" id="9_wtepx"]
 [ext_resource type="AudioStream" uid="uid://dngmn1trd45h2" path="res://assets/audio/cadence_lose.wav" id="10_24bi3"]
 [ext_resource type="AudioStream" uid="uid://cycmr81xwq5rj" path="res://assets/audio/achievement.wav" id="11_q1bt0"]
+[ext_resource type="AudioStream" uid="uid://bnk28p6snbwql" path="res://assets/audio/Mask Switch SFX/Cowboy SFX.cm_01.wav" id="15_fqgka"]
+[ext_resource type="AudioStream" uid="uid://byancf2mosp0i" path="res://assets/audio/Mask Switch SFX/Cowboy SFX.cm_02.wav" id="16_kmns2"]
+[ext_resource type="AudioStream" uid="uid://blqvdrk4mycwh" path="res://assets/audio/Mask Switch SFX/Dino.cm_01.wav" id="17_00bue"]
+[ext_resource type="AudioStream" uid="uid://d1ykxqys7sbsj" path="res://assets/audio/Mask Switch SFX/Dino.cm_02.wav" id="18_a42ls"]
+[ext_resource type="AudioStream" uid="uid://jt0nlcnaqlf5" path="res://assets/audio/Mask Switch SFX/Dino.cm_03.wav" id="19_1t17q"]
+[ext_resource type="AudioStream" uid="uid://b0nsmm1beox00" path="res://assets/audio/Mask Switch SFX/Pirate.cm_01.wav" id="20_3e2yt"]
+[ext_resource type="AudioStream" uid="uid://xe6d0u0xv1xc" path="res://assets/audio/Mask Switch SFX/Pirate.cm_02.wav" id="21_nigky"]
+[ext_resource type="AudioStream" uid="uid://644eksh51gsw" path="res://assets/audio/Mask Switch SFX/Pirate.cm_03.wav" id="22_joad8"]
+[ext_resource type="AudioStream" uid="uid://cove2x7ihqgqm" path="res://assets/audio/Mask Switch SFX/Wizard SFX.cm.cm_01.wav" id="23_2cdrb"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2b2qe"]
 streams_count = 4
@@ -23,6 +30,27 @@ stream_0/stream = ExtResource("3_seawu")
 stream_1/stream = ExtResource("4_wywav")
 stream_2/stream = ExtResource("5_wtepx")
 stream_3/stream = ExtResource("6_24bi3")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lahjg"]
+streams_count = 2
+stream_0/stream = ExtResource("15_fqgka")
+stream_1/stream = ExtResource("16_kmns2")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r4r5m"]
+streams_count = 3
+stream_0/stream = ExtResource("17_00bue")
+stream_1/stream = ExtResource("18_a42ls")
+stream_2/stream = ExtResource("19_1t17q")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_icnwp"]
+streams_count = 3
+stream_0/stream = ExtResource("20_3e2yt")
+stream_1/stream = ExtResource("21_nigky")
+stream_2/stream = ExtResource("22_joad8")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_avorg"]
+streams_count = 1
+stream_0/stream = ExtResource("23_2cdrb")
 
 [node name="AudioMain" type="Node2D"]
 process_mode = 3
@@ -60,20 +88,6 @@ process_mode = 3
 stream = ExtResource("4_0ah1i")
 bus = &"Music"
 
-[node name="MainThemeStreamPlayer" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-process_mode = 3
-stream = ExtResource("3_o2pvq")
-volume_db = -8.0
-bus = &"Music"
-
-[node name="MenuThemeStreamPlayer" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-process_mode = 3
-stream = ExtResource("2_0ukso")
-volume_db = 2.247
-bus = &"Music"
-
 [node name="ClickStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 process_mode = 3
@@ -96,3 +110,23 @@ stream = ExtResource("10_24bi3")
 [node name="AchievementStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("11_q1bt0")
+
+[node name="CowboyMask" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_lahjg")
+bus = &"Mask SFX"
+
+[node name="DinoMask" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_r4r5m")
+bus = &"Mask SFX"
+
+[node name="PirateMask" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_icnwp")
+bus = &"Mask SFX"
+
+[node name="WizardMask" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_avorg")
+bus = &"Mask SFX"

@@ -15,6 +15,10 @@ extends Node2D
 	"pirate_theme" = %PirateTheme,
 	"western_theme" = %WesternTheme,
 	"wizard_theme" = %WizardTheme,
+	"wiz_mask" = %WizardMask,
+	"dino_mask" = %DinoMask,
+	"cowboy_mask" = %CowboyMask,
+	"pirate_mask" = %PirateMask,
 	"click" = %ClickStreamPlayer,
 	"godot_splash" = %ClickStreamPlayer,
 	"scg_splash" = %SnoringCatStreamPlayer,
@@ -193,16 +197,16 @@ func play_player_sound(sound_name: String) -> void:
 					#play_sound("girl_mask")
 					pass
 				Player.MaskType.COWBOY:
-					#play_sound("cowboy_mask")
+					play_sound("cowboy_mask")
 					pass
 				Player.MaskType.PIRATE:
-					#play_sound("pirate_mask")
+					play_sound("pirate_mask")
 					pass
 				Player.MaskType.WIZARD:
-					#play_sound("wizard_mask")
+					play_sound("wiz_mask")
 					pass
 				Player.MaskType.DINOSAUR:
-					#play_sound("dinosaur_mask")
+					play_sound("dino_mask")
 					pass
 				Player.MaskType.CHICKEN:
 					#play_sound("chicken_mask")
@@ -247,7 +251,26 @@ func play_player_sound(sound_name: String) -> void:
 			#play_sound("mask_scroll")
 			pass
 		"mask_pickup":
-			#play_sound("mask_pickup")
-			pass
+			match G.level.player.mask_type:
+				Player.MaskType.NONE:
+					#play_sound("girl_mask")
+					pass
+				Player.MaskType.COWBOY:
+					play_sound("cowboy_mask")
+					pass
+				Player.MaskType.PIRATE:
+					play_sound("pirate_mask")
+					pass
+				Player.MaskType.WIZARD:
+					play_sound("wiz_mask")
+					pass
+				Player.MaskType.DINOSAUR:
+					play_sound("dino_mask")
+					pass
+				Player.MaskType.CHICKEN:
+					#play_sound("chicken_mask")
+					pass
+				_:
+					G.fatal()
 		_:
 			G.fatal()
