@@ -3,8 +3,6 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
-# - Invincibility:
-#   - Player can't get hurt when the ENEMY is invincible either.
 # - Pirate fly jump.
 # - Gun.
 # - Ice spike.
@@ -138,10 +136,12 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 	if Input.is_action_just_pressed("ability"):
-		last_ability_start_time_sec = G.time.get_play_time()
-		_trigger_ability()
-		animator.play("attack")
-		play_sound("ability")
+		# Cooldown.
+		if not is_ability_active:
+			last_ability_start_time_sec = G.time.get_play_time()
+			_trigger_ability()
+			animator.play("attack")
+			play_sound("ability", true)
 	if Input.is_action_just_pressed("mask"):
 		# Don't allow rapid swaps.
 		var current_time := G.time.get_play_time()
@@ -198,8 +198,8 @@ func stop_melee_animation() -> void:
 	melee_animator.stop()
 
 
-func play_sound(sound_name: String) -> void:
-	G.audio.play_player_sound(sound_name)
+func play_sound(sound_name: String, force_restart := false) -> void:
+	G.audio.play_player_sound(sound_name, force_restart)
 
 
 func pick_up_mask(p_mask_type: MaskType) -> void:
@@ -235,7 +235,7 @@ func take_damage(damage: int, enemy: Enemy) -> void:
 			"Player damaged: %s => %s" % [previous_health, current_health],
 			ScaffolderLog.CATEGORY_GAME_STATE)
 		last_invincibility_start_time_sec = current_time
-		play_sound("ouch")
+		play_sound("ouch", true)
 
 	G.hud.update_health()
 

@@ -49,13 +49,13 @@ func _ready() -> void:
 		initial_volumes[player_name] = player.volume_db
 
 
-func play_sound(sound_name: StringName) -> void:
+func play_sound(sound_name: StringName, force_restart := false) -> void:
 	if not G.ensure(STREAM_PLAYERS_BY_NAME.has(sound_name)):
 		return
 
 	var stream_player: AudioStreamPlayer = STREAM_PLAYERS_BY_NAME[sound_name]
-	if not stream_player.playing:
-		stream_player.play()
+	if not stream_player.playing or force_restart:
+		stream_player.play.call()
 
 
 func stop_sound(sound_name: StringName) -> void:
@@ -108,7 +108,7 @@ func fade_in(stream_player: AudioStreamPlayer, volume: float) -> void:
 
 	if not stream_player.playing:
 		stream_player.volume_db = mute_volume
-		stream_player.play()
+		stream_player.play.call()
 
 	var tween := create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
@@ -158,29 +158,35 @@ func apply_music_mute() -> void:
 		) else main_theme_volume
 
 
-func play_enemy_sound(sound_name: String, enemy_type: Enemy.Type) -> void:
+func play_enemy_sound(
+	sound_name: StringName,
+	enemy_type: Enemy.Type,
+	force_restart := false
+) -> void:
+	var play = func(p_sound_name: StringName):
+		play_sound(p_sound_name, force_restart)
 	# TODO: ALDEN
 	match sound_name:
 		"jump":
-			#play_sound("enemy_jump")
+			#play.call("enemy_jump")
 			pass
 		"land":
-			#play_sound("enemy_land")
+			#play.call("enemy_land")
 			pass
 		"ouch":
-			#play_sound("enemy_ouch")
+			#play.call("enemy_ouch")
 			pass
 		"die":
-			#play_sound("enemy_die")
+			#play.call("enemy_die")
 			pass
 		"attack":
-			#play_sound("enemy_attack")
+			#play.call("enemy_attack")
 			pass
 		"awaken":
-			#play_sound("enemy_awaken")
+			#play.call("enemy_awaken")
 			pass
 		"detected":
-			#play_sound("enemy_detected_player")
+			#play.call("enemy_detected_player")
 			pass
 		_:
 			G.fatal()
@@ -201,93 +207,99 @@ func play_enemy_sound(sound_name: String, enemy_type: Enemy.Type) -> void:
 			#G.fatal()
 
 
-func play_player_sound(sound_name: String) -> void:
+func play_player_sound(
+	sound_name: String,
+	force_restart := false
+) -> void:
+	var play = func(p_sound_name: StringName):
+		play_sound(p_sound_name, force_restart)
+
 	# TODO: ALDEN
 	match sound_name:
 		"spawn":
-			#play_sound("spawn")
+			#play.call("spawn")
 			pass
 		"mask":
 			match G.level.player.mask_type:
 				Player.MaskType.NONE:
-					#play_sound("girl_mask")
+					#play.call("girl_mask")
 					pass
 				Player.MaskType.COWBOY:
-					play_sound("cowboy_mask")
+					play.call("cowboy_mask")
 					pass
 				Player.MaskType.PIRATE:
-					play_sound("pirate_mask")
+					play.call("pirate_mask")
 					pass
 				Player.MaskType.WIZARD:
-					play_sound("wiz_mask")
+					play.call("wiz_mask")
 					pass
 				Player.MaskType.DINOSAUR:
-					play_sound("dino_mask")
+					play.call("dino_mask")
 					pass
 				Player.MaskType.CHICKEN:
-					#play_sound("chicken_mask")
+					#play.call("chicken_mask")
 					pass
 				_:
 					G.fatal()
 		"ability":
 			match G.level.player.mask_type:
 				Player.MaskType.NONE:
-					play_sound("girl_attack")
+					play.call("girl_attack")
 					pass
 				Player.MaskType.COWBOY:
-					play_sound("cowboy_gun")
+					play.call("cowboy_gun")
 					pass
 				Player.MaskType.PIRATE:
-					play_sound("pirate_sword")
+					play.call("pirate_sword")
 					pass
 				Player.MaskType.WIZARD:
-					play_sound("wiz_spell")
+					play.call("wiz_spell")
 					pass
 				Player.MaskType.DINOSAUR:
-					play_sound("dino_bite")
+					play.call("dino_bite")
 					pass
 				Player.MaskType.CHICKEN:
-					#play_sound("chicken_ability")
+					#play.call("chicken_ability")
 					pass
 				_:
 					G.fatal()
 		"jump":
-			#play_sound("jump")
+			#play.call("jump")
 			pass
 		"land":
-			#play_sound("land")
+			#play.call("land")
 			pass
 		"walk":
-			play_sound("girl_footsteps_loop")
+			play.call("girl_footsteps_loop")
 			pass
 		"ouch":
-			play_sound("girl_damage")
+			play.call("girl_damage")
 			pass
 		"die":
-			#play_sound("die")
+			#play.call("die")
 			pass
 		"mask_scroll":
-			#play_sound("mask_scroll")
+			#play.call("mask_scroll")
 			pass
 		"mask_pickup":
 			match G.level.player.mask_type:
 				Player.MaskType.NONE:
-					#play_sound("girl_mask")
+					#play.call("girl_mask")
 					pass
 				Player.MaskType.COWBOY:
-					play_sound("cowboy_mask")
+					play.call("cowboy_mask")
 					pass
 				Player.MaskType.PIRATE:
-					play_sound("pirate_mask")
+					play.call("pirate_mask")
 					pass
 				Player.MaskType.WIZARD:
-					play_sound("wiz_mask")
+					play.call("wiz_mask")
 					pass
 				Player.MaskType.DINOSAUR:
-					play_sound("dino_mask")
+					play.call("dino_mask")
 					pass
 				Player.MaskType.CHICKEN:
-					#play_sound("chicken_mask")
+					#play.call("chicken_mask")
 					pass
 				_:
 					G.fatal()

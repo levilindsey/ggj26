@@ -287,9 +287,9 @@ func _process_sounds() -> void:
 		play_sound("jump")
 
 	if surface_state.just_left_air:
-		play_sound("land")
+		play_sound("land", true)
 	elif surface_state.just_touched_surface:
-		play_sound("land")
+		play_sound("land", true)
 
 	if is_walking:
 		play_sound("walk")
@@ -297,7 +297,7 @@ func _process_sounds() -> void:
 		G.audio.stop_player_sound("walk")
 
 
-func play_sound(_sound_name: String) -> void:
+func play_sound(_sound_name: String, _force_restart := false) -> void:
 	push_error("Abstract CharacterActionSource.update is not implemented")
 
 

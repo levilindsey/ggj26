@@ -713,7 +713,7 @@ func _process_sounds() -> void:
 				play_sound("detected")
 				return
 			Behavior.ATTACK:
-				play_sound("attack")
+				play_sound("attack", true)
 				return
 			_:
 				pass
@@ -721,11 +721,11 @@ func _process_sounds() -> void:
 	if just_jumped:
 		play_sound("jump")
 	elif just_landed:
-		play_sound("land")
+		play_sound("land", true)
 
 
-func play_sound(sound_name: String) -> void:
-	G.audio.play_enemy_sound(sound_name, type)
+func play_sound(sound_name: String, force_restart := false) -> void:
+	G.audio.play_enemy_sound(sound_name, type, force_restart)
 
 
 func face_left() -> void:
@@ -786,7 +786,7 @@ func take_damage(damage: int) -> void:
 			"Enemy damaged: %s => %s" % [previous_health, current_health],
 			ScaffolderLog.CATEGORY_GAME_STATE)
 		last_invincibility_start_time_sec = current_time
-		play_sound("ouch")
+		play_sound("ouch", true)
 
 
 func die() -> void:
