@@ -20,6 +20,7 @@ var ice_spikes: Array[IceSpike] = []
 var has_started := false
 var has_finished := false
 var has_won := false
+var has_cookied := false
 var is_ready_for_input_to_activate_next_game := false
 
 
@@ -52,6 +53,8 @@ func reset() -> void:
 
 	has_started = false
 	has_finished = false
+	has_won = false
+	has_cookied = false
 	is_ready_for_input_to_activate_next_game = false
 
 	%SleepingGirl.visible = true
