@@ -10,11 +10,11 @@ const _FALL_THROUGH_FLOORS_COLLISION_MASK_BIT := 1 << 1
 const _WALK_THROUGH_WALLS_COLLISION_MASK_BIT := 1 << 2
 const _HACK_FOR_EDGE_DETECTION_COLLISION_MASK_BIT := 1 << 7
 
-const _MIN_FALL_DAMAGE_DISTANCE := 250.0
-const _MAX_FALL_DAMAGE_DISTANCE := 1024.0
+const _MIN_FALL_DAMAGE_SPEED := 600.0
+const _MAX_FALL_DAMAGE_SPEED := 2000.0
 
-const _MIN_FALL_DAMAGE := 15.0
-const _MAX_FALL_DAMAGE := 70.0
+const _MIN_FALL_DAMAGE := 10.0
+const _MAX_FALL_DAMAGE := 90.0
 
 @export var collision_shape: CollisionShape2D
 @export var animator: CharacterAnimator

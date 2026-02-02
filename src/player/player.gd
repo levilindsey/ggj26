@@ -121,28 +121,32 @@ func _physics_process(delta: float) -> void:
 		return
 	if is_dead:
 		return
+
+	var my_previous_velocity := velocity
+
 	var last_floor_position := surface_state.last_floor_position.y
+
 	super._physics_process(delta)
 
-	var fall_distance := global_position.y - last_floor_position
+	var _fall_distance := global_position.y - last_floor_position
 	if (
 		surface_state.just_left_air and
-		fall_distance > _MIN_FALL_DAMAGE_DISTANCE
+		my_previous_velocity.y > _MIN_FALL_DAMAGE_SPEED
 	):
-		fall_distance = clampf(
-			fall_distance,
-			_MIN_FALL_DAMAGE_DISTANCE,
-			_MAX_FALL_DAMAGE_DISTANCE)
+		var fall_speed := clampf(
+			my_previous_velocity.y,
+			_MIN_FALL_DAMAGE_SPEED,
+			_MAX_FALL_DAMAGE_SPEED)
 		var fall_damage_weight := (
-			(fall_distance - _MIN_FALL_DAMAGE_DISTANCE) /
-			(_MAX_FALL_DAMAGE_DISTANCE - _MIN_FALL_DAMAGE_DISTANCE)
+			(fall_speed - _MIN_FALL_DAMAGE_SPEED) /
+			(_MAX_FALL_DAMAGE_SPEED - _MIN_FALL_DAMAGE_SPEED)
 		)
 		var fall_damage := floori(lerpf(
-			_MIN_FALL_DAMAGE_DISTANCE,
-			_MAX_FALL_DAMAGE_DISTANCE,
+			_MIN_FALL_DAMAGE,
+			_MAX_FALL_DAMAGE,
 			fall_damage_weight))
-		G.print("Fall damage: distance=%s, damage=%s" % [
-			str(fall_distance), str(fall_damage),
+		G.print("Fall damage: speed=%s, damage=%s" % [
+			str(fall_speed), str(fall_damage),
 		])
 		take_damage(fall_damage, null)
 
