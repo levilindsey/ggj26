@@ -326,6 +326,7 @@ _data = {
 }
 
 [node name="Hand" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collision_shape", "damage_player_area", "detection_range", "attack_max_range_area", "attack_min_range_area")]
+position = Vector2(-3, 0)
 collision_layer = 16
 collision_mask = 7
 script = ExtResource("1_4v1u7")
@@ -342,12 +343,12 @@ wander_speed = 0.0
 faces_right_by_default = true
 max_health = 30
 body_contact_damage = 35
-attack_duration_sec = 0.79
+attack_duration_sec = 0.8
 lose_detection_delay_sec = 0.01
 pre_chase_pause_duration_sec = 0.01
-attack_pause_duration_sec = 0.01
-idle_pause_duration_min_sec = 0.6
-idle_pause_duration_max_sec = 0.6
+attack_pause_duration_sec = 0.001
+idle_pause_duration_min_sec = 0.0
+idle_pause_duration_max_sec = 0.0
 metadata/_custom_type_script = "uid://n2ec8c2ou2fi"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
