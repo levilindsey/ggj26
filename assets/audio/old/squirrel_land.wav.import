@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cquisxvjliaoe"
-path="res://.godot/imported/squirrel_land.wav-56eedab245a51bc6ef5c5970368c8ee6.sample"
+path="res://.godot/imported/squirrel_land.wav-761460ba4ebb389eab691f67fd4ba63e.sample"
 
 [deps]
 
-source_file="res://assets/audio/squirrel_land.wav"
-dest_files=["res://.godot/imported/squirrel_land.wav-56eedab245a51bc6ef5c5970368c8ee6.sample"]
+source_file="res://assets/audio/old/squirrel_land.wav"
+dest_files=["res://.godot/imported/squirrel_land.wav-761460ba4ebb389eab691f67fd4ba63e.sample"]
 
 [params]
 

@@ -22,4 +22,4 @@ func _on_attack_damage_body_entered(body: Node2D) -> void:
 	if not body is Player:
 		return
 	if current_behavior == Behavior.ATTACK:
-		(body as Player).take_damage(attack_damage)
+		(body as Player).take_damage(attack_damage, self)

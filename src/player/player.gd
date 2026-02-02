@@ -3,11 +3,19 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
-# - Gun
-# - Ice spike
+# - Invincibility:
+#   - Player can't get hurt when the ENEMY is invincible either.
 # - Pirate fly jump.
+# - Gun.
+# - Ice spike.
+#   - Fall from above.
+#   - Surface to walk on.
+#   - Shatter if landing below the player trigger y.
+#   - Only check landing collision of tip.
+#   - Separate enemy collision area.
 # - Wizard floating big jump.
 # - All player movement.
+# - Palette adjustments, to emphasize the accent color.
 # - Hand
 # - Spider
 # - Chicken buh-cawk! (gonna need a sound for that...)
@@ -41,6 +49,8 @@ const _MASK_SWAP_COOLDOWN_SEC := 1.0
 @export var attack_damage := 10
 
 @export var abilty_duration_sec := 0.5
+
+@export var melee_animator: AnimationPlayer
 
 var last_ability_start_time_sec := -INF
 var is_ability_active: bool:
@@ -80,11 +90,18 @@ var is_dead: bool:
 		return current_health == 0
 
 
+static func is_melee_mask(p_mask_type: MaskType) -> bool:
+	const MELEE_MASKS := [MaskType.NONE, MaskType.PIRATE, MaskType.DINOSAUR]
+	return MELEE_MASKS.has(p_mask_type)
+
+
 func _ready() -> void:
 	super._ready()
 	half_size = Geometry.calculate_half_width_height(
 		collision_shape.shape,
 		false)
+	if is_melee_mask(mask_type):
+		G.check(is_instance_valid(melee_animator))
 
 
 func destroy() -> void:
@@ -123,9 +140,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ability"):
 		last_ability_start_time_sec = G.time.get_play_time()
 		_trigger_ability()
-		const MELEE_MASKS := [MaskType.NONE, MaskType.PIRATE, MaskType.DINOSAUR]
-		if not MELEE_MASKS.has(mask_type):
-			animator.play("attack")
+		animator.play("attack")
 		play_sound("ability")
 	if Input.is_action_just_pressed("mask"):
 		# Don't allow rapid swaps.
@@ -169,6 +184,20 @@ func _process_animation() -> void:
 		super._process_animation()
 
 
+func play_melee_animation() -> void:
+	var animation_name := (
+		"attack_right" if
+		surface_state.is_facing_right else
+		"attack_left"
+	)
+	animator.stop()
+	melee_animator.play(animation_name)
+
+
+func stop_melee_animation() -> void:
+	melee_animator.stop()
+
+
 func play_sound(sound_name: String) -> void:
 	G.audio.play_player_sound(sound_name)
 
@@ -181,12 +210,16 @@ func pick_up_mask(p_mask_type: MaskType) -> void:
 	play_sound("mask_pickup")
 
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: int, enemy: Enemy) -> void:
 	if is_dead:
 		# Ignore damage. Already dead.
 		return
 	if is_invincible:
 		# Ignore damage. Still invincible.
+		return
+	if enemy.is_invincible:
+		# With the current setup, we don't want the player to be hit when the
+		# enemy is invincible either.
 		return
 
 	var current_time := G.time.get_play_time()

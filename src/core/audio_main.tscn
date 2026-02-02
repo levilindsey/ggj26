@@ -10,10 +10,10 @@
 [ext_resource type="AudioStream" uid="uid://dmh678v0gek8c" path="res://assets/audio/Click/Click-cm-04.wav" id="4_wywav"]
 [ext_resource type="AudioStream" uid="uid://b3achb3rytv11" path="res://assets/audio/Click/Click-cm-06.wav" id="5_wtepx"]
 [ext_resource type="AudioStream" uid="uid://qk2yfhofcotd" path="res://assets/audio/Click/Click-cm-07.wav" id="6_24bi3"]
-[ext_resource type="AudioStream" uid="uid://b1dhtp12y2qox" path="res://assets/audio/single_cat_snore.wav" id="8_o2pvq"]
-[ext_resource type="AudioStream" uid="uid://byhc1v5pobgjj" path="res://assets/audio/cadence_win.wav" id="9_wtepx"]
-[ext_resource type="AudioStream" uid="uid://dngmn1trd45h2" path="res://assets/audio/cadence_lose.wav" id="10_24bi3"]
-[ext_resource type="AudioStream" uid="uid://cycmr81xwq5rj" path="res://assets/audio/achievement.wav" id="11_q1bt0"]
+[ext_resource type="AudioStream" uid="uid://b1dhtp12y2qox" path="res://assets/audio/old/single_cat_snore.wav" id="8_o2pvq"]
+[ext_resource type="AudioStream" uid="uid://byhc1v5pobgjj" path="res://assets/audio/old/cadence_win.wav" id="9_wtepx"]
+[ext_resource type="AudioStream" uid="uid://dngmn1trd45h2" path="res://assets/audio/old/cadence_lose.wav" id="10_24bi3"]
+[ext_resource type="AudioStream" uid="uid://cycmr81xwq5rj" path="res://assets/audio/old/achievement.wav" id="11_q1bt0"]
 [ext_resource type="AudioStream" uid="uid://bnk28p6snbwql" path="res://assets/audio/Mask Switch SFX/Cowboy SFX.cm_01.wav" id="15_fqgka"]
 [ext_resource type="AudioStream" uid="uid://byancf2mosp0i" path="res://assets/audio/Mask Switch SFX/Cowboy SFX.cm_02.wav" id="16_kmns2"]
 [ext_resource type="AudioStream" uid="uid://blqvdrk4mycwh" path="res://assets/audio/Mask Switch SFX/Dino.cm_01.wav" id="17_00bue"]
@@ -186,50 +186,41 @@ stream = ExtResource("11_q1bt0")
 [node name="CowboyMask" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_lahjg")
-bus = &"Mask SFX"
 
 [node name="DinoMask" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_r4r5m")
-bus = &"Mask SFX"
 
 [node name="PirateMask" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_icnwp")
-bus = &"Mask SFX"
 
 [node name="WizardMask" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_avorg")
-bus = &"Mask SFX"
 
 [node name="DinoBite" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_f5wgw")
 volume_db = 3.029
-bus = &"Attack SFX"
 
 [node name="CowboyGun" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_s3tuh")
 volume_db = -6.132
-bus = &"Attack SFX"
 
 [node name="PirateSword" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_ngjjr")
-bus = &"Attack SFX"
 
 [node name="WizSpell" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_g3b8w")
 volume_db = 2.019
-bus = &"Attack SFX"
 
 [node name="GirlAttack" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_5ktbc")
-bus = &"Attack SFX"
 
 [node name="GirlDamage" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

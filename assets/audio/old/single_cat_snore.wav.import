@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b1dhtp12y2qox"
-path="res://.godot/imported/single_cat_snore.wav-9db4803621506df179a8fbc92815ec85.sample"
+path="res://.godot/imported/single_cat_snore.wav-2884d55836cf1c69f60f01aaa296a598.sample"
 
 [deps]
 
-source_file="res://assets/audio/single_cat_snore.wav"
-dest_files=["res://.godot/imported/single_cat_snore.wav-9db4803621506df179a8fbc92815ec85.sample"]
+source_file="res://assets/audio/old/single_cat_snore.wav"
+dest_files=["res://.godot/imported/single_cat_snore.wav-2884d55836cf1c69f60f01aaa296a598.sample"]
 
 [params]
 

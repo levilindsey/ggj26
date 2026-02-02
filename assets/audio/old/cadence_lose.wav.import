@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dngmn1trd45h2"
-path="res://.godot/imported/cadence_lose.wav-6c682e444fb70c4beecd70fc417ead62.sample"
+path="res://.godot/imported/cadence_lose.wav-b704bc4c63afd5aa0668669cf0ce2edb.sample"
 
 [deps]
 
-source_file="res://assets/audio/cadence_lose.wav"
-dest_files=["res://.godot/imported/cadence_lose.wav-6c682e444fb70c4beecd70fc417ead62.sample"]
+source_file="res://assets/audio/old/cadence_lose.wav"
+dest_files=["res://.godot/imported/cadence_lose.wav-b704bc4c63afd5aa0668669cf0ce2edb.sample"]
 
 [params]
 

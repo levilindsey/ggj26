@@ -20,5 +20,5 @@ func _trigger_ability() -> void:
 	G.warning("WOAH! That ability was so cool!")
 
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: int, enemy: Enemy) -> void:
 	G.print("Chicken is ignoring damage: %d" % damage)

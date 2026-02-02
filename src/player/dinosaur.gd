@@ -16,9 +16,4 @@ func _physics_process(_delta: float) -> void:
 
 
 func _trigger_ability() -> void:
-	var animation_name := (
-		"attack_right" if
-		surface_state.is_facing_right else
-		"attack_left"
-	)
-	%AnimationPlayer.play(animation_name)
+	play_melee_animation()

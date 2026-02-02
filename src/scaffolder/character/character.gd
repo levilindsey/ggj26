@@ -53,6 +53,13 @@ var _previous_actions_handlers_this_frame := {}
 
 var _character_action_source: CharacterActionSource
 
+var is_walking: bool:
+	get:
+		return (
+			(actions.pressed_left or actions.pressed_right) and
+			surface_state.is_attaching_to_floor
+		)
+
 
 var current_surface_max_horizontal_speed: float:
 	get: return movement_settings.max_ground_horizontal_speed * \
@@ -283,6 +290,8 @@ func _process_sounds() -> void:
 		play_sound("land")
 	elif surface_state.just_touched_surface:
 		play_sound("land")
+	elif is_walking:
+		play_sound("walk")
 
 
 func play_sound(_sound_name: String) -> void:

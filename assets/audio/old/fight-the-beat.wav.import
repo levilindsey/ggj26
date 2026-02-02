@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bexs46r7l8qj5"
-path="res://.godot/imported/fight-the-beat.wav-306a0d78942175173cc8691dd0781650.sample"
+path="res://.godot/imported/fight-the-beat.wav-9509522ac3f95f069f1a9a48b63c77ad.sample"
 
 [deps]
 
-source_file="res://assets/audio/fight-the-beat.wav"
-dest_files=["res://.godot/imported/fight-the-beat.wav-306a0d78942175173cc8691dd0781650.sample"]
+source_file="res://assets/audio/old/fight-the-beat.wav"
+dest_files=["res://.godot/imported/fight-the-beat.wav-9509522ac3f95f069f1a9a48b63c77ad.sample"]
 
 [params]
 

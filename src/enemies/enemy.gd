@@ -302,7 +302,7 @@ func _physics_process(delta: float) -> void:
 		is_player_in_body_contact_damage_range and
 		is_instance_valid(G.level.player)
 	):
-		G.level.player.take_damage(body_contact_damage)
+		G.level.player.take_damage(body_contact_damage, self)
 
 
 func _process_behaviors() -> void:

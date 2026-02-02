@@ -25,8 +25,16 @@ var _is_facing_right := true
 
 var initial_animated_sprite_position := Vector2.INF
 
+var is_melee := false
+
+var player: Player
+
 
 func _ready() -> void:
+	G.check(get_parent() is Player)
+	player = get_parent() as Player
+	is_melee = Player.is_melee_mask(player.mask_type)
+
 	initial_animated_sprite_position = animated_sprite.position
 
 
@@ -49,4 +57,13 @@ func face_right() -> void:
 
 
 func play(animation_name: String) -> void:
+	if is_melee:
+		if animation_name == "attack":
+			return
+		else:
+			player.stop_melee_animation()
 	animated_sprite.play(animation_name)
+
+
+func stop() -> void:
+	animated_sprite.stop()

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cycmr81xwq5rj"
-path="res://.godot/imported/achievement.wav-7d2209b9dcfcb3b1d13b5cd5714f3b24.sample"
+path="res://.godot/imported/achievement.wav-b6fb6e4d9d50db411a7a4b5118023e9f.sample"
 
 [deps]
 
-source_file="res://assets/audio/achievement.wav"
-dest_files=["res://.godot/imported/achievement.wav-7d2209b9dcfcb3b1d13b5cd5714f3b24.sample"]
+source_file="res://assets/audio/old/achievement.wav"
+dest_files=["res://.godot/imported/achievement.wav-b6fb6e4d9d50db411a7a4b5118023e9f.sample"]
 
 [params]
 
