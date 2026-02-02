@@ -65,7 +65,7 @@
 [ext_resource type="AudioStream" uid="uid://cq2epsc6jcy0i" path="res://assets/audio/EnemyDeath/enemy death.cm_02.wav" id="63_rk4fb"]
 [ext_resource type="AudioStream" uid="uid://psix5grh7obo" path="res://assets/audio/EnemyDeath/enemy death.cm_03.wav" id="64_rsjq6"]
 [ext_resource type="AudioStream" uid="uid://dsjfgvjaqachc" path="res://assets/audio/Boots.wav" id="65_rk4fb"]
-[ext_resource type="AudioStream" uid="uid://shp0dwilsnb3" path="res://assets/audio/BootsPeg1.wav" id="66_rsjq6"]
+[ext_resource type="AudioStream" uid="uid://be5ie1hcnjcm6" path="res://assets/audio/EnemyDeath/BootsPeg2.wav" id="66_rsjq6"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2b2qe"]
 streams_count = 4
