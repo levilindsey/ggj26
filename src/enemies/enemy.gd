@@ -131,6 +131,8 @@ var last_played_animation := ""
 
 var initial_animated_sprite_position := Vector2.INF
 
+var is_facing_right := false
+
 var last_invincibility_start_time_sec := -INF
 var is_invincible: bool:
 	get:
@@ -739,6 +741,7 @@ func play_sound(sound_name: String, force_restart := false) -> void:
 
 
 func face_left() -> void:
+	is_facing_right = false
 	animated_sprite.flip_h = faces_right_by_default
 	if animated_sprite.flip_h:
 		animated_sprite.position.x = -initial_animated_sprite_position.x
@@ -749,6 +752,7 @@ func face_left() -> void:
 
 
 func face_right() -> void:
+	is_facing_right = true
 	animated_sprite.flip_h = not faces_right_by_default
 	if animated_sprite.flip_h:
 		animated_sprite.position.x = -initial_animated_sprite_position.x

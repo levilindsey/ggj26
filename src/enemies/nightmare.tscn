@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cp1yxvkk668tq"]
+[gd_scene load_steps=57 format=3 uid="uid://cp1yxvkk668tq"]
 
 [ext_resource type="Script" uid="uid://m6eq1urqj7v4" path="res://src/enemies/nightmare.gd" id="1_c8riu"]
 [ext_resource type="Texture2D" uid="uid://dn7a6kajifsa2" path="res://assets/images/scratch/nightmare.png" id="2_c8riu"]
@@ -390,7 +390,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_c8riu"]
-resource_name = "attack"
+resource_name = "attack_left"
 length = 0.6
 step = 0.0455
 tracks/0/type = "value"
@@ -430,10 +430,52 @@ tracks/2/keys = {
 "values": [Vector2(6, -22), Vector2(5, -30), Vector2(21, -31), Vector2(27, -46), Vector2(-59, -11), Vector2(-51, -11), Vector2(-26, -11), Vector2(3, -24)]
 }
 
+[sub_resource type="Animation" id="Animation_270kj"]
+resource_name = "attack_right"
+length = 0.6
+step = 0.0455
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.045454547, 0.09090909, 0.13636364, 0.18181819, 0.22727273, 0.27272728, 0.3181818, 0.36363637, 0.40909094, 0.45454547, 0.5, 0.54545456),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackDamage:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.045454547, 0.13636364, 0.22727273, 0.3181818, 0.36363637, 0.45454547, 0.54545456),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, -15), Vector2(-5, -30), Vector2(-19, -31), Vector2(-26, -45), Vector2(59.000004, -11), Vector2(51, -10), Vector2(25, -10), Vector2(2, -14)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8045a"]
 _data = {
 &"RESET": SubResource("Animation_8045a"),
-&"attack": SubResource("Animation_c8riu")
+&"attack_left": SubResource("Animation_c8riu"),
+&"attack_right": SubResource("Animation_270kj")
 }
 
 [node name="Nightmare" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collision_shape", "damage_player_area", "detection_range", "attack_max_range_area", "attack_min_range_area")]
@@ -460,47 +502,57 @@ metadata/_custom_type_script = "uid://m6eq1urqj7v4"
 position = Vector2(-12, -27)
 sprite_frames = SubResource("SpriteFrames_0643i")
 animation = &"attack"
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_c8riu")
+metadata/_edit_lock_ = true
 
 [node name="DamagePlayerArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 monitorable = false
+metadata/_edit_lock_ = true
 
 [node name="DamagePlayerShape" type="CollisionShape2D" parent="DamagePlayerArea"]
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_8045a")
+metadata/_edit_lock_ = true
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 monitorable = false
+metadata/_edit_lock_ = true
 
 [node name="DetectionRangeShape" type="CollisionShape2D" parent="DetectionRange"]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_io1tw")
+metadata/_edit_lock_ = true
 
 [node name="AttackMaxRange" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 monitorable = false
+metadata/_edit_lock_ = true
 
 [node name="AttackMaxRangeShape" type="CollisionShape2D" parent="AttackMaxRange"]
 position = Vector2(-19, -5)
 shape = SubResource("CircleShape2D_0643i")
+metadata/_edit_lock_ = true
 
 [node name="AttackMinRange" type="Area2D" parent="."]
 position = Vector2(0, 1)
 collision_layer = 0
 collision_mask = 8
 monitorable = false
+metadata/_edit_lock_ = true
 
 [node name="AttackMinRangeShape" type="CollisionShape2D" parent="AttackMinRange"]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_s7kor")
+metadata/_edit_lock_ = true
 
 [node name="AttackDamage" type="Area2D" parent="."]
 collision_layer = 0
