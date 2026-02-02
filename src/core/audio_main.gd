@@ -25,6 +25,7 @@ extends Node2D
 	"wiz_spell" = %WizSpell,
 	"girl_attack" = %GirlAttack,
 	"girl_damage" = %GirlDamage,
+	"girl_footsteps_loop" = %GirlFootstepsLoop,
 	"click" = %ClickStreamPlayer,
 	"godot_splash" = %ClickStreamPlayer,
 	"scg_splash" = %SnoringCatStreamPlayer,
@@ -247,6 +248,9 @@ func play_player_sound(sound_name: String) -> void:
 		"land":
 			#play_sound("land")
 			pass
+		"walk":
+			play_sound("girl_footsteps_loop")
+			pass			
 		"ouch":
 			play_sound("girl_damage")
 			pass
