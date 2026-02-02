@@ -663,9 +663,9 @@ func _update_attachment_state() -> void:
 		(is_attaching_to_wall or \
 				character.actions.pressed_up)
 
-	if just_entered_air:
+	if is_attaching_to_floor:
 		last_floor_time = G.time.get_play_time()
-		last_floor_position = character.previous_position
+		last_floor_position = character.global_position
 
 
 func _update_attachment_contact() -> void:
@@ -855,7 +855,6 @@ func force_boost() -> void:
 		just_entered_air = true
 		just_changed_attachment_side = true
 		just_changed_attachment_position = true
-		last_floor_position = character.previous_position
 
 
 func copy(other: CharacterSurfaceState) -> void:

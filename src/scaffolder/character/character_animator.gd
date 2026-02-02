@@ -31,6 +31,9 @@ var player: Player
 
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
+
 	G.check(get_parent() is Player)
 	player = get_parent() as Player
 	is_melee = Player.is_melee_mask(player.mask_type)

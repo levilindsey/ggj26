@@ -126,9 +126,10 @@ func _process_invincibility_blink() -> void:
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
+	var last_floor_position := surface_state.last_floor_position.y
 	super._physics_process(delta)
 
-	var fall_distance := position.y - surface_state.last_floor_position.y
+	var fall_distance := global_position.y - last_floor_position
 	if (
 		surface_state.just_left_air and
 		fall_distance > _MIN_FALL_DAMAGE_DISTANCE
@@ -137,10 +138,10 @@ func _physics_process(delta: float) -> void:
 			fall_distance,
 			_MIN_FALL_DAMAGE_DISTANCE,
 			_MAX_FALL_DAMAGE_DISTANCE)
-		var fall_damage_weight := lerpf(
-			_MIN_FALL_DAMAGE_DISTANCE,
-			_MAX_FALL_DAMAGE_DISTANCE,
-			fall_distance)
+		var fall_damage_weight := (
+			(fall_distance - _MIN_FALL_DAMAGE_DISTANCE) /
+			(_MAX_FALL_DAMAGE_DISTANCE - _MIN_FALL_DAMAGE_DISTANCE)
+		)
 		var fall_damage := floori(lerpf(
 			_MIN_FALL_DAMAGE_DISTANCE,
 			_MAX_FALL_DAMAGE_DISTANCE,

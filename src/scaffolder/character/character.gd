@@ -154,7 +154,7 @@ func _physics_process(delta: float) -> void:
 	previous_total_time = total_time
 	total_time = G.time.get_scaled_play_time() - start_time
 
-	previous_position = position
+	previous_position = global_position
 
 	previous_velocity = velocity
 
