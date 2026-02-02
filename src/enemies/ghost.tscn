@@ -142,9 +142,11 @@ radius = 36.0
 radius = 0.1
 
 [node name="Ghost" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "collision_shape", "damage_player_area", "detection_range", "attack_max_range_area", "attack_min_range_area")]
-collision_layer = 16
-collision_mask = 7
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_ig8a7")
+attack_vertical_speed = 40.0
+attack_horizontal_speed = 40.0
 animated_sprite = NodePath("AnimatedSprite2D")
 collision_shape = NodePath("CollisionShape2D")
 damage_player_area = NodePath("DamagePlayerArea")
@@ -152,13 +154,13 @@ detection_range = NodePath("DetectionRange")
 attack_max_range_area = NodePath("AttackMaxRange")
 attack_min_range_area = NodePath("AttackMinRange")
 type = 2
-chase_speed = 60.0
+chase_speed = 40.0
 wander_speed = 30.0
-gravity_multiplier = 0.2
 max_health = 10
-attack_duration_sec = 0.9
+attack_pause_duration_sec = 0.1
 idle_pause_duration_min_sec = 1.0
 idle_pause_duration_max_sec = 3.0
+ignores_edge_detection = true
 metadata/_custom_type_script = "uid://dwxfwavgtfj2j"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

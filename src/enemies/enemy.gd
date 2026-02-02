@@ -88,6 +88,8 @@ const _APPROACH_DISTANCE_THRESHOLD := 2.0
 
 @export var edge_detection_ray_cast_length := 50.0
 
+@export var ignores_edge_detection := false
+
 @onready var current_health := max_health
 
 var spawn_point: EnemySpawnPoint
@@ -124,14 +126,6 @@ var just_jumped := false
 var last_played_animation := ""
 
 var initial_animated_sprite_position := Vector2.INF
-
-var is_in_air: bool:
-	get:
-		return not is_on_floor()
-
-var just_entered_air: bool:
-	get:
-		return was_on_floor and not is_on_floor()
 
 var just_landed: bool:
 	get:
@@ -307,7 +301,8 @@ func _process_behaviors() -> void:
 			face_right()
 
 	var has_reached_edge := (
-		not edge_detection_ray_cast.is_colliding() or
+		(not ignores_edge_detection and
+			not edge_detection_ray_cast.is_colliding()) or
 		is_on_wall()
 	)
 	if has_reached_edge and _is_behavior_movement(current_behavior):
