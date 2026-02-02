@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://diqnxd2kabxfk"]
+[gd_scene load_steps=67 format=3 uid="uid://diqnxd2kabxfk"]
 
 [ext_resource type="Script" uid="uid://b5hrwox1n2lt0" path="res://src/core/audio_main.gd" id="1_tdp82"]
 [ext_resource type="AudioStream" uid="uid://bbs4x4f6c576y" path="res://assets/audio/Themes/GGJ_DinoTheme_02.mp3" id="2_8ub3w"]
@@ -48,6 +48,7 @@
 [ext_resource type="AudioStream" uid="uid://v3uempe1wjse" path="res://assets/audio/GirlJump/Girl Voice.dup1.01.cm1-02.wav" id="49_3itvs"]
 [ext_resource type="AudioStream" uid="uid://dfxpva03o3jo7" path="res://assets/audio/DinoJump/Dino.cm1_01.wav" id="49_cgk4a"]
 [ext_resource type="AudioStream" uid="uid://bf6kea2504jqh" path="res://assets/audio/GirlJump/Girl Voice.dup1.01.cm1-04.wav" id="50_6iqo1"]
+[ext_resource type="AudioStream" uid="uid://0cb1c67vxcih" path="res://assets/audio/iceshatter.wav" id="50_cgk4a"]
 [ext_resource type="AudioStream" uid="uid://cnkxtgkyup4pa" path="res://assets/audio/GirlJump/Girl Voice.dup1.01.cm1-05.wav" id="51_wo8yk"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2b2qe"]
@@ -139,6 +140,11 @@ stream_1/stream = ExtResource("48_0p20a")
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3itvs"]
 streams_count = 1
 stream_0/stream = ExtResource("49_0p20a")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wo8yk"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("50_cgk4a")
 
 [node name="AudioMain" type="Node2D"]
 process_mode = 3
@@ -283,4 +289,9 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_3itvs")
 pitch_scale = 1.1
+bus = &"SFX"
+
+[node name="IceShatter" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_wo8yk")
 bus = &"SFX"

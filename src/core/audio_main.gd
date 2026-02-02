@@ -32,6 +32,7 @@ extends Node2D
 	"cowboy_jump" = %CowboyJump,
 	"wizard_jump" = %WizJump,
 	"girl_death" = %GirlDeath,
+	"ice_shatter" = %IceShatter,
 	"click" = %ClickStreamPlayer,
 	"godot_splash" = %ClickStreamPlayer,
 	"scg_splash" = %SnoringCatStreamPlayer,
@@ -278,7 +279,7 @@ func play_player_sound(
 					play.call("cowboy_jump")
 					pass
 				Player.MaskType.PIRATE:
-					#play.call("pirate_jump")
+					play.call("cowboy_jump")
 					pass
 				Player.MaskType.WIZARD:
 					play.call("wizard_jump")
