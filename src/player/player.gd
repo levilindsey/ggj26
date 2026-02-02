@@ -133,6 +133,7 @@ func _physics_process(delta: float) -> void:
 		return
 	super._physics_process(delta)
 
+	# Fall damage.
 	var fall_distance := position.y - surface_state.last_floor_position.y
 	if (
 		surface_state.just_left_air and
