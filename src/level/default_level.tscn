@@ -88,6 +88,12 @@ script = ExtResource("3_5bkgc")
 enemy_type = 5
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
+[node name="EnemySpawnPoint7" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(1538, 162)
+script = ExtResource("3_5bkgc")
+enemy_type = 5
+metadata/_custom_type_script = "uid://w43fkpgoh88w"
+
 [node name="EnemySpawnPoint9" type="Node2D" parent="EnemySpawnPoints"]
 position = Vector2(976, 1202)
 script = ExtResource("3_5bkgc")
@@ -96,6 +102,11 @@ metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
 [node name="EnemySpawnPoint59" type="Node2D" parent="EnemySpawnPoints"]
 position = Vector2(976, 1141)
+script = ExtResource("3_5bkgc")
+metadata/_custom_type_script = "uid://w43fkpgoh88w"
+
+[node name="EnemySpawnPoint72" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(1328, 1062)
 script = ExtResource("3_5bkgc")
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
@@ -113,6 +124,12 @@ metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
 [node name="EnemySpawnPoint31" type="Node2D" parent="EnemySpawnPoints"]
 position = Vector2(1506, 835)
+script = ExtResource("3_5bkgc")
+enemy_type = 5
+metadata/_custom_type_script = "uid://w43fkpgoh88w"
+
+[node name="EnemySpawnPoint76" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(1192, 1399)
 script = ExtResource("3_5bkgc")
 enemy_type = 5
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
@@ -296,6 +313,21 @@ script = ExtResource("3_5bkgc")
 enemy_type = 5
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
+[node name="EnemySpawnPoint28" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(1584, 1388)
+script = ExtResource("3_5bkgc")
+metadata/_custom_type_script = "uid://w43fkpgoh88w"
+
+[node name="EnemySpawnPoint78" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(1954, 1387)
+script = ExtResource("3_5bkgc")
+metadata/_custom_type_script = "uid://w43fkpgoh88w"
+
+[node name="EnemySpawnPoint77" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(1481, 1389)
+script = ExtResource("3_5bkgc")
+metadata/_custom_type_script = "uid://w43fkpgoh88w"
+
 [node name="EnemySpawnPoint18" type="Node2D" parent="EnemySpawnPoints"]
 position = Vector2(1694, 1384)
 script = ExtResource("3_5bkgc")
@@ -303,9 +335,15 @@ enemy_type = 5
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
 [node name="EnemySpawnPoint39" type="Node2D" parent="EnemySpawnPoints"]
-position = Vector2(2111, 1449)
+position = Vector2(2104, 1456)
 script = ExtResource("3_5bkgc")
 enemy_type = 5
+metadata/_custom_type_script = "uid://w43fkpgoh88w"
+
+[node name="EnemySpawnPoint79" type="Node2D" parent="EnemySpawnPoints"]
+position = Vector2(1955, 1348)
+script = ExtResource("3_5bkgc")
+enemy_type = 2
 metadata/_custom_type_script = "uid://w43fkpgoh88w"
 
 [node name="EnemySpawnPoint40" type="Node2D" parent="EnemySpawnPoints"]
