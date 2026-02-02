@@ -4,7 +4,7 @@ extends Node2D
 
 const _BULLET_DAMAGE := 10
 const _BULLET_SPEED := 200.0
-const _BULLET_MAX_DISTANCE := 180.0
+const _BULLET_MAX_DISTANCE := 175.0
 
 
 var is_moving_right := true
