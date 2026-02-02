@@ -3,17 +3,10 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
-# - HANDSY.
 # - Wizard floating big jump.
 # - All player movement.
 # - Palette adjustments, to emphasize the accent color.
-# - Hand
 # - Spider
-# - Chicken buh-cawk! (gonna need a sound for that...)
-#
-# - END GAME CONDITION:
-#   - Cookie jar and cookie sprite
-#   - Credits panel
 
 
 
