@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://diqnxd2kabxfk"]
+[gd_scene load_steps=65 format=3 uid="uid://diqnxd2kabxfk"]
 
 [ext_resource type="Script" uid="uid://b5hrwox1n2lt0" path="res://src/core/audio_main.gd" id="1_tdp82"]
 [ext_resource type="AudioStream" uid="uid://bbs4x4f6c576y" path="res://assets/audio/Themes/GGJ_DinoTheme_02.mp3" id="2_8ub3w"]
@@ -39,14 +39,16 @@
 [ext_resource type="AudioStream" uid="uid://dhbxhl3i34xlk" path="res://assets/audio/girl_damage/Girl Voice.cm_06.wav" id="37_u1e8y"]
 [ext_resource type="AudioStream" uid="uid://dqvxv4pbrcpd3" path="res://assets/audio/girl_damage/Girl Voice.cm_07.wav" id="38_adcoe"]
 [ext_resource type="AudioStream" uid="uid://b5twbffhnho6i" path="res://assets/audio/girl_damage/Girl Voice.cm_08.wav" id="39_tffn8"]
-[ext_resource type="AudioStream" uid="uid://doujexlsx5xtg" path="res://assets/audio/girl_footsteps/Footsteps.02.cm-01.wav" id="40_adcoe"]
-[ext_resource type="AudioStream" uid="uid://cl2unjluia7yb" path="res://assets/audio/girl_footsteps/Footsteps.02.cm-03.wav" id="41_tffn8"]
-[ext_resource type="AudioStream" uid="uid://dw7sj7iuv0508" path="res://assets/audio/girl_footsteps/Footsteps.02.cm-05.wav" id="42_5ktbc"]
-[ext_resource type="AudioStream" uid="uid://68auugb8cchd" path="res://assets/audio/girl_footsteps/Footsteps.02.cm-07.wav" id="43_oqepp"]
-[ext_resource type="AudioStream" uid="uid://bjemqskubx4a2" path="res://assets/audio/girl_footsteps/Footsteps.02.cm-09.wav" id="44_0p20a"]
-[ext_resource type="AudioStream" uid="uid://dpbp2thyvtvbq" path="res://assets/audio/girl_footsteps/Footsteps.02.cm-10.wav" id="45_cgk4a"]
 [ext_resource type="AudioStream" uid="uid://bkvs6nimndkhk" path="res://assets/audio/girlfootloop1.wav" id="46_5ktbc"]
 [ext_resource type="AudioStream" uid="uid://cr82b7jfo04jd" path="res://assets/audio/girldeath.wav" id="47_5ktbc"]
+[ext_resource type="AudioStream" uid="uid://bcv581rc8a25h" path="res://assets/audio/CowboyJump/Pirate.cm1_01.wav" id="47_oqepp"]
+[ext_resource type="AudioStream" uid="uid://bnpb1xoba5hi" path="res://assets/audio/CowboyJump/Pirate.cm1_02.wav" id="48_0p20a"]
+[ext_resource type="AudioStream" uid="uid://c3ekj2viwot1n" path="res://assets/audio/dinofeet.wav" id="48_oqepp"]
+[ext_resource type="AudioStream" uid="uid://bob46118t0m3n" path="res://assets/audio/wizardjump.cm_01.wav" id="49_0p20a"]
+[ext_resource type="AudioStream" uid="uid://v3uempe1wjse" path="res://assets/audio/GirlJump/Girl Voice.dup1.01.cm1-02.wav" id="49_3itvs"]
+[ext_resource type="AudioStream" uid="uid://dfxpva03o3jo7" path="res://assets/audio/DinoJump/Dino.cm1_01.wav" id="49_cgk4a"]
+[ext_resource type="AudioStream" uid="uid://bf6kea2504jqh" path="res://assets/audio/GirlJump/Girl Voice.dup1.01.cm1-04.wav" id="50_6iqo1"]
+[ext_resource type="AudioStream" uid="uid://cnkxtgkyup4pa" path="res://assets/audio/GirlJump/Girl Voice.dup1.01.cm1-05.wav" id="51_wo8yk"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2b2qe"]
 streams_count = 4
@@ -116,14 +118,27 @@ stream_1/stream = ExtResource("37_u1e8y")
 stream_2/stream = ExtResource("38_adcoe")
 stream_3/stream = ExtResource("39_tffn8")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6iqo1"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("49_cgk4a")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tffn8"]
+random_pitch = 1.1
+streams_count = 3
+stream_0/stream = ExtResource("49_3itvs")
+stream_1/stream = ExtResource("50_6iqo1")
+stream_2/stream = ExtResource("51_wo8yk")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cgk4a"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("47_oqepp")
+stream_1/stream = ExtResource("48_0p20a")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3itvs"]
-streams_count = 6
-stream_0/stream = ExtResource("40_adcoe")
-stream_1/stream = ExtResource("41_tffn8")
-stream_2/stream = ExtResource("42_5ktbc")
-stream_3/stream = ExtResource("43_oqepp")
-stream_4/stream = ExtResource("44_0p20a")
-stream_5/stream = ExtResource("45_cgk4a")
+streams_count = 1
+stream_0/stream = ExtResource("49_0p20a")
 
 [node name="AudioMain" type="Node2D"]
 process_mode = 3
@@ -228,11 +243,6 @@ unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_oqepp")
 bus = &"SFX"
 
-[node name="GirlFootsteps" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_3itvs")
-volume_db = -8.432
-bus = &"SFX"
-
 [node name="GirlFootstepsLoop" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("46_5ktbc")
@@ -243,5 +253,34 @@ bus = &"SFX"
 unique_name_in_owner = true
 stream = ExtResource("47_5ktbc")
 volume_db = 4.197
+pitch_scale = 1.1
+bus = &"SFX"
+
+[node name="DinoFeet" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("48_oqepp")
+
+[node name="DinoJump" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_6iqo1")
+volume_db = 4.45
+bus = &"SFX"
+
+[node name="GirlJump" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_tffn8")
+pitch_scale = 1.1
+bus = &"SFX"
+
+[node name="CowboyJump" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_cgk4a")
+volume_db = -6.234
+pitch_scale = 1.37
+bus = &"SFX"
+
+[node name="WizJump" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_3itvs")
 pitch_scale = 1.1
 bus = &"SFX"

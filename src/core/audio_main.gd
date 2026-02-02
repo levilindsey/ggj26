@@ -26,6 +26,11 @@ extends Node2D
 	"girl_attack" = %GirlAttack,
 	"girl_damage" = %GirlDamage,
 	"girl_footsteps_loop" = %GirlFootstepsLoop,
+	"girl_jump" = %GirlJump,
+	"dino_feet" = %DinoFeet,
+	"dino_jump" = %DinoJump,
+	"cowboy_jump" = %CowboyJump,
+	"wizard_jump" = %WizJump,
 	"girl_death" = %GirlDeath,
 	"click" = %ClickStreamPlayer,
 	"godot_splash" = %ClickStreamPlayer,
@@ -265,14 +270,53 @@ func play_player_sound(
 				_:
 					G.fatal()
 		"jump":
-			#play.call("jump")
+			match G.level.player.mask_type:
+				Player.MaskType.NONE:
+					play.call("girl_jump")
+					pass
+				Player.MaskType.COWBOY:
+					play.call("cowboy_jump")
+					pass
+				Player.MaskType.PIRATE:
+					#play.call("pirate_jump")
+					pass
+				Player.MaskType.WIZARD:
+					play.call("wizard_jump")
+					pass
+				Player.MaskType.DINOSAUR:
+					play.call("dino_jump")
+					pass
+				Player.MaskType.CHICKEN:
+					#play.call("girl_jump")
+					pass
+				_:
+					G.fatal()
 			pass
 		"land":
 			#play.call("land")
 			pass
 		"walk":
-			play.call("girl_footsteps_loop")
-			pass
+			match G.level.player.mask_type:
+				Player.MaskType.NONE:
+					play.call("girl_footsteps_loop")
+					pass
+				Player.MaskType.COWBOY:
+					play.call("girl_footsteps_loop")
+					pass
+				Player.MaskType.PIRATE:
+					play.call("girl_footsteps_loop")
+					pass
+				Player.MaskType.WIZARD:
+					play.call("girl_footsteps_loop")
+					pass
+				Player.MaskType.DINOSAUR:
+					play.call("dino_feet")
+					pass
+				Player.MaskType.CHICKEN:
+					play.call("girl_footsteps_loop")
+					pass
+				_:
+					G.fatal()
 		"ouch":
 			play.call("girl_damage")
 			pass
@@ -312,3 +356,4 @@ func stop_player_sound(sound_name: String) -> void:
 	match sound_name:
 		"walk":
 			stop_sound("girl_footsteps_loop")
+			stop_sound("dino_feet")
