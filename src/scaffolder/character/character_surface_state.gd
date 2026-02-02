@@ -151,6 +151,8 @@ var is_facing_right: bool:
 
 var last_floor_time := -INF
 
+var last_floor_position := Vector2.INF
+
 var is_within_coyote_time: bool:
 	get:
 		return (
@@ -661,8 +663,9 @@ func _update_attachment_state() -> void:
 		(is_attaching_to_wall or \
 				character.actions.pressed_up)
 
-	if just_attached_floor:
+	if just_entered_air:
 		last_floor_time = G.time.get_play_time()
+		last_floor_position = character.previous_position
 
 
 func _update_attachment_contact() -> void:
@@ -852,3 +855,4 @@ func force_boost() -> void:
 		just_entered_air = true
 		just_changed_attachment_side = true
 		just_changed_attachment_position = true
+		last_floor_position = character.previous_position

@@ -9,6 +9,12 @@ const _NORMAL_SURFACES_COLLISION_MASK_BIT := 1
 const _FALL_THROUGH_FLOORS_COLLISION_MASK_BIT := 2
 const _WALK_THROUGH_WALLS_COLLISION_MASK_BIT := 4
 
+const _MIN_FALL_DAMAGE_DISTANCE := 256.0
+const _MAX_FALL_DAMAGE_DISTANCE := 1024.0
+
+const _MIN_FALL_DAMAGE := 2.0
+const _MAX_FALL_DAMAGE := 80.0
+
 @export var collision_shape: CollisionShape2D
 @export var animator: CharacterAnimator
 @export var movement_settings: MovementSettings
@@ -30,6 +36,8 @@ var is_player_control_active := true
 var just_triggered_jump := false
 var is_rising_from_jump := false
 var jump_count := 0
+
+var previous_velocity := Vector2.INF
 
 var _current_max_horizontal_speed_multiplier := 1.0
 
@@ -139,6 +147,8 @@ func _physics_process(delta: float) -> void:
 	total_time = G.time.get_scaled_play_time() - start_time
 
 	previous_position = position
+
+	previous_velocity = velocity
 
 	_apply_movement()
 

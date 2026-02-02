@@ -133,6 +133,29 @@ func _physics_process(delta: float) -> void:
 		return
 	super._physics_process(delta)
 
+	var fall_distance := position.y - surface_state.last_floor_position.y
+	if (
+		surface_state.just_left_air and
+		fall_distance > _MIN_FALL_DAMAGE_DISTANCE
+	):
+		fall_distance = clampf(
+			fall_distance,
+			_MIN_FALL_DAMAGE_DISTANCE,
+			_MAX_FALL_DAMAGE_DISTANCE)
+		var fall_damage_weight := lerpf(
+			fall_distance,
+			_MIN_FALL_DAMAGE_DISTANCE,
+			_MAX_FALL_DAMAGE_DISTANCE)
+		var fall_damage := floori(lerpf(
+			_MIN_FALL_DAMAGE_DISTANCE,
+			_MAX_FALL_DAMAGE_DISTANCE,
+			fall_damage_weight))
+		G.print("Fall damage: distance=%s, damage=%s" % [
+			str(fall_distance), str(fall_damage),
+		])
+		take_damage(fall_damage)
+
+
 	if Input.is_action_just_pressed("ability"):
 		last_ability_start_time_sec = G.time.get_play_time()
 		_trigger_ability()
