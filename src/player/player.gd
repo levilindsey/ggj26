@@ -18,7 +18,7 @@ enum MaskType {
 	CHICKEN,
 }
 
-const _MAX_HEALTH := 100
+const _MAX_HEALTH := 300
 const _INVINCIBILITY_DURATION_SEC := 1.0
 const _INVINCIBILITY_BLINK_PERIOD_SEC := 0.1
 const _DEATH_GAME_OVER_DELAY_SEC := 0.3
@@ -32,6 +32,7 @@ const _MASK_SWAP_COOLDOWN_SEC := 1.0
 @export var attack_damage := 10
 
 @export var abilty_duration_sec := 0.5
+@export var abilty_cooldown_sec := 0.5
 
 @export var melee_animator: AnimationPlayer
 
