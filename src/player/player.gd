@@ -3,30 +3,15 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
-# - Other enemies:
-#   - Movement/behavior settings
-#     - Ghost will have some custom stuff...
-#   - Attacks (mostly move a hitbox around to match the animation):
-#     - Nightmare swipe
-#     - Spider reach stomp
-#     - Ghost rush
-#     - Rat lunge
-#     - Make the dust bunny do a much higher sort of bounce attack, less lunge (calculate parabolic motion time for heigh, and use that to get horizontal speed based off current distance).
-# - Player abilities:
-#   - Movement settings for each mask
-#   - Abilities:
-#     - Pirate sword
-#     - Cowboy gun
-#     - Wizard ice spike
-#     - Dinosaur chomp
-#     - Chicken buh-cawk! (gonna need a sound for that...)
-# - Animations:
-#   - 4-frame walk for each
-#   - 2-frame rise for each
-#   - 2-frame fall for each
-#   - Simple idle
-#   - Custom attack for each
-#   - Possibly "wake-up" and "sleep", should be simple though
+# - Pirate fly jump.
+# - Wizard floating big jump.
+# - All player movement.
+# - Gun
+# - Ice spike
+# - Hand
+# - Spider
+# - Chicken buh-cawk! (gonna need a sound for that...)
+#
 # - END GAME CONDITION:
 #   - Cookie jar and cookie sprite
 #   - Credits panel
