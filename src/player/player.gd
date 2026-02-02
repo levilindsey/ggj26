@@ -3,7 +3,7 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
-$# - Gun
+# - Gun
 # - Ice spike
 # - Pirate fly jump.
 # - Wizard floating big jump.
