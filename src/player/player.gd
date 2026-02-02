@@ -3,6 +3,8 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
+# - Cookie jar.
+# - Explanatory controls.
 # - HANDSY.
 # - Wizard floating big jump.
 # - All player movement.

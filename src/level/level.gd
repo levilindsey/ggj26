@@ -87,6 +87,11 @@ func game_over() -> void:
 	reset()
 
 
+func win() -> void:
+	# FIXME
+	pass
+
+
 func _input(event: InputEvent) -> void:
 	if not is_ready_for_input_to_activate_next_game:
 		return

@@ -230,6 +230,12 @@ func play_player_sound(
 
 	# TODO: ALDEN
 	match sound_name:
+		"acquired_cookie":
+			#play.call("acquired_cookie")
+			pass
+		"game_win":
+			#play.call("game_win")
+			pass
 		"spawn":
 			#play.call("spawn")
 			pass

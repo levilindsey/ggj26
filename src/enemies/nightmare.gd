@@ -14,7 +14,6 @@ func play_animation(animation_name: String) -> void:
 
 
 func _trigger_attack() -> void:
-	# FIXME: Implement nightmare attack and behavior
 	pass
 
 
