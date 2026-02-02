@@ -119,7 +119,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_0bfqk")
 }],
 "loop": true,
-"name": &"reach",
+"name": &"attack",
 "speed": 10.0
 }, {
 "frames": [{
@@ -182,13 +182,14 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6da3l"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n0tk1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v1u7"]
+size = Vector2(42, 21)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_io1tw"]
-radius = 82.006096
+radius = 60.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0643i"]
-radius = 27.0
+radius = 60.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s7kor"]
 radius = 0.1
@@ -205,18 +206,25 @@ attack_max_range_area = NodePath("AttackMaxRange")
 attack_min_range_area = NodePath("AttackMinRange")
 type = 5
 idle_type = 1
+chase_speed = 0.0
+wander_speed = 0.0
 faces_right_by_default = true
 max_health = 30
-attack_duration_sec = 0.9
-idle_pause_duration_min_sec = 1.0
-idle_pause_duration_max_sec = 3.0
+body_contact_damage = 35
+attack_duration_sec = 0.79
+lose_detection_delay_sec = 0.01
+pre_chase_pause_duration_sec = 0.01
+attack_pause_duration_sec = 0.01
+idle_pause_duration_min_sec = 0.6
+idle_pause_duration_max_sec = 0.6
 metadata/_custom_type_script = "uid://n2ec8c2ou2fi"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(8, -15.5)
 sprite_frames = SubResource("SpriteFrames_0643i")
-animation = &"wake_up"
+animation = &"attack"
 autoplay = "rest"
+frame_progress = 0.46963564
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -9)
@@ -228,8 +236,8 @@ collision_mask = 8
 monitorable = false
 
 [node name="DamagePlayerShape" type="CollisionShape2D" parent="DamagePlayerArea"]
-position = Vector2(-1, -9)
-shape = SubResource("CircleShape2D_n0tk1")
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_4v1u7")
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 0
@@ -246,7 +254,7 @@ collision_mask = 8
 monitorable = false
 
 [node name="AttackMaxRangeShape" type="CollisionShape2D" parent="AttackMaxRange"]
-position = Vector2(11, -10)
+position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_0643i")
 
 [node name="AttackMinRange" type="Area2D" parent="."]
