@@ -143,6 +143,7 @@ collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_cs5uc")
 mask_type = 4
+attack_damage = 75
 melee_animator = NodePath("AnimationPlayer")
 collision_shape = NodePath("PlayerBodyCollisionShape")
 animator = NodePath("DinosaurAnimator")

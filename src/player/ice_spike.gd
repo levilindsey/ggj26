@@ -2,7 +2,7 @@ class_name IceSpike
 extends Node2D
 
 
-const _ICE_SPIKE_DAMAGE := 50
+const _ICE_SPIKE_DAMAGE := 25
 const _ICE_SPIKE_SPEED := 180.0
 const _ICE_SPIKE_GROUNDED_DURATION_SEC := 4.0
 const _SHATTER_DURATION_SEC := 5 * 1/12.0

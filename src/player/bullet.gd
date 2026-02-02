@@ -2,7 +2,7 @@ class_name Bullet
 extends Node2D
 
 
-const _BULLET_DAMAGE := 50
+const _BULLET_DAMAGE := 10
 const _BULLET_SPEED := 200.0
 
 

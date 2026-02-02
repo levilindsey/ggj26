@@ -4,11 +4,11 @@
 
 [resource]
 script = ExtResource("1_dfd2s")
-jump_boost = -320.0
+jump_boost = -150.0
 gravity_slow_rise_multiplier = 0.66
 walk_acceleration = 2000.0
 in_air_horizontal_acceleration = 1200.0
-max_ground_horizontal_speed = 120.0
+max_ground_horizontal_speed = 70.0
 max_air_horizontal_speed = 140.0
 max_vertical_speed = 1000.0
 late_jump_forgiveness_threshold_sec = 0.1

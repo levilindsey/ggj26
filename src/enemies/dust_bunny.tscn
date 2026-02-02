@@ -257,6 +257,7 @@ damage_player_area = NodePath("DamagePlayerArea")
 detection_range = NodePath("DetectionRange")
 attack_max_range_area = NodePath("AttackMaxRange")
 attack_min_range_area = NodePath("AttackMinRange")
+max_health = 10
 metadata/_custom_type_script = "uid://dn207w6w75on0"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
