@@ -136,14 +136,17 @@ func swap_mask(mask_type: Player.MaskType) -> void:
 
 	if is_instance_valid(previous_player):
 		previous_player.destroy()
-	%Players.add_child(player)
+	%Players.call_deferred("add_child", player)
 	player.global_position = previous_position
+	player.call_deferred("set_global_position", previous_position)
 
 	# Swap the color palette.
 	G.palette_swapper.swap_index = Player.get_palette_swap_index_for_mask(
 		player.mask_type)
 
 	G.hud.update_masks()
+
+	G.audio.fade_to_mask_theme(mask_type)
 
 
 func spawn_enemy(spawn_point: EnemySpawnPoint) -> void:
