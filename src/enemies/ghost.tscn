@@ -127,16 +127,16 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6da3l"]
-radius = 5.0
+radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n0tk1"]
-radius = 5.0
+radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_io1tw"]
 radius = 82.006096
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0643i"]
-radius = 36.013885
+radius = 36.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s7kor"]
 radius = 0.1
@@ -151,11 +151,9 @@ damage_player_area = NodePath("DamagePlayerArea")
 detection_range = NodePath("DetectionRange")
 attack_max_range_area = NodePath("AttackMaxRange")
 attack_min_range_area = NodePath("AttackMinRange")
+type = 2
 chase_speed = 60.0
 wander_speed = 30.0
-bounces_when_walking = true
-walk_bounce_boost = 70.0
-chase_bounce_boost = 50.0
 gravity_multiplier = 0.2
 max_health = 10
 attack_duration_sec = 0.9
@@ -164,13 +162,13 @@ idle_pause_duration_max_sec = 3.0
 metadata/_custom_type_script = "uid://dwxfwavgtfj2j"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -10)
+position = Vector2(2, -5)
 sprite_frames = SubResource("SpriteFrames_0643i")
 animation = &"walk"
 frame_progress = 0.9050044
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_6da3l")
 
 [node name="DamagePlayerArea" type="Area2D" parent="."]
@@ -179,7 +177,7 @@ collision_mask = 8
 monitorable = false
 
 [node name="DamagePlayerShape" type="CollisionShape2D" parent="DamagePlayerArea"]
-position = Vector2(0, -5)
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_n0tk1")
 
 [node name="DetectionRange" type="Area2D" parent="."]
