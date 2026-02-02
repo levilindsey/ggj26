@@ -10,7 +10,7 @@ extends Node2D
 @export var menu_theme_volume := 0.0
 
 @onready var STREAM_PLAYERS_BY_NAME := {
-	"dino_theme" = %DinoThene,
+	"dino_theme" = %DinoTheme,
 	"girl_theme" = %GirlTheme,
 	"pirate_theme" = %PirateTheme,
 	"western_theme" = %WesternTheme,
