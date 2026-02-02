@@ -2,13 +2,6 @@ class_name Player
 extends Character
 
 
-# FIXME: LEFT OFF HERE:
-# - Wizard floating big jump.
-# - All player movement.
-# - Palette adjustments, to emphasize the accent color.
-# - Spider
-
-
 enum MaskType {
 	NONE,
 	COWBOY,
