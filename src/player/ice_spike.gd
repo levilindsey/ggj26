@@ -53,6 +53,14 @@ func _physics_process(delta: float) -> void:
 	if not has_grounded and not has_shattered:
 		# Keep falling.
 		position.y += _ICE_SPIKE_SPEED * delta
+
+		# Check for ground collision using RayCast2D
+		if %GroundDetector.is_colliding():
+			# Prevent spawning in walls.
+			if frame_count <= 2:
+				shatter()
+			else:
+				ground()
 	elif not has_shattered:
 		# Shatter after a delay on the ground.
 		if (current_time >=
@@ -65,16 +73,18 @@ func _physics_process(delta: float) -> void:
 
 func ground() -> void:
 	grounded_start_time_sec = G.time.get_play_time()
-	%GroundDetector.monitoring = false
+	%GroundDetector.enabled = false
 	%DamageArea.monitoring = false
-	%WalkingSurface.monitorable = true
+	# Enable the walking surface collision
+	%WalkingSurface/CollisionShape2D.disabled = false
 
 
 func shatter() -> void:
 	shatter_start_time_sec = G.time.get_play_time()
 	%AnimatedSprite2D.play("shatter")
 	%DamageArea.monitoring = false
-	%WalkingSurface.monitorable = false
+	# Disable the walking surface collision
+	%WalkingSurface/CollisionShape2D.disabled = true
 
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
@@ -84,14 +94,3 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 	enemy.take_damage(_ICE_SPIKE_DAMAGE)
 	G.level.remove_ice_spike(self)
 	shatter()
-
-
-func _on_ground_detector_body_entered(body: Node2D) -> void:
-	if not body is TileMapLayer:
-		return
-
-	# Prevent spawning in walls.
-	if frame_count <= 2:
-		shatter()
-
-	ground()

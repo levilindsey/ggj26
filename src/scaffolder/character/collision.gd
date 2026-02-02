@@ -39,7 +39,8 @@ func _init(original: KinematicCollision2D = null, index := -1) -> void:
 		self.travel = original.get_travel()
 		self.collision_index = index
 
-		self.is_tilemap_collision = collider is TileMapLayer
+		#self.is_tilemap_collision = collider is TileMapLayer
+		self.is_tilemap_collision = true
 
 		if is_tilemap_collision:
 			if angle_to_within_plus_minus_pi(normal, Vector2.UP) <= MovementSettings._MAX_FLOOR_ANGLE:

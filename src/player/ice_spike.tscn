@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cisj5ycdw06v5"]
+[gd_scene load_steps=11 format=3 uid="uid://cisj5ycdw06v5"]
 
 [ext_resource type="Script" uid="uid://cwqu1ud2hw56v" path="res://src/player/ice_spike.gd" id="1_kunt1"]
 [ext_resource type="Texture2D" uid="uid://dcup4a4o5duqh" path="res://assets/images/scratch/ice_spike.png" id="2_xlbjl"]
@@ -61,9 +61,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xlbjl"]
 size = Vector2(32, 3)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_skoo0"]
-size = Vector2(6, 12)
-
 [node name="IceSpike" type="Node2D"]
 script = ExtResource("1_kunt1")
 
@@ -83,24 +80,20 @@ monitorable = false
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DamageArea"]
 polygon = PackedVector2Array(-13, -34, 13, -34, 2, 1, -2, 1)
 
-[node name="WalkingSurface" type="Area2D" parent="."]
+[node name="WalkingSurface" type="StaticBody2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 0
-monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WalkingSurface"]
 position = Vector2(0, -46.5)
 shape = SubResource("RectangleShape2D_xlbjl")
+disabled = true
 
-[node name="GroundDetector" type="Area2D" parent="."]
-collision_layer = 0
+[node name="GroundDetector" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -47)
+target_position = Vector2(0, 42)
 collision_mask = 7
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetector"]
-position = Vector2(0, -7)
-shape = SubResource("RectangleShape2D_skoo0")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
-[connection signal="body_entered" from="GroundDetector" to="." method="_on_ground_detector_body_entered"]
