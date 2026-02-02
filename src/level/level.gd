@@ -54,6 +54,7 @@ func reset() -> void:
 	is_ready_for_input_to_activate_next_game = false
 
 	%SleepingGirl.visible = true
+	G.hud.fade_in_title()
 
 	# Swap the color palette.
 	G.palette_swapper.swap_index = Player.get_palette_swap_index_for_mask(
@@ -72,6 +73,7 @@ func start_game() -> void:
 	has_started = true
 	is_ready_for_input_to_activate_next_game = false
 	spawn_player()
+	G.hud.fade_out_title()
 
 
 func game_over() -> void:

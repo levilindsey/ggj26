@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://be7lolcs1slrr"]
 
 [ext_resource type="Script" uid="uid://djwq0i6pwxm44" path="res://src/player/pirate.gd" id="1_uj7mc"]
-[ext_resource type="Resource" uid="uid://dq1d4nuh248j2" path="res://src/player/girl_movement_settings.tres" id="2_vytfq"]
+[ext_resource type="Resource" uid="uid://cqln3qo6o3x51" path="res://src/player/pirate_movement_settings.tres" id="2_uj7mc"]
 [ext_resource type="PackedScene" uid="uid://c40jyjt072yk4" path="res://src/player/pirate_animator.tscn" id="3_uj7mc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mf2ua"]
@@ -147,7 +147,7 @@ mask_type = 2
 melee_animator = NodePath("AnimationPlayer")
 collision_shape = NodePath("PlayerBodyCollisionShape")
 animator = NodePath("PirateAnimator")
-movement_settings = ExtResource("2_vytfq")
+movement_settings = ExtResource("2_uj7mc")
 metadata/_custom_type_script = "uid://c1qdd50ca4hst"
 
 [node name="PirateAnimator" parent="." instance=ExtResource("3_uj7mc")]

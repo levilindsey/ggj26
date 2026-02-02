@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b44pqn12oqw7u"]
 
 [ext_resource type="Script" uid="uid://chxpk271hpjou" path="res://src/player/chicken.gd" id="1_425xd"]
-[ext_resource type="Resource" uid="uid://dq1d4nuh248j2" path="res://src/player/girl_movement_settings.tres" id="2_vytfq"]
+[ext_resource type="Resource" uid="uid://dw3caelraat4d" path="res://src/player/chicken_movement_settings.tres" id="2_425xd"]
 [ext_resource type="PackedScene" uid="uid://ctaktp1o3x7qr" path="res://src/player/chicken_animator.tscn" id="3_425xd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mf2ua"]
@@ -14,7 +14,7 @@ script = ExtResource("1_425xd")
 mask_type = 5
 collision_shape = NodePath("PlayerBodyCollisionShape")
 animator = NodePath("ChickenAnimator")
-movement_settings = ExtResource("2_vytfq")
+movement_settings = ExtResource("2_425xd")
 metadata/_custom_type_script = "uid://c1qdd50ca4hst"
 
 [node name="ChickenAnimator" parent="." instance=ExtResource("3_425xd")]

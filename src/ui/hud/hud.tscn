@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt1la6s52krxe"]
+[gd_scene load_steps=9 format=3 uid="uid://bt1la6s52krxe"]
 
 [ext_resource type="Theme" uid="uid://cl3pkwueh4mag" path="res://src/core/main_theme.tres" id="1_4rn03"]
 [ext_resource type="Script" uid="uid://cvmchc2851mho" path="res://src/ui/hud/hud.gd" id="1_eqvli"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dijmjmc6bnxio" path="res://assets/images/scratch/shield_icon.png" id="4_4dm8p"]
 [ext_resource type="Texture2D" uid="uid://p1h66vedvo7x" path="res://assets/images/scratch/health_bar_progress_texture_rect.png" id="4_ariom"]
 [ext_resource type="PackedScene" uid="uid://cm46trhxs8fvs" path="res://src/ui/hud/hud_mask_card.tscn" id="6_cio14"]
+[ext_resource type="Texture2D" uid="uid://g8krq86co53s" path="res://assets/images/scratch/mask_of_imaginations.png" id="8_bpdxj"]
 
 [node name="Hud" type="PanelContainer"]
 anchors_preset = 15
@@ -131,3 +132,33 @@ mouse_filter = 2
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Title" type="TextureRect" parent="MarginContainer/HBoxContainer2/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.0
+offset_top = 32.0
+offset_right = 51.0
+offset_bottom = 80.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("8_bpdxj")
+
+[node name="Spacer2" type="Control" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3

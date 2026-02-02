@@ -18,7 +18,7 @@ func _ready() -> void:
 	for card in %MasksContainer.get_children():
 		mask_cards.append(card)
 
-	_clear_mask_cards()
+		_clear_mask_cards()
 
 
 func update_visibility() -> void:
@@ -32,6 +32,26 @@ func update_visibility() -> void:
 			pass
 		_:
 			G.utils.ensure(false)
+
+
+func fade_in_title() -> void:
+	%Title.modulate.a = 0.0
+	var tween := create_tween()
+	tween.tween_property(
+		%Title,
+		"modulate:a",
+		1.0,
+		0.3)
+
+
+func fade_out_title() -> void:
+	%Title.modulate.a = 1.0
+	var tween := create_tween()
+	tween.tween_property(
+		%Title,
+		"modulate:a",
+		0.0,
+		0.3)
 
 
 func update_health() -> void:

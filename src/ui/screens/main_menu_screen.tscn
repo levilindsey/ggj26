@@ -26,7 +26,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "GGJ26"
+text = "Mask of Imaginations"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cplh64v2pmjin"]
 
 [ext_resource type="Script" uid="uid://cvchpnndhh641" path="res://src/player/wizard.gd" id="1_ikom1"]
-[ext_resource type="Resource" uid="uid://dq1d4nuh248j2" path="res://src/player/girl_movement_settings.tres" id="2_vytfq"]
+[ext_resource type="Resource" uid="uid://c4xfnw6gxyw6t" path="res://src/player/wizard_movement_settings.tres" id="2_ikom1"]
 [ext_resource type="PackedScene" uid="uid://qqiyuglh214k" path="res://src/player/wizard_animator.tscn" id="3_ikom1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mf2ua"]
@@ -14,7 +14,7 @@ script = ExtResource("1_ikom1")
 mask_type = 3
 collision_shape = NodePath("PlayerBodyCollisionShape")
 animator = NodePath("WizardAnimator")
-movement_settings = ExtResource("2_vytfq")
+movement_settings = ExtResource("2_ikom1")
 metadata/_custom_type_script = "uid://c1qdd50ca4hst"
 
 [node name="WizardAnimator" parent="." instance=ExtResource("3_ikom1")]

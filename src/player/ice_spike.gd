@@ -92,5 +92,4 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 		return
 	var enemy := body as Enemy
 	enemy.take_damage(_ICE_SPIKE_DAMAGE)
-	G.level.remove_ice_spike(self)
 	shatter()
