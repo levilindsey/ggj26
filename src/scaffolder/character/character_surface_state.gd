@@ -856,3 +856,13 @@ func force_boost() -> void:
 		just_changed_attachment_side = true
 		just_changed_attachment_position = true
 		last_floor_position = character.previous_position
+
+
+func copy(other: CharacterSurfaceState) -> void:
+	var properties := get_property_list()
+	for prop in properties:
+		# Filter for properties defined in the script.
+		if prop["usage"] & PROPERTY_USAGE_SCRIPT_VARIABLE:
+			var prop_name: String = prop["name"]
+			if prop_name != "character":
+				self.set(prop_name, other.get(prop_name))

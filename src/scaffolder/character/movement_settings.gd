@@ -65,6 +65,7 @@ const _STRONG_SPEED_TO_MAINTAIN_COLLISION := 900.0
 @export var max_jump_chain := 1
 
 @export var jump_boost := -900.0
+@export var double_jump_boost_multiplier := 0.6
 @export var wall_jump_horizontal_boost := 200.0
 @export var wall_fall_horizontal_boost := 20.0
 

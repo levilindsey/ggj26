@@ -3,7 +3,6 @@ extends Character
 
 
 # FIXME: LEFT OFF HERE:
-# - Fix pirate stuck swinging.
 # - Fix enemies on platforms.
 # - Fix damage collision shape size on sword and dino.
 # - Pirate fly jump.
@@ -142,9 +141,9 @@ func _physics_process(delta: float) -> void:
 			_MIN_FALL_DAMAGE_DISTANCE,
 			_MAX_FALL_DAMAGE_DISTANCE)
 		var fall_damage_weight := lerpf(
-			fall_distance,
 			_MIN_FALL_DAMAGE_DISTANCE,
-			_MAX_FALL_DAMAGE_DISTANCE)
+			_MAX_FALL_DAMAGE_DISTANCE,
+			fall_distance)
 		var fall_damage := floori(lerpf(
 			_MIN_FALL_DAMAGE_DISTANCE,
 			_MAX_FALL_DAMAGE_DISTANCE,
@@ -200,6 +199,9 @@ func _process_animation() -> void:
 		# again would cause looping.
 		pass
 	else:
+		# Stop the melee animator when ability is no longer active
+		if is_melee_mask(mask_type) and melee_animator.is_playing():
+			melee_animator.stop()
 		super._process_animation()
 
 
@@ -279,6 +281,8 @@ func copy(other: Player) -> void:
 	else:
 		selected_mask_index = current_masks.find(mask_type)
 	G.check(selected_mask_index >= 0)
+
+	surface_state.copy(other.surface_state)
 
 
 static func get_palette_swap_index_for_mask(p_mask_type: MaskType) -> int:
