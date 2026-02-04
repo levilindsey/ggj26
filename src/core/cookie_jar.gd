@@ -20,7 +20,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_nommed() -> void:
 	if (
-		G.level.has_cookied or
 		G.level.has_won or
 		G.level.has_finished or
 		not G.level.has_started

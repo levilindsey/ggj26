@@ -2,6 +2,9 @@ class_name Hand
 extends Enemy
 
 
+@export var attack_damage := 25
+
+
 func _trigger_attack() -> void:
 	pass
 
@@ -15,3 +18,10 @@ func play_animation(animation_name: String) -> void:
 		animated_sprite.stop()
 	else:
 		super.play_animation(animation_name)
+
+
+func _on_attack_damage_body_entered(body: Node2D) -> void:
+	if not body is Player:
+		return
+	if current_behavior == Behavior.ATTACK:
+		(body as Player).take_damage(attack_damage, self)

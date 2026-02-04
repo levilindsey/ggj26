@@ -2,6 +2,9 @@ class_name Chicken
 extends Player
 
 
+@export var fall_damage_multiplier := 0.33
+
+
 func _ready() -> void:
 	super._ready()
 
@@ -20,5 +23,11 @@ func _trigger_ability() -> void:
 	G.warning("WOAH! That ability was so cool!")
 
 
+func take_fall_damage(fall_damage: int) -> void:
+	var modified_damage := floori(fall_damage * fall_damage_multiplier)
+	take_damage(modified_damage, null)
+
+
 func take_damage(damage: int, enemy: Enemy) -> void:
-	G.print("Chicken is ignoring damage: %d" % damage)
+	#G.print("Chicken is ignoring damage: %d" % damage)
+	super.take_damage(damage, enemy)

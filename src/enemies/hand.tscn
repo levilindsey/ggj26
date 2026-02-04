@@ -432,3 +432,4 @@ libraries = {
 [connection signal="body_exited" from="AttackMaxRange" to="." method="_on_attack_max_range_body_exited"]
 [connection signal="body_entered" from="AttackMinRange" to="." method="_on_attack_min_range_body_entered"]
 [connection signal="body_exited" from="AttackMinRange" to="." method="_on_attack_min_range_body_exited"]
+[connection signal="body_entered" from="AttackDamage" to="." method="_on_attack_damage_body_entered"]

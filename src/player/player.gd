@@ -141,7 +141,7 @@ func _physics_process(delta: float) -> void:
 		G.print("Fall damage: speed=%s, damage=%s" % [
 			str(fall_speed), str(fall_damage),
 		])
-		take_damage(fall_damage, null)
+		take_fall_damage(fall_damage)
 
 	if Input.is_action_just_pressed("ability"):
 		# Cooldown.
@@ -220,6 +220,10 @@ func pick_up_mask(p_mask_type: MaskType) -> void:
 	current_masks.append(p_mask_type)
 	G.level.swap_mask(p_mask_type)
 	play_sound("mask_pickup")
+
+
+func take_fall_damage(fall_damage: int) -> void:
+	take_damage(fall_damage, null)
 
 
 func take_damage(damage: int, enemy: Enemy) -> void:
